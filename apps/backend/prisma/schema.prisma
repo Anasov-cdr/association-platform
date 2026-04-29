@@ -1,0 +1,268 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  GUEST
+  ALUMNI
+  MODERATOR
+  ADMIN
+}
+
+enum ProfileStatus {
+  DRAFT
+  PENDING
+  APPROVED
+  REJECTED
+  BLOCKED
+}
+
+enum JobStatus {
+  PENDING
+  PUBLISHED
+  REJECTED
+  CLOSED
+}
+
+enum ApplicationStatus {
+  SENT
+  VIEWED
+  INVITED
+  REJECTED
+  ACCEPTED
+}
+
+model User {
+  id           String        @id @default(cuid())
+  email        String        @unique
+  passwordHash String
+  role         Role          @default(ALUMNI)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  profile      AlumniProfile?
+  donations    Donation[]
+  jobs         Job[]         @relation("JobAuthor")
+  applications JobApplication[]
+  notifications Notification[]
+  chatsAsParticipant1 Chat[] @relation("ChatParticipant1")
+  chatsAsParticipant2 Chat[] @relation("ChatParticipant2")
+  messages     Message[]
+  mentorships  Mentorship[]  @relation("MentorshipMentor")
+  studentships Mentorship[]  @relation("MentorshipStudent")
+  eventRegistrations EventRegistration[]
+  newsComments NewsComment[]
+}
+
+model AlumniProfile {
+  id                  String        @id @default(cuid())
+  userId              String        @unique
+  user                User          @relation(fields: [userId], references: [id])
+  fullName            String
+  photoUrl            String?
+  graduationYear      Int
+  specialty           String
+  groupName           String?
+  city                String?
+  country             String?
+  company             String?
+  position            String?
+  bio                 String?
+  achievements        String?
+  skills              String[]      @default([])
+  socialLinks         Json?
+  phone               String?
+  showEmail           Boolean       @default(false)
+  showPhone           Boolean       @default(false)
+  isMentor            Boolean       @default(false)
+  canHelpStudents     Boolean       @default(false)
+  mentorArea          String?
+  mentorFormat        String?
+  mentorAvailability  String?
+  status              ProfileStatus @default(DRAFT)
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+}
+
+model NewsPost {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       Json
+  body        Json
+  imageUrl    String?
+  authorName  String
+  status      String   @default("PUBLISHED")
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  comments    NewsComment[]
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       Json
+  description Json
+  startsAt    DateTime
+  location    String
+  status      String   @default("upcoming")
+  publicationStatus String @default("PUBLISHED")
+  createdAt   DateTime @default(now())
+  registrations EventRegistration[]
+}
+
+model DonationCampaign {
+  id          String     @id @default(cuid())
+  title       Json
+  description Json?
+  goalAmount  Decimal
+  raisedAmount Decimal   @default(0)
+  publicationStatus String @default("PUBLISHED")
+  donations   Donation[]
+  createdAt    DateTime  @default(now())
+}
+
+model Donation {
+  id         String   @id @default(cuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id])
+  campaignId String?
+  campaign   DonationCampaign? @relation(fields: [campaignId], references: [id])
+  amount     Decimal
+  donorName  String?
+  anonymous  Boolean  @default(false)
+  status     String   @default("pending")
+  createdAt  DateTime @default(now())
+}
+
+model Document {
+  id          String   @id @default(cuid())
+  title       Json
+  description Json?
+  category    String
+  fileUrl     String
+  fileType    String
+  publicationStatus String @default("PUBLISHED")
+  publishedAt DateTime @default(now())
+}
+
+model Company {
+  id          String   @id @default(cuid())
+  name        String
+  logoUrl     String?
+  description String?
+  website     String?
+  city        String?
+  country     String?
+  jobs        Job[]
+}
+
+model Job {
+  id           String   @id @default(cuid())
+  authorId     String
+  author       User     @relation("JobAuthor", fields: [authorId], references: [id])
+  companyId    String?
+  company      Company? @relation(fields: [companyId], references: [id])
+  title        String
+  description  String
+  requirements String?
+  duties       String?
+  type         String
+  format       String
+  city         String?
+  country      String?
+  salary       String?
+  deadline     DateTime?
+  contacts     String?
+  status       JobStatus @default(PENDING)
+  applications JobApplication[]
+  createdAt    DateTime @default(now())
+}
+
+model JobApplication {
+  id          String            @id @default(cuid())
+  jobId       String
+  job         Job               @relation(fields: [jobId], references: [id])
+  userId      String
+  user        User              @relation(fields: [userId], references: [id])
+  cvUrl       String?
+  message     String?
+  status      ApplicationStatus @default(SENT)
+  createdAt   DateTime          @default(now())
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  type      String
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  data      Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Chat {
+  id        String    @id @default(cuid())
+  participant1Id String
+  participant1   User    @relation("ChatParticipant1", fields: [participant1Id], references: [id])
+  participant2Id String
+  participant2   User    @relation("ChatParticipant2", fields: [participant2Id], references: [id])
+  messages  Message[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([participant1Id, participant2Id])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  chatId    String
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  senderId  String
+  sender    User     @relation(fields: [senderId], references: [id])
+  text      String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Mentorship {
+  id          String   @id @default(cuid())
+  mentorId    String
+  mentor      User     @relation("MentorshipMentor", fields: [mentorId], references: [id])
+  studentId   String
+  student     User     @relation("MentorshipStudent", fields: [studentId], references: [id])
+  status      String   @default("active")
+  goals       String?
+  startedAt   DateTime @default(now())
+  endedAt     DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model EventRegistration {
+  id        String   @id @default(cuid())
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  status    String   @default("registered")
+  createdAt DateTime @default(now())
+
+  @@unique([eventId, userId])
+}
+
+model NewsComment {
+  id        String    @id @default(cuid())
+  postId    String
+  post      NewsPost  @relation(fields: [postId], references: [id], onDelete: Cascade)
+  authorId  String
+  author    User      @relation(fields: [authorId], references: [id])
+  text      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}

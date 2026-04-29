@@ -1,0 +1,20 @@
+{
+  "name": "college-alumni-association-platform",
+  "private": true,
+  "version": "0.1.0",
+  "description": "College Alumni Association Platform monorepo",
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:frontend dev:backend",
+    "dev:frontend": "npm --workspace apps/frontend run dev",
+    "dev:backend": "npm --workspace apps/backend run dev",
+    "build": "npm --workspace apps/frontend run build && npm --workspace apps/backend run build",
+    "start": "npm --workspace apps/backend run start"
+  },
+  "workspaces": [
+    "apps/frontend",
+    "apps/backend"
+  ],
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

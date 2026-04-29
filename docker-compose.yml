@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: alumni-postgres
+    environment:
+      POSTGRES_USER: alumni_user
+      POSTGRES_PASSWORD: alumni_password
+      POSTGRES_DB: alumni_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - alumni_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U alumni_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - alumni-network
+
+  # Optional: pgAdmin for database management
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: alumni-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@alumni.org
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - alumni-network
+
+volumes:
+  alumni_postgres_data:
+
+networks:
+  alumni-network:
+    driver: bridge

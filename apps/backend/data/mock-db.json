@@ -1,0 +1,664 @@
+{
+  "users": [
+    {
+      "id": "dev-admin",
+      "email": "admin@alumni.local",
+      "role": "ADMIN",
+      "status": "ACTIVE",
+      "createdAt": "2026-04-29T03:00:00.000Z",
+      "profile": {
+        "id": "dev-admin-profile",
+        "fullName": "Администратор БФЭТ",
+        "status": "APPROVED"
+      },
+      "passwordHash": "$2b$10$y4SCX8sE2ouMEg5cNIb./Oadrmo7P5pQxxISvHuZawrz6E6XNuMLO"
+    }
+  ],
+  "college": {
+    "name": "Бишкекский финансово-экономический техникум им. А. Токтоналиева",
+    "parentOrganization": "Научно-исследовательский университет Кыргызский экономический университет им. М. Рыскулбекова",
+    "website": "https://bfet.kg",
+    "foundedYear": 1931,
+    "staffCount": "176+",
+    "studentCount": "2268+",
+    "address": "Кыргызская Республика, г. Бишкек, пр. Чуй, 269",
+    "phones": [
+      "(0312) 39 15 41",
+      "(0312) 39 21 66"
+    ],
+    "email": "vip.bfet@mail.ru",
+    "workingHours": "Понедельник - Пятница 08:00 - 17:00, обед 12:00 - 13:00",
+    "mission": "Обеспечение современного качественного образования, ориентированного на подготовку конкурентоспособных кадров нового поколения через сохранение традиций и внедрение инноваций.",
+    "specialties": [
+      "Экономика и бухгалтерский учет",
+      "Финансы: бюджет и бюджетный учет",
+      "Финансы предприятий",
+      "Банковское дело",
+      "Страховое дело",
+      "Налоги и налогообложение",
+      "Менеджмент",
+      "Маркетинг",
+      "Операционная деятельность в логистике"
+    ]
+  },
+  "alumni": [],
+  "news": [
+    {
+      "id": "news-national-bank-museum",
+      "slug": "national-bank-museum-visit",
+      "title": {
+        "ru": "Студенты БФЭТ посетили Музей Национального банка КР",
+        "ky": "БФЭТ студенттери КР Улуттук банкынын музейине барышты",
+        "en": "BFET students visited the National Bank Museum"
+      },
+      "body": {
+        "ru": "Студенты групп Б-1-23 и СД-1-23 в рамках дисциплины «Маркетинг» ознакомились с историей денежной системы и финансовых коммуникаций.",
+        "ky": "Студенты групп Б-1-23 и СД-1-23 в рамках дисциплины «Маркетинг» ознакомились с историей денежной системы и финансовых коммуникаций.",
+        "en": "Студенты групп Б-1-23 и СД-1-23 в рамках дисциплины «Маркетинг» ознакомились с историей денежной системы и финансовых коммуникаций."
+      },
+      "authorName": "БФЭТ",
+      "publishedAt": "2026-04-09T09:00:00.000Z",
+      "comments": []
+    },
+    {
+      "id": "news-alumni-platform",
+      "slug": "bfet-alumni-platform",
+      "title": {
+        "ru": "Ассоциация выпускников БФЭТ запускает цифровую базу",
+        "ky": "БФЭТ бутуруучулор ассоциациясы санарип базаны ишке киргизет",
+        "en": "BFET Alumni Association launches a digital directory"
+      },
+      "body": {
+        "ru": "Платформа объединяет выпускников БФЭТ, помогает развивать карьерные связи, менторство, мероприятия и поддержку студентов.",
+        "ky": "Платформа объединяет выпускников БФЭТ, помогает развивать карьерные связи, менторство, мероприятия и поддержку студентов.",
+        "en": "Платформа объединяет выпускников БФЭТ, помогает развивать карьерные связи, менторство, мероприятия и поддержку студентов."
+      },
+      "authorName": "Администрация ассоциации",
+      "publishedAt": "2026-04-29T09:00:00.000Z",
+      "comments": []
+    }
+  ],
+  "events": [
+    {
+      "id": "event-reunion",
+      "title": {
+        "ru": "Встреча выпускников БФЭТ 2026",
+        "ky": "БФЭТ бутуруучулор жолугушуусу 2026",
+        "en": "BFET Alumni Reunion 2026"
+      },
+      "description": {
+        "ru": "Тематическая встреча выпускников, студентов, преподавателей и партнеров техникума.",
+        "ky": "Тематическая встреча выпускников, студентов, преподавателей и партнеров техникума.",
+        "en": "Тематическая встреча выпускников, студентов, преподавателей и партнеров техникума."
+      },
+      "startsAt": "2026-05-30T12:00:00.000Z",
+      "location": "БФЭТ, г. Бишкек, пр. Чуй, 269",
+      "status": "upcoming",
+      "registrations": []
+    },
+    {
+      "id": "event-career",
+      "title": {
+        "ru": "Карьерная сессия для студентов БФЭТ",
+        "ky": "БФЭТ студенттери учун карьералык сессия",
+        "en": "Career session for BFET students"
+      },
+      "description": {
+        "ru": "Выпускники делятся опытом трудоустройства, практики и профессионального роста.",
+        "ky": "Выпускники делятся опытом трудоустройства, практики и профессионального роста.",
+        "en": "Выпускники делятся опытом трудоустройства, практики и профессионального роста."
+      },
+      "startsAt": "2026-06-12T08:00:00.000Z",
+      "location": "БФЭТ / онлайн",
+      "status": "upcoming",
+      "registrations": []
+    }
+  ],
+  "campaigns": [
+    {
+      "id": "campaign-scholarships",
+      "title": {
+        "ru": "Поддержка талантливых студентов БФЭТ",
+        "ky": "БФЭТтин таланттуу студенттерин колдоо",
+        "en": "Support for talented BFET students"
+      },
+      "description": {
+        "ru": "Поддержка талантливых студентов, преподавателей, научных и образовательных проектов БФЭТ.",
+        "ky": "Поддержка талантливых студентов, преподавателей, научных и образовательных проектов БФЭТ.",
+        "en": "Поддержка талантливых студентов, преподавателей, научных и образовательных проектов БФЭТ."
+      },
+      "goalAmount": 250000,
+      "raisedAmount": 145000,
+      "donations": [
+        {
+          "amount": 10000,
+          "donorName": "Нурбек Осмонов",
+          "anonymous": false
+        }
+      ],
+      "createdAt": "2026-04-10T09:00:00.000Z"
+    },
+    {
+      "id": "campaign-equipment",
+      "title": {
+        "ru": "Материальная база БФЭТ",
+        "ky": "БФЭТ материалдык базасы",
+        "en": "BFET facilities development"
+      },
+      "description": {
+        "ru": "Помощь в развитии хорошо оснащенной материальной базы техникума.",
+        "ky": "Помощь в развитии хорошо оснащенной материальной базы техникума.",
+        "en": "Помощь в развитии хорошо оснащенной материальной базы техникума."
+      },
+      "goalAmount": 400000,
+      "raisedAmount": 218000,
+      "donations": [],
+      "createdAt": "2026-04-12T09:00:00.000Z"
+    }
+  ],
+  "documents": [
+    {
+      "id": "doc-finance-2025",
+      "title": {
+        "ru": "Положение Ассоциации выпускников БФЭТ",
+        "ky": "Положение Ассоциации выпускников БФЭТ",
+        "en": "Положение Ассоциации выпускников БФЭТ"
+      },
+      "description": {
+        "ru": "Официальный раздел Ассоциации выпускников БФЭТ им. А. Токтоналиева.",
+        "ky": "Официальный раздел Ассоциации выпускников БФЭТ им. А. Токтоналиева.",
+        "en": "Официальный раздел Ассоциации выпускников БФЭТ им. А. Токтоналиева."
+      },
+      "category": "Документы ассоциации",
+      "fileUrl": "https://bfet.kg/ass-vypusknikov/",
+      "fileType": "PDF",
+      "publishedAt": "2026-01-15T09:00:00.000Z"
+    },
+    {
+      "id": "doc-charter",
+      "title": {
+        "ru": "Анкета выпускника БФЭТ им. А. Токтоналиева",
+        "ky": "Анкета выпускника БФЭТ им. А. Токтоналиева",
+        "en": "Анкета выпускника БФЭТ им. А. Токтоналиева"
+      },
+      "description": {
+        "ru": "Анкета для пополнения базы данных выпускников БФЭТ.",
+        "ky": "Анкета для пополнения базы данных выпускников БФЭТ.",
+        "en": "Анкета для пополнения базы данных выпускников БФЭТ."
+      },
+      "category": "Анкеты",
+      "fileUrl": "https://bfet.kg/ass-vypusknikov/",
+      "fileType": "FORM",
+      "publishedAt": "2025-11-02T09:00:00.000Z"
+    }
+  ],
+  "companies": [
+    {
+      "id": "company-mbank",
+      "name": "Mbank",
+      "logoUrl": "",
+      "description": "Партнер БФЭТ, поддерживает подготовку студентов направления «Банковское дело».",
+      "website": "https://mbank.kg",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "_count": {
+        "jobs": 1
+      }
+    },
+    {
+      "id": "company-bpn",
+      "name": "BPN",
+      "logoUrl": "",
+      "description": "Общественное объединение предпринимателей, партнер БФЭТ по производственной практике студентов.",
+      "website": "https://bfet.kg",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "_count": {
+        "jobs": 1
+      }
+    }
+  ],
+  "jobs": [
+    {
+      "id": "job-frontend-intern",
+      "authorId": "dev-admin",
+      "companyId": "company-mbank",
+      "title": "Стажер в банковском отделе",
+      "description": "Практика для студентов и выпускников БФЭТ по направлению «Банковское дело».",
+      "requirements": "Базовые знания финансов, документооборот, ответственность",
+      "duties": "Работа с клиентскими документами, помощь специалистам отдела, изучение банковских процессов",
+      "type": "стажировка",
+      "format": "гибрид",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "salary": "по договоренности",
+      "deadline": "2026-06-01T18:00:00.000Z",
+      "contacts": "vip.bfet@mail.ru",
+      "status": "PUBLISHED",
+      "company": {
+        "id": "company-mbank",
+        "name": "Mbank"
+      },
+      "applications": [],
+      "createdAt": "2026-04-17T09:00:00.000Z"
+    },
+    {
+      "id": "job-finance-assistant",
+      "authorId": "dev-admin",
+      "companyId": "company-bpn",
+      "title": "Практикант по финансам и учету",
+      "description": "Практика для студентов БФЭТ по экономике, бухгалтерскому учету и финансам предприятий.",
+      "requirements": "Excel, внимательность, базовая финансовая грамотность",
+      "duties": "Подготовка отчетов, помощь аналитикам",
+      "type": "практика",
+      "format": "офис",
+      "city": "Ош",
+      "country": "Кыргызстан",
+      "salary": "по договоренности",
+      "deadline": "2026-05-20T18:00:00.000Z",
+      "contacts": "vip.bfet@mail.ru",
+      "status": "PUBLISHED",
+      "company": {
+        "id": "company-bpn",
+        "name": "BPN"
+      },
+      "applications": [],
+      "createdAt": "2026-04-16T09:00:00.000Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notification-1777455845338-c47f4bf9387f7",
+      "userId": "dev-admin",
+      "type": "JOB_PUBLISHED",
+      "title": "Вакансия опубликована",
+      "message": "Вакансия \"Smoke pending job\" опубликована.",
+      "data": {
+        "jobId": "job-1777455845180"
+      },
+      "read": true,
+      "createdAt": "2026-04-29T09:44:05.338Z"
+    },
+    {
+      "id": "notification-welcome",
+      "userId": "dev-admin",
+      "type": "SYSTEM",
+      "title": "Платформа запущена",
+      "message": "Платформа Ассоциации выпускников БФЭТ готова для наполнения реальными данными.",
+      "read": true,
+      "createdAt": "2026-04-29T03:00:00.000Z"
+    }
+  ],
+  "mentorships": [],
+  "chatRooms": [
+    {
+      "id": "general",
+      "name": "Общий чат",
+      "type": "general",
+      "createdAt": "2026-04-29T03:00:00.000Z"
+    },
+    {
+      "id": "jobs",
+      "name": "Вакансии и стажировки",
+      "type": "jobs",
+      "createdAt": "2026-04-29T03:00:00.000Z"
+    },
+    {
+      "id": "mentorship",
+      "name": "Менторство",
+      "type": "mentorship",
+      "createdAt": "2026-04-29T03:00:00.000Z"
+    }
+  ],
+  "chatMessages": [
+    {
+      "id": "1777457628881",
+      "roomId": "general",
+      "author": "admin@alumni.local",
+      "authorId": "dev-admin",
+      "text": "еке",
+      "deleted": true,
+      "createdAt": "2026-04-29T10:13:48.881Z",
+      "deletedAt": "2026-04-29T17:59:45.076Z",
+      "deletedBy": "dev-admin"
+    }
+  ],
+  "chatReports": [
+    {
+      "id": "report-1777457645262",
+      "messageId": "1777457628881",
+      "roomId": "general",
+      "reporterId": "dev-admin",
+      "reporterEmail": "admin@alumni.local",
+      "reason": "пар",
+      "status": "rejected",
+      "createdAt": "2026-04-29T10:14:05.262Z"
+    }
+  ],
+  "directChats": [],
+  "directMessages": [],
+  "auditLogs": [
+    {
+      "id": "audit-1777485585079-3d45f5b5a2e3",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/chat/messages/1777457628881",
+      "statusCode": 200,
+      "createdAt": "2026-04-29T17:59:45.079Z"
+    },
+    {
+      "id": "audit-1777485583101-0815cdd976224",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PATCH",
+      "path": "/api/chat/reports/report-1777457645262/status",
+      "statusCode": 200,
+      "body": {
+        "status": "rejected"
+      },
+      "createdAt": "2026-04-29T17:59:43.101Z"
+    },
+    {
+      "id": "audit-1777485579263-ef813a225aab8",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/chat/messages/1777457628881",
+      "statusCode": 200,
+      "createdAt": "2026-04-29T17:59:39.263Z"
+    },
+    {
+      "id": "audit-1777485577465-0b2f94b0ea385",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PATCH",
+      "path": "/api/chat/reports/report-1777457645262/status",
+      "statusCode": 200,
+      "body": {
+        "status": "resolved"
+      },
+      "createdAt": "2026-04-29T17:59:37.465Z"
+    },
+    {
+      "id": "audit-1777485575769-f58384061b07f",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/chat/messages/1777457628881",
+      "statusCode": 200,
+      "createdAt": "2026-04-29T17:59:35.769Z"
+    },
+    {
+      "id": "audit-1777457645266-ea256a459b111",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "POST",
+      "path": "/api/chat/messages/1777457628881/report",
+      "statusCode": 201,
+      "body": {
+        "reason": "пар"
+      },
+      "createdAt": "2026-04-29T10:14:05.266Z"
+    },
+    {
+      "id": "audit-1777456138164-89faef646da9e",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PATCH",
+      "path": "/api/notifications/notification-1777455845338-c47f4bf9387f7/read",
+      "statusCode": 200,
+      "createdAt": "2026-04-29T09:48:58.164Z"
+    },
+    {
+      "id": "audit-1777455845550-411269ff6665a",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/jobs/job-1777455845180",
+      "statusCode": 200,
+      "createdAt": "2026-04-29T09:44:05.550Z"
+    },
+    {
+      "id": "audit-1777455845340-7ade4f9a8a9fe",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "POST",
+      "path": "/api/jobs",
+      "statusCode": 201,
+      "body": {
+        "city": "??????",
+        "description": "draft",
+        "type": "??????????",
+        "duties": "",
+        "format": "??????",
+        "requirements": "",
+        "salary": "",
+        "title": "Smoke pending job",
+        "country": "??????????",
+        "contacts": "test"
+      },
+      "createdAt": "2026-04-29T09:44:05.340Z"
+    },
+    {
+      "id": "audit-1777455832985-73e41068bd04e",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/donations/campaigns/campaign-1777455832495",
+      "statusCode": 200,
+      "createdAt": "2026-04-29T09:43:52.985Z"
+    },
+    {
+      "id": "audit-1777455832932-4b077840f0dd",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/documents/doc-1777455832438",
+      "statusCode": 200,
+      "createdAt": "2026-04-29T09:43:52.932Z"
+    },
+    {
+      "id": "audit-1777455832877-0cbdc995e30ab",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/events/event-1777455832373",
+      "statusCode": 200,
+      "createdAt": "2026-04-29T09:43:52.877Z"
+    },
+    {
+      "id": "audit-1777455832497-67c2eae90f45f",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "POST",
+      "path": "/api/donations/campaigns",
+      "statusCode": 201,
+      "body": {
+        "title": {
+          "ru": "Smoke draft campaign",
+          "ky": "Smoke draft campaign",
+          "en": "Smoke draft campaign"
+        },
+        "description": {
+          "ru": "draft",
+          "ky": "draft",
+          "en": "draft"
+        },
+        "publicationStatus": "DRAFT",
+        "goalAmount": 1000
+      },
+      "createdAt": "2026-04-29T09:43:52.497Z"
+    },
+    {
+      "id": "audit-1777455832440-a18ec51f7b112",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "POST",
+      "path": "/api/documents",
+      "statusCode": 201,
+      "body": {
+        "fileType": "PDF",
+        "description": {
+          "ru": "draft",
+          "ky": "draft",
+          "en": "draft"
+        },
+        "publicationStatus": "DRAFT",
+        "fileUrl": "#",
+        "category": "Smoke",
+        "title": {
+          "ru": "Smoke draft document",
+          "ky": "Smoke draft document",
+          "en": "Smoke draft document"
+        }
+      },
+      "createdAt": "2026-04-29T09:43:52.440Z"
+    },
+    {
+      "id": "audit-1777455832376-b2cb8480e1ef3",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "POST",
+      "path": "/api/events",
+      "statusCode": 201,
+      "body": {
+        "description": {
+          "ru": "draft",
+          "ky": "draft",
+          "en": "draft"
+        },
+        "startsAt": "2026-06-01T10:00:00.000Z",
+        "location": "BFET",
+        "publicationStatus": "DRAFT",
+        "title": {
+          "ru": "Smoke draft event",
+          "ky": "Smoke draft event",
+          "en": "Smoke draft event"
+        },
+        "status": "upcoming"
+      },
+      "createdAt": "2026-04-29T09:43:52.377Z"
+    },
+    {
+      "id": "audit-1777455579594-d594e7875035c",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/news/news-1777455579473",
+      "statusCode": 200,
+      "createdAt": "2026-04-29T09:39:39.594Z"
+    },
+    {
+      "id": "audit-1777455579475-8c4b7fa9717fc",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "POST",
+      "path": "/api/news",
+      "statusCode": 201,
+      "body": {
+        "title": {
+          "ru": "Smoke draft news",
+          "ky": "Smoke draft news",
+          "en": "Smoke draft news"
+        },
+        "body": {
+          "ru": "Temporary draft for status check",
+          "ky": "Temporary draft for status check",
+          "en": "Temporary draft for status check"
+        },
+        "status": "DRAFT",
+        "imageUrl": ""
+      },
+      "createdAt": "2026-04-29T09:39:39.475Z"
+    },
+    {
+      "id": "audit-1777455579423-9a7789f25026c",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/news/news-1777455521774",
+      "statusCode": 200,
+      "createdAt": "2026-04-29T09:39:39.423Z"
+    },
+    {
+      "id": "audit-1777455521776-38f9bd9163996",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "POST",
+      "path": "/api/news",
+      "statusCode": 201,
+      "body": {
+        "title": {
+          "ru": "Smoke draft news",
+          "ky": "Smoke draft news",
+          "en": "Smoke draft news"
+        },
+        "body": {
+          "ru": "Temporary draft for status check",
+          "ky": "Temporary draft for status check",
+          "en": "Temporary draft for status check"
+        },
+        "status": "DRAFT",
+        "imageUrl": ""
+      },
+      "createdAt": "2026-04-29T09:38:41.776Z"
+    },
+    {
+      "id": "audit-1777455404624-4085733acac8",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PUT",
+      "path": "/api/site",
+      "statusCode": 200,
+      "body": {
+        "workingHours": "??????????? - ??????? 08:00 - 17:00, ???? 12:00 - 13:00",
+        "studentCount": "2268+",
+        "foundedYear": 1931,
+        "parentOrganization": "??????-????????????????? ??????????? ?????????? ????????????? ??????????? ??. ?. ????????????",
+        "phones": [
+          "(0312) 39 15 41",
+          "(0312) 39 21 66"
+        ],
+        "mission": "??????????? ???????????? ????????????? ???????????, ???????????????? ?? ?????????? ??????????????????? ?????? ?????? ????????? ????? ?????????? ???????? ? ????????? ?????????.",
+        "name": "?????????? ?????????-????????????? ???????? ??. ?. ????????????",
+        "address": "?????????? ??????????, ?. ??????, ??. ???, 269",
+        "staffCount": "176+",
+        "website": "https://bfet.kg",
+        "specialties": [
+          "????????? ? ????????????? ????",
+          "???????: ?????? ? ????????? ????",
+          "??????? ???????????",
+          "?????????? ????",
+          "????????? ????",
+          "?????? ? ???????????????",
+          "??????????",
+          "?????????",
+          "???????????? ???????????? ? ?????????"
+        ],
+        "email": "vip.bfet@mail.ru"
+      },
+      "createdAt": "2026-04-29T09:36:44.624Z"
+    }
+  ]
+}
