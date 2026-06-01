@@ -19,16 +19,28 @@ const newsSchema = z.object({
 router.get(
   '/',
   asyncHandler(async (req, res) => {
+    const { query } = req.query
     let news
     try {
+      const where = { status: 'PUBLISHED' }
+      if (query) where.title = { path: ['ru'], string_contains: query }
       news = await prisma.newsPost.findMany({
-        where: { status: 'PUBLISHED' },
+        where,
         include: { comments: { include: { author: { select: { email: true } } } } },
         orderBy: { publishedAt: 'desc' }
       })
     } catch (error) {
       if (!isPrismaUnavailable(error)) throw error
       news = clone(mockDb.news.filter((item) => (item.status || 'PUBLISHED') === 'PUBLISHED'))
+      if (query) {
+        const q = query.toLowerCase()
+        news = news.filter((item) => {
+          const title = item.title
+          if (typeof title === 'string') return title.toLowerCase().includes(q)
+          if (typeof title === 'object') return Object.values(title).some((v) => String(v).toLowerCase().includes(q))
+          return false
+        })
+      }
     }
     res.json(news)
   })
@@ -135,6 +147,69 @@ router.put(
       saveMockDb()
     }
     res.json(post)
+  })
+)
+
+// Add comment to news post
+router.post(
+  '/:id/comments',
+  authMiddleware,
+  asyncHandler(async (req, res) => {
+    const text = String(req.body.text || '').trim()
+    if (!text) throw new AppError('Текст комментария не может быть пустым', 400)
+
+    let comment
+    try {
+      comment = await prisma.newsComment.create({
+        data: { postId: req.params.id, authorId: req.user.userId, text },
+        include: { author: { select: { email: true, id: true } } }
+      })
+    } catch (error) {
+      if (!isPrismaUnavailable(error)) throw error
+      const post = mockDb.news.find((item) => item.id === req.params.id || item.slug === req.params.id)
+      if (!post) throw new AppError('Новость не найдена', 404)
+      if (!post.comments) post.comments = []
+      comment = {
+        id: `comment-${Date.now()}`,
+        postId: post.id,
+        authorId: req.user.userId,
+        text,
+        createdAt: new Date().toISOString(),
+        author: { email: req.user.email, id: req.user.userId }
+      }
+      post.comments.push(comment)
+      saveMockDb()
+    }
+    res.status(201).json(clone(comment))
+  })
+)
+
+// Delete comment (author or admin)
+router.delete(
+  '/:id/comments/:commentId',
+  authMiddleware,
+  asyncHandler(async (req, res) => {
+    try {
+      const comment = await prisma.newsComment.findUnique({ where: { id: req.params.commentId } })
+      if (!comment) throw new AppError('Комментарий не найден', 404)
+      if (comment.authorId !== req.user.userId && !['ADMIN', 'MODERATOR'].includes(req.user.role)) {
+        throw new AppError('Нет прав для удаления', 403)
+      }
+      await prisma.newsComment.delete({ where: { id: req.params.commentId } })
+    } catch (error) {
+      if (!isPrismaUnavailable(error)) throw error
+      const post = mockDb.news.find((item) => item.id === req.params.id || item.slug === req.params.id)
+      if (!post) throw new AppError('Новость не найдена', 404)
+      const idx = (post.comments || []).findIndex((c) => c.id === req.params.commentId)
+      if (idx === -1) throw new AppError('Комментарий не найден', 404)
+      const comment = post.comments[idx]
+      if (comment.authorId !== req.user.userId && !['ADMIN', 'MODERATOR'].includes(req.user.role)) {
+        throw new AppError('Нет прав для удаления', 403)
+      }
+      post.comments.splice(idx, 1)
+      saveMockDb()
+    }
+    res.json({ message: 'Комментарий удалён' })
   })
 )
 

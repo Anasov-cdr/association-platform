@@ -8,7 +8,7 @@ import { authMiddleware } from '../middleware/auth.js'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const uploadRoot = path.resolve(__dirname, '../../uploads')
 
-const allowedFolders = new Set(['documents', 'images', 'cv', 'misc'])
+const allowedFolders = new Set(['documents', 'images', 'cv', 'misc', 'logos'])
 const allowedMimeTypes = new Set([
   'application/pdf',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -19,6 +19,11 @@ const allowedMimeTypes = new Set([
   'image/png',
   'image/webp',
   'text/csv'
+])
+
+const allowedExtensions = new Set([
+  '.pdf', '.doc', '.docx', '.xls', '.xlsx', '.csv',
+  '.jpg', '.jpeg', '.png', '.webp'
 ])
 
 const storage = multer.diskStorage({
@@ -41,6 +46,11 @@ const upload = multer({
   fileFilter: (req, file, cb) => {
     if (!allowedMimeTypes.has(file.mimetype)) {
       cb(new Error('Недопустимый тип файла'))
+      return
+    }
+    const ext = path.extname(file.originalname).toLowerCase()
+    if (!allowedExtensions.has(ext)) {
+      cb(new Error('Недопустимое расширение файла'))
       return
     }
     cb(null, true)

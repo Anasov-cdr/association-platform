@@ -1,0 +1,105 @@
+name: smartordo
+
+services:
+  # -- PostgreSQL -------------------------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    container_name: alumni-postgres-prod
+    restart: unless-stopped
+    env_file:
+      - ./apps/backend/.env.production
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - alumni-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # -- Backend API ------------------------------------------------------------
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+    container_name: alumni-backend
+    restart: unless-stopped
+    command: sh -c "npx prisma migrate deploy && node src/server.js"
+    env_file:
+      - ./apps/backend/.env.production
+    volumes:
+      - uploads_data:/app/apps/backend/uploads
+      - backups_data:/app/apps/backend/backups
+      - db_data:/app/apps/backend/data
+    networks:
+      - alumni-net
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:4000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # -- Frontend (React built -> Nginx) ---------------------------------------
+  frontend:
+    build:
+      context: .
+      dockerfile: apps/frontend/Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:?Set VITE_API_URL, for example https://bfetassociation.kg/api}
+        VITE_API_BASE_URL: ${VITE_API_URL:?Set VITE_API_URL, for example https://bfetassociation.kg/api}
+        VITE_SITE_URL: https://${DOMAIN:?Set DOMAIN, for example bfetassociation.kg}
+    container_name: alumni-frontend
+    restart: unless-stopped
+    networks:
+      - alumni-net
+
+  # -- Nginx reverse proxy + SSL ---------------------------------------------
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: alumni-nginx
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${DOMAIN:?Set DOMAIN, for example bfetassociation.kg}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/templates:/etc/nginx/templates:ro
+      - certbot_www:/var/www/certbot:ro
+      - certbot_certs:/etc/letsencrypt:ro
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - alumni-net
+
+  # -- SSL certificates renewal ----------------------------------------------
+  certbot:
+    image: certbot/certbot:latest
+    container_name: alumni-certbot
+    volumes:
+      - certbot_www:/var/www/certbot
+      - certbot_certs:/etc/letsencrypt
+    # Run once to issue cert, then renews automatically via cron
+    entrypoint: >
+      sh -c "trap exit TERM;
+             while :; do
+               certbot renew --webroot -w /var/www/certbot --quiet;
+             sleep 12h & wait $${!};
+             done"
+
+volumes:
+  postgres_data:
+  uploads_data:
+  backups_data:
+  db_data:
+  certbot_www:
+  certbot_certs:
+
+networks:
+  alumni-net:
+    driver: bridge

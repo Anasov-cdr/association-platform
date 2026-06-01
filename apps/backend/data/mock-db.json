@@ -5,13 +5,169 @@
       "email": "admin@alumni.local",
       "role": "ADMIN",
       "status": "ACTIVE",
-      "createdAt": "2026-04-29T03:00:00.000Z",
+      "createdAt": "2026-01-01T08:00:00.000Z",
       "profile": {
         "id": "dev-admin-profile",
         "fullName": "Администратор БФЭТ",
         "status": "APPROVED"
       },
       "passwordHash": "$2b$10$y4SCX8sE2ouMEg5cNIb./Oadrmo7P5pQxxISvHuZawrz6E6XNuMLO"
+    },
+    {
+      "id": "user-moderator",
+      "email": "moderator@alumni.local",
+      "role": "MODERATOR",
+      "status": "ACTIVE",
+      "createdAt": "2026-01-15T08:00:00.000Z",
+      "profile": {
+        "id": "profile-moderator",
+        "fullName": "Модератор БФЭТ",
+        "status": "APPROVED"
+      },
+      "passwordHash": "$2b$10$y4SCX8sE2ouMEg5cNIb./Oadrmo7P5pQxxISvHuZawrz6E6XNuMLO"
+    },
+    {
+      "id": "user-aigul",
+      "email": "aigul.bekova@bfet.test",
+      "role": "ALUMNI",
+      "status": "ACTIVE",
+      "createdAt": "2026-02-01T09:00:00.000Z",
+      "profile": {
+        "id": "profile-aigul",
+        "fullName": "Айгуль Бекова",
+        "status": "APPROVED"
+      },
+      "passwordHash": "$2b$10$VrVJ0AMFQKJtcS.EapxdNeDpt0v.nc/4anMmBjjg/6dyCowi6W6PW"
+    },
+    {
+      "id": "user-nurbek",
+      "email": "nurbek.osmonov@bfet.test",
+      "role": "ALUMNI",
+      "status": "ACTIVE",
+      "createdAt": "2026-02-05T09:00:00.000Z",
+      "profile": {
+        "id": "profile-nurbek",
+        "fullName": "Нурбек Осмонов",
+        "status": "APPROVED"
+      },
+      "passwordHash": "$2b$10$y4SCX8sE2ouMEg5cNIb./Oadrmo7P5pQxxISvHuZawrz6E6XNuMLO"
+    },
+    {
+      "id": "user-zhyldyz",
+      "email": "zhyldyz.mamytova@bfet.test",
+      "role": "ALUMNI",
+      "status": "ACTIVE",
+      "createdAt": "2026-02-10T09:00:00.000Z",
+      "profile": {
+        "id": "profile-zhyldyz",
+        "fullName": "Жылдыз Мамытова",
+        "status": "APPROVED"
+      },
+      "passwordHash": "$2b$10$y4SCX8sE2ouMEg5cNIb./Oadrmo7P5pQxxISvHuZawrz6E6XNuMLO"
+    },
+    {
+      "id": "user-timur",
+      "email": "timur.abdrakhmanov@bfet.test",
+      "role": "ALUMNI",
+      "status": "ACTIVE",
+      "createdAt": "2026-02-15T09:00:00.000Z",
+      "profile": {
+        "id": "profile-timur",
+        "fullName": "Тимур Абдрахманов",
+        "status": "APPROVED"
+      },
+      "passwordHash": "$2b$10$y4SCX8sE2ouMEg5cNIb./Oadrmo7P5pQxxISvHuZawrz6E6XNuMLO"
+    },
+    {
+      "id": "user-aida",
+      "email": "aida.toktosunova@bfet.test",
+      "role": "ALUMNI",
+      "status": "ACTIVE",
+      "createdAt": "2026-02-20T09:00:00.000Z",
+      "profile": {
+        "id": "profile-aida",
+        "fullName": "Аида Токтосунова",
+        "status": "APPROVED"
+      },
+      "passwordHash": "$2b$10$y4SCX8sE2ouMEg5cNIb./Oadrmo7P5pQxxISvHuZawrz6E6XNuMLO"
+    },
+    {
+      "id": "user-aziz",
+      "email": "aziz.karimov@bfet.test",
+      "role": "ALUMNI",
+      "status": "ACTIVE",
+      "createdAt": "2026-02-25T09:00:00.000Z",
+      "profile": {
+        "id": "profile-aziz",
+        "fullName": "Азиз Каримов",
+        "status": "APPROVED"
+      },
+      "passwordHash": "$2b$10$kkVdfWPxWap.7iYRy7Yk5ukOfqYyk3wUWSPi8xOhN4bExgEj0Kaga"
+    },
+    {
+      "id": "user-gulnara",
+      "email": "gulnara.ismailova@bfet.test",
+      "role": "ALUMNI",
+      "status": "ACTIVE",
+      "createdAt": "2026-03-01T09:00:00.000Z",
+      "profile": {
+        "id": "profile-gulnara",
+        "fullName": "Гульнара Исмаилова",
+        "status": "APPROVED"
+      },
+      "passwordHash": "$2b$10$MDTXcbwGm81FXiXLHjoauOdNOHItV8q/EpPtn55MiTfFyDs05x/US"
+    },
+    {
+      "id": "user-bakit",
+      "email": "bakit.dzhaksybekov@bfet.test",
+      "role": "ALUMNI",
+      "status": "ACTIVE",
+      "createdAt": "2026-03-05T09:00:00.000Z",
+      "profile": {
+        "id": "profile-bakit",
+        "fullName": "Бакит Джаксыбеков",
+        "status": "APPROVED"
+      },
+      "passwordHash": "$2b$10$y4SCX8sE2ouMEg5cNIb./Oadrmo7P5pQxxISvHuZawrz6E6XNuMLO"
+    },
+    {
+      "id": "user-erkin",
+      "email": "erkin.sydykov@bfet.test",
+      "role": "ALUMNI",
+      "status": "ACTIVE",
+      "createdAt": "2026-03-10T09:00:00.000Z",
+      "profile": {
+        "id": "profile-erkin",
+        "fullName": "Эркин Сыдыков",
+        "status": "PENDING"
+      },
+      "passwordHash": "$2b$10$y4SCX8sE2ouMEg5cNIb./Oadrmo7P5pQxxISvHuZawrz6E6XNuMLO"
+    },
+    {
+      "id": "user-meerim",
+      "email": "meerim.asanova@bfet.test",
+      "role": "ALUMNI",
+      "status": "ACTIVE",
+      "createdAt": "2026-03-15T09:00:00.000Z",
+      "profile": {
+        "id": "profile-meerim",
+        "fullName": "Меерим Асанова",
+        "status": "APPROVED"
+      },
+      "passwordHash": "$2b$10$y4SCX8sE2ouMEg5cNIb./Oadrmo7P5pQxxISvHuZawrz6E6XNuMLO"
+    },
+    {
+      "id": "user-1778754556767",
+      "email": "ularbek@examle.com",
+      "passwordHash": "$2b$10$0zHqYO.aJ4PxFKHAU9YWNeF7eOcaoIDVhVhi1dNB1xTMa8tHApxiC",
+      "role": "ALUMNI",
+      "status": "ACTIVE",
+      "createdAt": "2026-05-14T10:29:16.852Z",
+      "profile": {
+        "id": "profile-1778754556767",
+        "fullName": "опо орпгп",
+        "status": "PENDING"
+      }
     }
   ],
   "college": {
@@ -26,8 +182,8 @@
       "(0312) 39 15 41",
       "(0312) 39 21 66"
     ],
-    "email": "vip.bfet@mail.ru",
-    "workingHours": "Понедельник - Пятница 08:00 - 17:00, обед 12:00 - 13:00",
+    "email": "vypuskniki.finteha@gmail.com",
+    "workingHours": "Понедельник — Пятница 08:00 — 17:00, обед 12:00 — 13:00",
     "mission": "Обеспечение современного качественного образования, ориентированного на подготовку конкурентоспособных кадров нового поколения через сохранение традиций и внедрение инноваций.",
     "specialties": [
       "Экономика и бухгалтерский учет",
@@ -41,7 +197,431 @@
       "Операционная деятельность в логистике"
     ]
   },
-  "alumni": [],
+  "alumni": [
+    {
+      "id": "profile-aigul",
+      "userId": "user-aigul",
+      "email": "aigul.bekova@bfet.test",
+      "fullName": "Айгуль Бекова",
+      "photoUrl": "/uploads/images/1778552089527-ChatGPT-Image-13-2026-23_32_03.png",
+      "status": "APPROVED",
+      "graduationYear": 2018,
+      "specialty": "Банковское дело",
+      "groupName": "БД-2-15",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "company": "Mbank",
+      "position": "Ведущий специалист по розничным продуктам",
+      "bio": "Работаю в банковской сфере с 2018 года. Прошла путь от операциониста до ведущего специалиста. Специализируюсь на розничных банковских продуктах и обслуживании клиентов. Активно участвую в жизни ассоциации выпускников БФЭТ.",
+      "achievements": "Лучший сотрудник Mbank 2022, спикер карьерной сессии БФЭТ 2024, участник программы менторства для студентов финтеха.",
+      "skills": [
+        "Банковские операции",
+        "1С:Банк",
+        "Кредитный анализ",
+        "Управление рисками",
+        "Excel",
+        "Работа с клиентами"
+      ],
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/aigul-bekova",
+        "instagram": "https://instagram.com/aigul.bekova"
+      },
+      "phone": "+996 700 100 200",
+      "showEmail": true,
+      "showPhone": false,
+      "isMentor": true,
+      "canHelpStudents": true,
+      "mentorArea": "Карьера в банковской сфере, подготовка к трудоустройству, составление резюме",
+      "mentorFormat": "Онлайн и офлайн встречи",
+      "mentorAvailability": "Суббота, 10:00–14:00",
+      "isSponsor": true,
+      "isFeatured": true,
+      "featuredTitle": "Ведущий специалист Mbank",
+      "createdAt": "2026-02-01T09:00:00.000Z"
+    },
+    {
+      "id": "profile-nurbek",
+      "userId": "user-nurbek",
+      "email": "nurbek.osmonov@bfet.test",
+      "fullName": "Нурбек Осмонов",
+      "photoUrl": "https://i.pravatar.cc/150?img=12",
+      "status": "APPROVED",
+      "graduationYear": 2016,
+      "specialty": "Финансы предприятий",
+      "groupName": "ФП-1-13",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "company": "RSK Bank",
+      "position": "Финансовый директор",
+      "bio": "Более 10 лет в финансовой отрасли. Начинал карьеру с позиции финансового аналитика, сейчас руковожу финансовым департаментом банка. Убеждён, что образование в БФЭТ дало мне прочную базу для профессионального роста.",
+      "achievements": "MBA, ACCA DipIFR, лауреат премии «Финансист года КР 2023», автор корпоративной программы финансовой грамотности для студентов.",
+      "skills": [
+        "Финансовый анализ",
+        "МСФО",
+        "Бюджетирование",
+        "Управление активами",
+        "Excel Advanced",
+        "Power BI",
+        "Стратегическое планирование"
+      ],
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/nurbek-osmonov"
+      },
+      "phone": "+996 550 200 300",
+      "showEmail": true,
+      "showPhone": true,
+      "isMentor": true,
+      "canHelpStudents": true,
+      "mentorArea": "Финансовый менеджмент, карьера в банке, МСФО, MBA подготовка",
+      "mentorFormat": "Онлайн консультации через Zoom",
+      "mentorAvailability": "Вторник и четверг, 18:00–20:00",
+      "isSponsor": true,
+      "isFeatured": true,
+      "featuredTitle": "Финансовый директор RSK Bank",
+      "createdAt": "2026-02-05T09:00:00.000Z"
+    },
+    {
+      "id": "profile-zhyldyz",
+      "userId": "user-zhyldyz",
+      "email": "zhyldyz.mamytova@bfet.test",
+      "fullName": "Жылдыз Мамытова",
+      "photoUrl": "https://i.pravatar.cc/150?img=48",
+      "status": "APPROVED",
+      "graduationYear": 2020,
+      "specialty": "Экономика и бухгалтерский учет",
+      "groupName": "ЭУ-2-17",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "company": "ОсОО «Альфа Консалтинг»",
+      "position": "Главный бухгалтер",
+      "bio": "Дипломированный бухгалтер с 6-летним стажем. Веду учёт для малого и среднего бизнеса. Окончила БФЭТ с красным дипломом, продолжила образование в КЭУ им. Рыскулбекова. Помогаю начинающим специалистам разобраться с 1С и налоговой отчётностью.",
+      "achievements": "Красный диплом БФЭТ 2020, диплом КЭУ 2022, сертификат ДипИФР, ведение учёта для 30+ компаний.",
+      "skills": [
+        "1С:Бухгалтерия",
+        "МСФО",
+        "Налоговый учет",
+        "Аудит",
+        "Excel",
+        "Кассовые операции",
+        "Зарплатный учет"
+      ],
+      "socialLinks": {
+        "instagram": "https://instagram.com/zhyldyz.accountant"
+      },
+      "phone": "+996 700 300 400",
+      "showEmail": true,
+      "showPhone": false,
+      "isMentor": true,
+      "canHelpStudents": true,
+      "mentorArea": "Бухгалтерский учет, 1С, налоговая отчётность",
+      "mentorFormat": "Офлайн встречи в Бишкеке",
+      "mentorAvailability": "Среда, 17:00–19:00",
+      "isSponsor": false,
+      "isFeatured": true,
+      "featuredTitle": "Главный бухгалтер, 1С-эксперт",
+      "createdAt": "2026-02-10T09:00:00.000Z"
+    },
+    {
+      "id": "profile-timur",
+      "userId": "user-timur",
+      "email": "timur.abdrakhmanov@bfet.test",
+      "fullName": "Тимур Абдрахманов",
+      "photoUrl": "https://i.pravatar.cc/150?img=33",
+      "status": "APPROVED",
+      "graduationYear": 2019,
+      "specialty": "Маркетинг",
+      "groupName": "МК-1-16",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "company": "OOO «Digital KG»",
+      "position": "Директор по маркетингу",
+      "bio": "Специализируюсь на цифровом маркетинге и продвижении кыргызских брендов на международных рынках. После БФЭТ получил степень бакалавра в АУЦА. Работал в нескольких крупных компаниях Кыргызстана и Казахстана.",
+      "achievements": "Запуск 3 успешных продуктов на рынок ЕАЭС, Google Ads сертификация, Meta Business Partner, спикер TechFest Bishkek 2025.",
+      "skills": [
+        "Digital Marketing",
+        "Google Ads",
+        "SMM",
+        "SEO",
+        "Аналитика",
+        "Branding",
+        "Контент-маркетинг",
+        "Таргетинг"
+      ],
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/timur-abdrakhmanov",
+        "instagram": "https://instagram.com/timur.marketing"
+      },
+      "phone": "+996 550 400 500",
+      "showEmail": true,
+      "showPhone": true,
+      "isMentor": true,
+      "canHelpStudents": true,
+      "mentorArea": "Цифровой маркетинг, SMM, создание личного бренда, поиск работы в IT",
+      "mentorFormat": "Онлайн (Zoom / Telegram)",
+      "mentorAvailability": "Пятница, 18:00–21:00",
+      "isSponsor": false,
+      "isFeatured": false,
+      "featuredTitle": "",
+      "createdAt": "2026-02-15T09:00:00.000Z"
+    },
+    {
+      "id": "profile-aida",
+      "userId": "user-aida",
+      "email": "aida.toktosunova@bfet.test",
+      "fullName": "Аида Токтосунова",
+      "photoUrl": "https://i.pravatar.cc/150?img=49",
+      "status": "APPROVED",
+      "graduationYear": 2017,
+      "specialty": "Менеджмент",
+      "groupName": "МН-2-14",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "company": "Bakai Bank",
+      "position": "HR-директор",
+      "bio": "Управляю HR-процессами в одном из ведущих банков страны. Отвечаю за рекрутинг, адаптацию и развитие персонала. Регулярно провожу стажировки для студентов БФЭТ и помогаю выпускникам в трудоустройстве.",
+      "achievements": "Сертифицированный HR-специалист (SHRM), внедрение HR-автоматизации в банке, программа «Стажировка от БФЭТ» — 45 трудоустроенных выпускников.",
+      "skills": [
+        "Рекрутинг",
+        "HR-аналитика",
+        "Onboarding",
+        "Оценка персонала",
+        "Трудовое право КР",
+        "1С:ЗУП",
+        "Управление талантами"
+      ],
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/aida-toktosunova"
+      },
+      "phone": "+996 700 500 600",
+      "showEmail": true,
+      "showPhone": false,
+      "isMentor": true,
+      "canHelpStudents": true,
+      "mentorArea": "HR, управление персоналом, трудоустройство, составление резюме, собеседования",
+      "mentorFormat": "Офлайн и онлайн",
+      "mentorAvailability": "Понедельник и среда, 18:30–20:00",
+      "isSponsor": true,
+      "isFeatured": true,
+      "featuredTitle": "HR-директор Bakai Bank",
+      "createdAt": "2026-02-20T09:00:00.000Z"
+    },
+    {
+      "id": "profile-aziz",
+      "userId": "user-aziz",
+      "email": "aziz.karimov@bfet.test",
+      "fullName": "Азиз Каримов",
+      "photoUrl": "/uploads/images/1778496290255-Snimok_ekrana_2025-02-13_122344.png",
+      "status": "APPROVED",
+      "graduationYear": 2021,
+      "specialty": "Налоги и налогообложение",
+      "groupName": "НН-1-18",
+      "city": "Ош",
+      "country": "Кыргызстан",
+      "company": "Государственная налоговая служба КР",
+      "position": "Налоговый инспектор",
+      "bio": "Работаю налоговым инспектором в Ошской области. Занимаюсь камеральными проверками и консультированием предпринимателей. Выпускник БФЭТ 2021 года, активно участвую в мероприятиях ассоциации.",
+      "achievements": "Грамота ГНС КР за профессиональное мастерство 2024, участие в разработке методических рекомендаций по НДС для МСБ.",
+      "skills": [
+        "Налоговый учет",
+        "Налоговые проверки",
+        "1С:Налоговый учет",
+        "Налоговое законодательство КР",
+        "MS Office",
+        "Аналитика"
+      ],
+      "socialLinks": {},
+      "phone": "+996 700 600 700",
+      "showEmail": false,
+      "showPhone": false,
+      "isMentor": false,
+      "canHelpStudents": true,
+      "mentorArea": "",
+      "mentorFormat": "",
+      "mentorAvailability": "",
+      "isSponsor": false,
+      "isFeatured": true,
+      "featuredTitle": "Налоговый инспектор",
+      "createdAt": "2026-02-25T09:00:00.000Z"
+    },
+    {
+      "id": "profile-gulnara",
+      "userId": "user-gulnara",
+      "email": "gulnara.ismailova@bfet.test",
+      "fullName": "Гульнара Исмаилова",
+      "photoUrl": "https://i.pravatar.cc/150?img=44",
+      "status": "APPROVED",
+      "graduationYear": 2015,
+      "specialty": "Страховое дело",
+      "groupName": "СД-2-12",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "company": "Государственная страховая организация «Кыргызстан»",
+      "position": "Руководитель отдела страхования жизни",
+      "bio": "11 лет в страховой отрасли. Специализируюсь на страховании жизни и медицинском страховании. БФЭТ дал мне профессиональную базу, которую я развивала в КЭУ и международных программах. Регулярно выступаю на конференциях по финансовой грамотности.",
+      "achievements": "Диплом БФЭТ с отличием 2015, международный сертификат по страхованию жизни (LOMA), спикер Финансового форума КР 2023 и 2024.",
+      "skills": [
+        "Страхование жизни",
+        "Актуарный анализ",
+        "Управление рисками",
+        "Андеррайтинг",
+        "Продажи",
+        "МСФО 17"
+      ],
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/gulnara-ismailova"
+      },
+      "phone": "+996 550 700 800",
+      "showEmail": true,
+      "showPhone": true,
+      "isMentor": true,
+      "canHelpStudents": false,
+      "mentorArea": "Страховая отрасль, карьера в финансах, финансовая грамотность",
+      "mentorFormat": "Онлайн",
+      "mentorAvailability": "Суббота, 12:00–15:00",
+      "isSponsor": true,
+      "isFeatured": false,
+      "featuredTitle": "",
+      "createdAt": "2026-03-01T09:00:00.000Z"
+    },
+    {
+      "id": "profile-bakit",
+      "userId": "user-bakit",
+      "email": "bakit.dzhaksybekov@bfet.test",
+      "fullName": "Бакит Джаксыбеков",
+      "photoUrl": "https://i.pravatar.cc/150?img=60",
+      "status": "APPROVED",
+      "graduationYear": 2022,
+      "specialty": "Операционная деятельность в логистике",
+      "groupName": "ОЛ-1-19",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "company": "BPN",
+      "position": "Логист-аналитик",
+      "bio": "Молодой специалист в логистике, занимаюсь оптимизацией цепочек поставок. БФЭТ — моя отправная точка. Сейчас учусь в магистратуре по управлению цепочками поставок.",
+      "achievements": "Диплом БФЭТ 2022, участие в проекте оптимизации логистики для 5 предприятий Бишкека, стажировка в ЕАБР.",
+      "skills": [
+        "Логистика",
+        "WMS",
+        "1С:Логистика",
+        "Excel",
+        "Анализ данных",
+        "SAP основы"
+      ],
+      "socialLinks": {},
+      "phone": "+996 700 800 900",
+      "showEmail": true,
+      "showPhone": false,
+      "isMentor": false,
+      "canHelpStudents": true,
+      "mentorArea": "",
+      "mentorFormat": "",
+      "mentorAvailability": "",
+      "isSponsor": false,
+      "isFeatured": false,
+      "featuredTitle": "",
+      "createdAt": "2026-03-05T09:00:00.000Z"
+    },
+    {
+      "id": "profile-erkin",
+      "userId": "user-erkin",
+      "email": "erkin.sydykov@bfet.test",
+      "fullName": "Эркин Сыдыков",
+      "photoUrl": "https://i.pravatar.cc/150?img=15",
+      "status": "APPROVED",
+      "graduationYear": 2023,
+      "specialty": "Финансы: бюджет и бюджетный учет",
+      "groupName": "ФБ-2-20",
+      "city": "Жалал-Абад",
+      "country": "Кыргызстан",
+      "company": "Министерство финансов КР",
+      "position": "Специалист казначейства",
+      "bio": "Недавно окончил БФЭТ и работаю в системе государственных финансов. Хочу стать частью ассоциации выпускников и поддерживать связь с альма-матер.",
+      "achievements": "Диплом с отличием БФЭТ 2023, участник олимпиады по финансам среди техникумов КР — 1 место.",
+      "skills": [
+        "Бюджетный учет",
+        "Казначейские операции",
+        "1С:Бюджет",
+        "Финансовый анализ",
+        "MS Excel"
+      ],
+      "socialLinks": {},
+      "phone": "+996 700 900 001",
+      "showEmail": false,
+      "showPhone": false,
+      "isMentor": false,
+      "canHelpStudents": false,
+      "mentorArea": "",
+      "mentorFormat": "",
+      "mentorAvailability": "",
+      "isSponsor": false,
+      "isFeatured": false,
+      "featuredTitle": "",
+      "createdAt": "2026-03-10T09:00:00.000Z"
+    },
+    {
+      "id": "profile-meerim",
+      "userId": "user-meerim",
+      "email": "meerim.asanova@bfet.test",
+      "fullName": "Меерим Асанова",
+      "photoUrl": "https://i.pravatar.cc/150?img=45",
+      "status": "APPROVED",
+      "graduationYear": 2024,
+      "specialty": "Экономика и бухгалтерский учет",
+      "groupName": "ЭУ-1-21",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "company": "ОсОО «Мегаком»",
+      "position": "Экономист",
+      "bio": "Молодой специалист, только начинаю карьеру. Окончила БФЭТ в 2024 году и сразу получила работу благодаря рекомендации преподавателей. Хочу развиваться в финансовом анализе.",
+      "achievements": "Красный диплом БФЭТ 2024, победитель внутриколледжной олимпиады по бухгалтерскому учёту.",
+      "skills": [
+        "1С:Бухгалтерия",
+        "Excel",
+        "Экономический анализ",
+        "Документооборот",
+        "Бухгалтерский учет"
+      ],
+      "socialLinks": {
+        "instagram": "https://instagram.com/meerim.asanova"
+      },
+      "phone": "+996 700 001 002",
+      "showEmail": true,
+      "showPhone": false,
+      "isMentor": false,
+      "canHelpStudents": false,
+      "mentorArea": "",
+      "mentorFormat": "",
+      "mentorAvailability": "",
+      "isSponsor": false,
+      "isFeatured": false,
+      "featuredTitle": "",
+      "createdAt": "2026-03-15T09:00:00.000Z"
+    },
+    {
+      "id": "profile-1778754556767",
+      "userId": "user-1778754556767",
+      "fullName": "опо орпгп",
+      "graduationYear": 2023,
+      "specialty": "Экономика и бухгалтерский учет",
+      "groupName": "рппрм 12",
+      "city": "Джалал-Абад",
+      "country": "Кыргызстан",
+      "company": "dvdv",
+      "position": "sdvds",
+      "bio": "dsvsd",
+      "phone": "+996773455353",
+      "showEmail": true,
+      "showPhone": true,
+      "isMentor": true,
+      "canHelpStudents": true,
+      "status": "REJECTED",
+      "user": {
+        "id": "user-1778754556767",
+        "email": "ularbek@examle.com"
+      },
+      "createdAt": "2026-05-14T10:29:16.767Z"
+    }
+  ],
   "news": [
     {
       "id": "news-national-bank-museum",
@@ -49,32 +629,138 @@
       "title": {
         "ru": "Студенты БФЭТ посетили Музей Национального банка КР",
         "ky": "БФЭТ студенттери КР Улуттук банкынын музейине барышты",
-        "en": "BFET students visited the National Bank Museum"
+        "en": "BFET students visited the National Bank Museum of the Kyrgyz Republic"
       },
       "body": {
-        "ru": "Студенты групп Б-1-23 и СД-1-23 в рамках дисциплины «Маркетинг» ознакомились с историей денежной системы и финансовых коммуникаций.",
-        "ky": "Студенты групп Б-1-23 и СД-1-23 в рамках дисциплины «Маркетинг» ознакомились с историей денежной системы и финансовых коммуникаций.",
-        "en": "Студенты групп Б-1-23 и СД-1-23 в рамках дисциплины «Маркетинг» ознакомились с историей денежной системы и финансовых коммуникаций."
+        "ru": "Студенты групп Б-1-23 и СД-1-23 в рамках дисциплины «Маркетинг» посетили Музей Национального банка Кыргызской Республики. Ребята ознакомились с историей денежной системы страны, узнали об эволюции финансовых коммуникаций и современных инструментах банковского регулирования. Экскурсия стала практическим дополнением к теоретическим курсам и позволила студентам увидеть реальные примеры финансовых решений Кыргызстана на протяжении десятилетий.",
+        "ky": "Б-1-23 жана СД-1-23 топторунун студенттери «Маркетинг» дисциплинасынын алкагында Кыргыз Республикасынын Улуттук банкынын музейине барышты. Студенттер өлкөнүн акча системасынын тарыхы, финансылык коммуникациялардын өнүгүшү жана банктык жөнгө салуунун заманбап куралдары менен таанышты.",
+        "en": "Students from groups B-1-23 and SD-1-23, as part of the Marketing discipline, visited the Museum of the National Bank of the Kyrgyz Republic. They learned about the history of the country's monetary system, the evolution of financial communications, and modern tools of banking regulation."
       },
       "authorName": "БФЭТ",
       "publishedAt": "2026-04-09T09:00:00.000Z",
-      "comments": []
+      "imageUrl": "/uploads/images/1778474197506--.jpg",
+      "status": "PUBLISHED",
+      "comments": [
+        {
+          "id": "comment-1",
+          "authorName": "Айгуль Бекова",
+          "authorId": "user-aigul",
+          "text": "Очень полезная экскурсия! В своё время тоже посещала Нацбанк со студентами БФЭТ. Желаю ребятам успехов!",
+          "createdAt": "2026-04-10T10:00:00.000Z"
+        },
+        {
+          "id": "comment-2",
+          "authorName": "Нурбек Осмонов",
+          "authorId": "user-nurbek",
+          "text": "Такие практические занятия очень важны. Именно так и формируется понимание финансовой системы.",
+          "createdAt": "2026-04-11T08:30:00.000Z"
+        }
+      ]
     },
     {
       "id": "news-alumni-platform",
       "slug": "bfet-alumni-platform",
       "title": {
-        "ru": "Ассоциация выпускников БФЭТ запускает цифровую базу",
-        "ky": "БФЭТ бутуруучулор ассоциациясы санарип базаны ишке киргизет",
-        "en": "BFET Alumni Association launches a digital directory"
+        "ru": "Ассоциация выпускников БФЭТ запускает цифровую платформу",
+        "ky": "БФЭТ бүтүрүүчүлөр ассоциациясы санарип платформасын ишке киргизет",
+        "en": "BFET Association launches a digital platform"
       },
       "body": {
-        "ru": "Платформа объединяет выпускников БФЭТ, помогает развивать карьерные связи, менторство, мероприятия и поддержку студентов.",
-        "ky": "Платформа объединяет выпускников БФЭТ, помогает развивать карьерные связи, менторство, мероприятия и поддержку студентов.",
-        "en": "Платформа объединяет выпускников БФЭТ, помогает развивать карьерные связи, менторство, мероприятия и поддержку студентов."
+        "ru": "Ассоциация выпускников Бишкекского финансово-экономического техникума им. А. Токтоналиева объявляет о запуске цифровой платформы для своих членов. Платформа объединяет выпускников БФЭТ, помогает развивать карьерные связи, находить менторов, участвовать в мероприятиях и поддерживать студентов. Каждый выпускник может зарегистрироваться, создать профиль, откликаться на вакансии и вносить вклад в развитие альма-матер. Регистрация открыта на сайте ассоциации.",
+        "ky": "БФЭТ им. А. Токтоналиевдин бүтүрүүчүлөр ассоциациясы өз мүчөлөрү үчүн санарип платформаны ишке киргизгенин жарыялайт. Платформа БФЭТ бүтүрүүчүлөрүн бириктирет, карьералык байланыштарды өнүктүрүүгө, насаатчыларды табууга, иш-чараларга катышууга жана студенттерди колдоого жардам берет.",
+        "en": "The Association of the Bishkek Financial and Economic College named after A. Toktanaliev announces the launch of a digital platform for its members. The platform unites BFET alumni, helping them develop career connections, find mentors, participate in events, and support students."
       },
       "authorName": "Администрация ассоциации",
       "publishedAt": "2026-04-29T09:00:00.000Z",
+      "imageUrl": "/uploads/images/1778477441673--WhatsApp-2024-12-24-08-39-09_6c7e4eaa.jpg",
+      "status": "PUBLISHED",
+      "comments": [
+        {
+          "id": "comment-3",
+          "authorName": "Жылдыз Мамытова",
+          "authorId": "user-zhyldyz",
+          "text": "Отличная инициатива! Давно нужна была такая платформа для выпускников нашего техникума.",
+          "createdAt": "2026-04-29T14:00:00.000Z"
+        },
+        {
+          "id": "comment-4",
+          "authorName": "Аида Токтосунова",
+          "authorId": "user-aida",
+          "text": "Поддерживаю! Уже зарегистрировалась и обновила профиль. Рекомендую всем выпускникам!",
+          "createdAt": "2026-04-30T09:15:00.000Z"
+        },
+        {
+          "id": "comment-5",
+          "authorName": "Тимур Абдрахманов",
+          "authorId": "user-timur",
+          "text": "Современный и удобный интерфейс. Молодцы разработчики!",
+          "createdAt": "2026-04-30T11:20:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "news-career-day",
+      "slug": "career-day-2026",
+      "title": {
+        "ru": "День карьеры БФЭТ 2026: выпускники встретились со студентами",
+        "ky": "БФЭТ 2026 карьера күнү: бүтүрүүчүлөр студенттер менен жолугушту",
+        "en": "BFET Career Day 2026: Graduates meet students"
+      },
+      "body": {
+        "ru": "В апреле 2026 года в БФЭТ прошёл ежегодный День карьеры, в котором приняли участие более 15 выпускников — представителей ведущих компаний Кыргызстана. Айгуль Бекова (Mbank), Нурбек Осмонов (RSK Bank) и Аида Токтосунова (Bakai Bank) рассказали студентам о требованиях работодателей, пути от выпускника до руководителя и реальных карьерных лестницах в финансовой сфере страны. Студенты задавали вопросы, получили консультации по составлению резюме и посетили мини-ярмарку вакансий.",
+        "ky": "2026-жылдын апрель айында БФЭТте жыл сайын өткөрүлүүчү Карьера күнү өтүп, ага Кыргызстандын алдыңкы компанияларынын өкүлдөрү болгон 15тен ашуун бүтүрүүчү катышты.",
+        "en": "In April 2026, BFET hosted its annual Career Day, attended by over 15 graduates representing leading companies in Kyrgyzstan. Graduates shared their career paths and advice with current students."
+      },
+      "authorName": "Пресс-служба БФЭТ",
+      "publishedAt": "2026-04-20T10:00:00.000Z",
+      "imageUrl": "/uploads/images/1778753893126-WhatsApp-Image-2026-04-30-at-09-18-57.jpeg",
+      "status": "PUBLISHED",
+      "comments": []
+    },
+    {
+      "id": "news-scholarship-fund",
+      "slug": "scholarship-fund-launch",
+      "title": {
+        "ru": "Фонд поддержки студентов БФЭТ: первые стипендиаты получили выплаты",
+        "ky": "БФЭТ студенттерин колдоо фонду: биринчи стипендиаттар төлөмдөрдү алды",
+        "en": "BFET Student Support Fund: First scholarship recipients receive payments"
+      },
+      "body": {
+        "ru": "Благодаря взносам выпускников Ассоциации БФЭТ, в мае 2026 года 5 талантливых студентов получили первые стипендии из Фонда поддержки. Каждый стипендиат получил ежемесячную выплату в размере 3 000 сомов на 6 месяцев. Фонд продолжает принимать взносы от выпускников — любая сумма имеет значение. Ближайшая цель — увеличить число стипендиатов до 20 человек к 2027 году.",
+        "ky": "БФЭТ Ассоциациясынын бүтүрүүчүлөрүнүн салымдарынын аркасында 2026-жылдын май айында 5 талантуу студент Колдоо фондунан биринчи стипендияларды алды.",
+        "en": "Thanks to contributions from BFET Association members, in May 2026 five talented students received the first scholarships from the Support Fund. Each scholar receives a monthly payment of 3,000 KGS for 6 months."
+      },
+      "authorName": "Администрация ассоциации",
+      "publishedAt": "2026-05-05T09:00:00.000Z",
+      "imageUrl": "/uploads/images/1778753933831-ChatGPT-Image-13-2026-23_29_07.png",
+      "status": "PUBLISHED",
+      "comments": [
+        {
+          "id": "comment-6",
+          "authorName": "Нурбек Осмонов",
+          "authorId": "user-nurbek",
+          "text": "Рад участвовать в этом фонде. Такая поддержка очень важна для студентов!",
+          "createdAt": "2026-05-05T15:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "news-mentorship-program",
+      "slug": "mentorship-program-2026",
+      "title": {
+        "ru": "Программа менторства БФЭТ: 10 выпускников стали менторами",
+        "ky": "БФЭТ менторлук программасы: 10 бүтүрүүчү ментор болду",
+        "en": "BFET Mentorship Program: 10 graduates become mentors"
+      },
+      "body": {
+        "ru": "Ассоциация выпускников БФЭТ запустила первую официальную программу менторства, в рамках которой 10 опытных выпускников будут сопровождать студентов и молодых специалистов в профессиональном развитии. Менторы проведут онлайн и офлайн встречи, помогут с составлением резюме, подготовкой к собеседованию и выбором направления карьеры. Запись на менторство доступна в личном кабинете платформы. Места ограничены.",
+        "ky": "БФЭТ бүтүрүүчүлөр ассоциациясы биринчи расмий менторлук программасын ишке киргизди, анын алкагында 10 тажрыйбалуу бүтүрүүчү студенттерге жана жаш адистерге кесиптик өнүгүүдө жардам берет.",
+        "en": "BFET Association has launched its first official mentorship program, in which 10 experienced graduates will guide students and young professionals in their career development."
+      },
+      "authorName": "Администрация ассоциации",
+      "publishedAt": "2026-05-08T09:00:00.000Z",
+      "imageUrl": "/uploads/images/1778753949823-ChatGPT-Image-13-2026-23_22_38.png",
+      "status": "PUBLISHED",
       "comments": []
     }
   ],
@@ -83,34 +769,134 @@
       "id": "event-reunion",
       "title": {
         "ru": "Встреча выпускников БФЭТ 2026",
-        "ky": "БФЭТ бутуруучулор жолугушуусу 2026",
-        "en": "BFET Alumni Reunion 2026"
+        "ky": "БФЭТ бүтүрүүчүлөр жолугушуусу 2026",
+        "en": "BFET Reunion 2026"
       },
       "description": {
-        "ru": "Тематическая встреча выпускников, студентов, преподавателей и партнеров техникума.",
-        "ky": "Тематическая встреча выпускников, студентов, преподавателей и партнеров техникума.",
-        "en": "Тематическая встреча выпускников, студентов, преподавателей и партнеров техникума."
+        "ru": "Ежегодная встреча выпускников, студентов, преподавателей и партнёров БФЭТ. В программе: нетворкинг, обмен опытом, награждение лучших выпускников года, концертная программа и фуршет. Dress code: smart casual.",
+        "ky": "Бишкек финансы-экономикалык техникумунун бүтүрүүчүлөрүнүн, студенттеринин, окутуучуларынын жана өнөктөштөрүнүн жыл сайынкы жолугушуусу.",
+        "en": "Annual gathering of graduates, students, teachers and partners of BFET. Program: networking, experience sharing, award ceremony, and reception."
       },
       "startsAt": "2026-05-30T12:00:00.000Z",
-      "location": "БФЭТ, г. Бишкек, пр. Чуй, 269",
+      "endsAt": "2026-05-30T18:00:00.000Z",
+      "location": "БФЭТ, г. Бишкек, пр. Чуй, 269, Актовый зал",
       "status": "upcoming",
-      "registrations": []
+      "imageUrl": "",
+      "registrations": [
+        {
+          "id": "reg-aigul-reunion",
+          "userId": "user-aigul",
+          "userEmail": "aigul.bekova@bfet.test",
+          "fullName": "Айгуль Бекова",
+          "createdAt": "2026-05-01T10:00:00.000Z"
+        },
+        {
+          "id": "reg-nurbek-reunion",
+          "userId": "user-nurbek",
+          "userEmail": "nurbek.osmonov@bfet.test",
+          "fullName": "Нурбек Осмонов",
+          "createdAt": "2026-05-02T09:30:00.000Z"
+        },
+        {
+          "id": "reg-zhyldyz-reunion",
+          "userId": "user-zhyldyz",
+          "userEmail": "zhyldyz.mamytova@bfet.test",
+          "fullName": "Жылдыз Мамытова",
+          "createdAt": "2026-05-03T11:00:00.000Z"
+        },
+        {
+          "id": "reg-aida-reunion",
+          "userId": "user-aida",
+          "userEmail": "aida.toktosunova@bfet.test",
+          "fullName": "Аида Токтосунова",
+          "createdAt": "2026-05-04T14:20:00.000Z"
+        },
+        {
+          "id": "reg-gulnara-reunion",
+          "userId": "user-gulnara",
+          "userEmail": "gulnara.ismailova@bfet.test",
+          "fullName": "Гульнара Исмаилова",
+          "createdAt": "2026-05-05T08:00:00.000Z"
+        }
+      ]
     },
     {
       "id": "event-career",
       "title": {
         "ru": "Карьерная сессия для студентов БФЭТ",
-        "ky": "БФЭТ студенттери учун карьералык сессия",
-        "en": "Career session for BFET students"
+        "ky": "БФЭТ студенттери үчүн карьералык сессия",
+        "en": "Career Session for BFET Students"
       },
       "description": {
-        "ru": "Выпускники делятся опытом трудоустройства, практики и профессионального роста.",
-        "ky": "Выпускники делятся опытом трудоустройства, практики и профессионального роста.",
-        "en": "Выпускники делятся опытом трудоустройства, практики и профессионального роста."
+        "ru": "Выпускники БФЭТ делятся опытом трудоустройства, практики и профессионального роста. В программе: выступления спикеров из банковской, финансовой сферы, мини-ярмарка вакансий, сессия вопросов и ответов, консультации по резюме.",
+        "ky": "БФЭТ бүтүрүүчүлөрү жумушка орношуу, практика жана кесиптик өсүү тажрыйбасы менен бөлүшөт.",
+        "en": "BFET graduates share their experience in employment, internships, and professional growth. Program: speaker sessions, mini job fair, Q&A, CV consultations."
       },
-      "startsAt": "2026-06-12T08:00:00.000Z",
-      "location": "БФЭТ / онлайн",
+      "startsAt": "2026-06-12T09:00:00.000Z",
+      "endsAt": "2026-06-12T15:00:00.000Z",
+      "location": "БФЭТ / онлайн (Zoom)",
       "status": "upcoming",
+      "imageUrl": "",
+      "registrations": [
+        {
+          "id": "reg-timur-career",
+          "userId": "user-timur",
+          "userEmail": "timur.abdrakhmanov@bfet.test",
+          "fullName": "Тимур Абдрахманов",
+          "createdAt": "2026-05-10T10:00:00.000Z"
+        },
+        {
+          "id": "reg-meerim-career",
+          "userId": "user-meerim",
+          "userEmail": "meerim.asanova@bfet.test",
+          "fullName": "Меерим Асанова",
+          "createdAt": "2026-05-10T11:30:00.000Z"
+        },
+        {
+          "id": "reg-bakit-career",
+          "userId": "user-bakit",
+          "userEmail": "bakit.dzhaksybekov@bfet.test",
+          "fullName": "Бакит Джаксыбеков",
+          "createdAt": "2026-05-11T08:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "event-financial-literacy",
+      "title": {
+        "ru": "Мастер-класс: Финансовая грамотность для молодёжи",
+        "ky": "Мастер-класс: Жаштар үчүн финансылык сабаттуулук",
+        "en": "Workshop: Financial Literacy for Youth"
+      },
+      "description": {
+        "ru": "Практический мастер-класс от выпускников БФЭТ для студентов и молодёжи Бишкека. Темы: личный бюджет, базовые инвестиции, как начать откладывать, банковские продукты. Вход свободный, регистрация обязательна.",
+        "ky": "Бишкектеги студенттер жана жаштар үчүн БФЭТ бүтүрүүчүлөрүнүн практикалык мастер-классы.",
+        "en": "Practical workshop by BFET graduates for students and youth of Bishkek. Topics: personal budget, basic investments, saving habits, banking products."
+      },
+      "startsAt": "2026-07-05T10:00:00.000Z",
+      "endsAt": "2026-07-05T14:00:00.000Z",
+      "location": "Коворкинг SmartHub, г. Бишкек, ул. Московская, 113",
+      "status": "upcoming",
+      "imageUrl": "",
+      "registrations": []
+    },
+    {
+      "id": "event-past-reunion",
+      "title": {
+        "ru": "Встреча выпускников БФЭТ 2025",
+        "ky": "БФЭТ бүтүрүүчүлөр жолугушуусу 2025",
+        "en": "BFET Reunion 2025"
+      },
+      "description": {
+        "ru": "Прошедшая встреча выпускников БФЭТ 2025 года. Участвовало более 80 выпускников разных годов выпуска.",
+        "ky": "2025-жылы өткөн БФЭТ бүтүрүүчүлөрүнүн жолугушуусу. 80дөн ашуун бүтүрүүчү катышты.",
+        "en": "Past BFET Reunion 2025. Over 80 graduates of different graduation years attended."
+      },
+      "startsAt": "2025-05-25T12:00:00.000Z",
+      "endsAt": "2025-05-25T18:00:00.000Z",
+      "location": "БФЭТ, г. Бишкек, пр. Чуй, 269",
+      "status": "past",
+      "imageUrl": "",
       "registrations": []
     }
   ],
@@ -123,17 +909,103 @@
         "en": "Support for talented BFET students"
       },
       "description": {
-        "ru": "Поддержка талантливых студентов, преподавателей, научных и образовательных проектов БФЭТ.",
-        "ky": "Поддержка талантливых студентов, преподавателей, научных и образовательных проектов БФЭТ.",
-        "en": "Поддержка талантливых студентов, преподавателей, научных и образовательных проектов БФЭТ."
+        "ru": "Стипендиальный фонд для поддержки талантливых студентов БФЭТ. Средства направляются на ежемесячные стипендии отличникам из малообеспеченных семей, финансирование учебных материалов и поддержку участия в олимпиадах и конкурсах.",
+        "ky": "БФЭТ таланттуу студенттерин колдоо үчүн стипендиялык фонд. Каражаттар кирешеси аз үй-бүлөлөрдүн мыкты окуучуларына айлык стипендиялар, окуу материалдарын каржылоо үчүн багытталат.",
+        "en": "Scholarship fund for talented BFET students. Funds go towards monthly scholarships for top students from low-income families, educational materials, and support for academic competitions."
       },
       "goalAmount": 250000,
-      "raisedAmount": 145000,
+      "raisedAmount": 178000,
+      "status": "PUBLISHED",
       "donations": [
         {
+          "id": "don-1",
           "amount": 10000,
           "donorName": "Нурбек Осмонов",
-          "anonymous": false
+          "anonymous": false,
+          "status": "approved",
+          "createdAt": "2026-04-15T10:00:00.000Z"
+        },
+        {
+          "id": "don-2",
+          "amount": 25000,
+          "donorName": "Айгуль Бекова",
+          "anonymous": false,
+          "status": "approved",
+          "createdAt": "2026-04-18T09:00:00.000Z"
+        },
+        {
+          "id": "don-3",
+          "amount": 15000,
+          "donorName": "",
+          "anonymous": true,
+          "status": "approved",
+          "createdAt": "2026-04-20T14:30:00.000Z"
+        },
+        {
+          "id": "don-4",
+          "amount": 50000,
+          "donorName": "Гульнара Исмаилова",
+          "anonymous": false,
+          "status": "approved",
+          "createdAt": "2026-04-25T11:00:00.000Z"
+        },
+        {
+          "id": "don-5",
+          "amount": 30000,
+          "donorName": "Аида Токтосунова",
+          "anonymous": false,
+          "status": "approved",
+          "createdAt": "2026-05-01T08:30:00.000Z"
+        },
+        {
+          "id": "don-6",
+          "amount": 5000,
+          "donorName": "",
+          "anonymous": true,
+          "status": "approved",
+          "createdAt": "2026-05-03T16:00:00.000Z"
+        },
+        {
+          "id": "don-7",
+          "amount": 8000,
+          "donorName": "Тимур Абдрахманов",
+          "anonymous": false,
+          "status": "approved",
+          "createdAt": "2026-05-05T10:00:00.000Z"
+        },
+        {
+          "id": "don-8",
+          "amount": 5000,
+          "donorName": "Бакит Джаксыбеков",
+          "anonymous": false,
+          "status": "approved",
+          "createdAt": "2026-05-08T09:00:00.000Z"
+        },
+        {
+          "id": "don-9",
+          "amount": 30000,
+          "donorName": "",
+          "anonymous": true,
+          "status": "pending",
+          "createdAt": "2026-05-10T12:00:00.000Z"
+        },
+        {
+          "id": "donation-1778494245016",
+          "campaignId": "campaign-scholarships",
+          "amount": 1000,
+          "donorName": "",
+          "anonymous": false,
+          "status": "pending",
+          "createdAt": "2026-05-11T10:10:45.016Z"
+        },
+        {
+          "id": "donation-1778560951932",
+          "campaignId": "campaign-scholarships",
+          "amount": 1000,
+          "donorName": "свы",
+          "anonymous": true,
+          "status": "pending",
+          "createdAt": "2026-05-12T04:42:31.932Z"
         }
       ],
       "createdAt": "2026-04-10T09:00:00.000Z"
@@ -141,33 +1013,118 @@
     {
       "id": "campaign-equipment",
       "title": {
-        "ru": "Материальная база БФЭТ",
-        "ky": "БФЭТ материалдык базасы",
-        "en": "BFET facilities development"
+        "ru": "Материальная база БФЭТ: новые компьютеры для студентов",
+        "ky": "БФЭТ материалдык базасы: студенттер үчүн жаңы компьютерлер",
+        "en": "BFET Material Base: New computers for students"
       },
       "description": {
-        "ru": "Помощь в развитии хорошо оснащенной материальной базы техникума.",
-        "ky": "Помощь в развитии хорошо оснащенной материальной базы техникума.",
-        "en": "Помощь в развитии хорошо оснащенной материальной базы техникума."
+        "ru": "Сбор средств на обновление компьютерного парка БФЭТ. Цель — закупить 30 современных компьютеров для учебных классов, чтобы студенты могли работать с актуальным программным обеспечением.",
+        "ky": "БФЭТ компьютер паркын жаңылоого каражат чогултуу. Максат — 30 заманбап компьютер сатып алуу.",
+        "en": "Fundraising to update BFET's computer equipment. Goal: purchase 30 modern computers for classrooms."
       },
       "goalAmount": 400000,
-      "raisedAmount": 218000,
-      "donations": [],
+      "raisedAmount": 245000,
+      "status": "PUBLISHED",
+      "donations": [
+        {
+          "id": "don-10",
+          "amount": 100000,
+          "donorName": "Нурбек Осмонов",
+          "anonymous": false,
+          "status": "approved",
+          "createdAt": "2026-04-12T10:00:00.000Z"
+        },
+        {
+          "id": "don-11",
+          "amount": 50000,
+          "donorName": "Гульнара Исмаилова",
+          "anonymous": false,
+          "status": "approved",
+          "createdAt": "2026-04-14T11:00:00.000Z"
+        },
+        {
+          "id": "don-12",
+          "amount": 20000,
+          "donorName": "Айгуль Бекова",
+          "anonymous": false,
+          "status": "approved",
+          "createdAt": "2026-04-16T09:30:00.000Z"
+        },
+        {
+          "id": "don-13",
+          "amount": 25000,
+          "donorName": "",
+          "anonymous": true,
+          "status": "approved",
+          "createdAt": "2026-04-22T13:00:00.000Z"
+        },
+        {
+          "id": "don-14",
+          "amount": 50000,
+          "donorName": "",
+          "anonymous": true,
+          "status": "approved",
+          "createdAt": "2026-05-02T08:00:00.000Z"
+        }
+      ],
       "createdAt": "2026-04-12T09:00:00.000Z"
+    },
+    {
+      "id": "campaign-library",
+      "title": {
+        "ru": "Библиотека БФЭТ: пополнение учебной литературой",
+        "ky": "БФЭТ китепканасы: окуу адабияты менен толуктоо",
+        "en": "BFET Library: Adding educational literature"
+      },
+      "description": {
+        "ru": "Помогите пополнить библиотеку БФЭТ современными учебниками по финансам, экономике, бухгалтерскому учёту, маркетингу и менеджменту. Актуальная литература — залог качественного образования.",
+        "ky": "БФЭТ китепканасын финансы, экономика, бухгалтердик эсеп, маркетинг жана менеджмент боюнча заманбап окуу китептери менен толуктоого жардам бериңиз.",
+        "en": "Help replenish BFET's library with modern textbooks on finance, economics, accounting, marketing, and management."
+      },
+      "goalAmount": 150000,
+      "raisedAmount": 42000,
+      "status": "PUBLISHED",
+      "donations": [
+        {
+          "id": "don-15",
+          "amount": 20000,
+          "donorName": "Жылдыз Мамытова",
+          "anonymous": false,
+          "status": "approved",
+          "createdAt": "2026-05-01T10:00:00.000Z"
+        },
+        {
+          "id": "don-16",
+          "amount": 12000,
+          "donorName": "",
+          "anonymous": true,
+          "status": "approved",
+          "createdAt": "2026-05-05T14:00:00.000Z"
+        },
+        {
+          "id": "don-17",
+          "amount": 10000,
+          "donorName": "Азиз Каримов",
+          "anonymous": false,
+          "status": "approved",
+          "createdAt": "2026-05-07T09:00:00.000Z"
+        }
+      ],
+      "createdAt": "2026-05-01T09:00:00.000Z"
     }
   ],
   "documents": [
     {
-      "id": "doc-finance-2025",
+      "id": "doc-charter",
       "title": {
         "ru": "Положение Ассоциации выпускников БФЭТ",
-        "ky": "Положение Ассоциации выпускников БФЭТ",
-        "en": "Положение Ассоциации выпускников БФЭТ"
+        "ky": "БФЭТ бүтүрүүчүлөр ассоциациясынын жободо",
+        "en": "BFET Association Charter"
       },
       "description": {
-        "ru": "Официальный раздел Ассоциации выпускников БФЭТ им. А. Токтоналиева.",
-        "ky": "Официальный раздел Ассоциации выпускников БФЭТ им. А. Токтоналиева.",
-        "en": "Официальный раздел Ассоциации выпускников БФЭТ им. А. Токтоналиева."
+        "ru": "Официальный устав и положение Ассоциации выпускников БФЭТ им. А. Токтоналиева. Содержит цели, задачи, структуру управления и порядок вступления.",
+        "ky": "БФЭТ им. А. Токтоналиевдин бүтүрүүчүлөр ассоциациясынын расмий уставы жана жободо.",
+        "en": "The official charter of the BFET Association. Contains goals, objectives, governance structure, and membership procedures."
       },
       "category": "Документы ассоциации",
       "fileUrl": "https://bfet.kg/ass-vypusknikov/",
@@ -175,121 +1132,454 @@
       "publishedAt": "2026-01-15T09:00:00.000Z"
     },
     {
-      "id": "doc-charter",
+      "id": "doc-alumni-form",
       "title": {
         "ru": "Анкета выпускника БФЭТ им. А. Токтоналиева",
-        "ky": "Анкета выпускника БФЭТ им. А. Токтоналиева",
-        "en": "Анкета выпускника БФЭТ им. А. Токтоналиева"
+        "ky": "БФЭТ им. А. Токтоналиевдин бүтүрүүчүсүнүн анкетасы",
+        "en": "BFET Graduate Registration Form"
       },
       "description": {
-        "ru": "Анкета для пополнения базы данных выпускников БФЭТ.",
-        "ky": "Анкета для пополнения базы данных выпускников БФЭТ.",
-        "en": "Анкета для пополнения базы данных выпускников БФЭТ."
+        "ru": "Анкета для пополнения базы данных выпускников БФЭТ. Заполните и передайте в ассоциацию лично или направьте на email.",
+        "ky": "БФЭТ бүтүрүүчүлөрүнүн маалымат базасын толуктоо үчүн анкета.",
+        "en": "Form for updating the BFET graduates database. Fill it out and submit to the association in person or via email."
       },
       "category": "Анкеты",
       "fileUrl": "https://bfet.kg/ass-vypusknikov/",
       "fileType": "FORM",
       "publishedAt": "2025-11-02T09:00:00.000Z"
+    },
+    {
+      "id": "doc-annual-report",
+      "title": {
+        "ru": "Отчёт о деятельности Ассоциации за 2025 год",
+        "ky": "2025-жылдагы Ассоциациянын иш отчёту",
+        "en": "Association Annual Activity Report 2025"
+      },
+      "description": {
+        "ru": "Годовой отчёт о деятельности Ассоциации выпускников БФЭТ за 2025 год: мероприятия, финансовые показатели, количество участников, реализованные проекты.",
+        "ky": "2025-жылдагы БФЭТ бүтүрүүчүлөр ассоциациясынын ишмердүүлүгү боюнча жыл сайынкы отчёт.",
+        "en": "Annual report on BFET Association activities for 2025: events, financial indicators, member count, implemented projects."
+      },
+      "category": "Отчёты",
+      "fileUrl": "https://bfet.kg/ass-vypusknikov/",
+      "fileType": "PDF",
+      "publishedAt": "2026-02-10T09:00:00.000Z"
+    },
+    {
+      "id": "doc-mentorship-guide",
+      "title": {
+        "ru": "Руководство участника программы менторства",
+        "ky": "Менторлук программасына катышуучунун колдонмосу",
+        "en": "Mentorship Program Participant Guide"
+      },
+      "description": {
+        "ru": "Пошаговое руководство для менторов и менти: как участвовать в программе, правила общения, форматы встреч, чек-лист для первой встречи.",
+        "ky": "Менторлор жана менти үчүн кадам-кадам нускамасы: программага кантип катышуу, байланыш эрежелери, жолугушуулардын форматтары.",
+        "en": "Step-by-step guide for mentors and mentees: how to participate in the program, communication rules, meeting formats, first meeting checklist."
+      },
+      "category": "Менторство",
+      "fileUrl": "https://bfet.kg/ass-vypusknikov/",
+      "fileType": "PDF",
+      "publishedAt": "2026-05-08T09:00:00.000Z"
+    },
+    {
+      "id": "doc-member-benefits",
+      "title": {
+        "ru": "Льготы и преимущества члена ассоциации",
+        "ky": "Ассоциация мүчөсүнүн жеңилдиктери жана артыкчылыктары",
+        "en": "Member Benefits and Privileges"
+      },
+      "description": {
+        "ru": "Перечень льгот, скидок от партнёров и эксклюзивных возможностей для членов Ассоциации выпускников БФЭТ.",
+        "ky": "БФЭТ бүтүрүүчүлөр ассоциациясынын мүчөлөрү үчүн жеңилдиктер, өнөктөш компаниялардан арзандатуулар жана эксклюзивдүү мүмкүнчүлүктөрдүн тизмеси.",
+        "en": "List of benefits, partner discounts, and exclusive opportunities for members of the BFET Association."
+      },
+      "category": "Документы ассоциации",
+      "fileUrl": "https://bfet.kg/ass-vypusknikov/",
+      "fileType": "PDF",
+      "publishedAt": "2026-03-01T09:00:00.000Z"
     }
   ],
   "companies": [
     {
       "id": "company-mbank",
       "name": "Mbank",
-      "logoUrl": "",
-      "description": "Партнер БФЭТ, поддерживает подготовку студентов направления «Банковское дело».",
+      "logoUrl": "/uploads/logos/1778490115355-logo-itu.png",
+      "description": "Один из ведущих коммерческих банков Кыргызстана. Партнёр БФЭТ по подготовке специалистов банковского дела. Предоставляет стажировки и трудоустройство выпускников по направлениям «Банковское дело» и «Финансы».",
       "website": "https://mbank.kg",
       "city": "Бишкек",
       "country": "Кыргызстан",
       "_count": {
+        "jobs": 2
+      },
+      "alumni": [
+        {
+          "id": "profile-aigul",
+          "fullName": "Айгуль Бекова",
+          "position": "Ведущий специалист по розничным продуктам"
+        }
+      ]
+    },
+    {
+      "id": "company-rsk",
+      "name": "RSK Bank",
+      "logoUrl": "",
+      "description": "Открытое акционерное общество «РСК Банк». Один из старейших банков Кыргызстана, партнёр ассоциации выпускников БФЭТ в сфере трудоустройства и финансовой грамотности.",
+      "website": "https://rsk.kg",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "_count": {
         "jobs": 1
-      }
+      },
+      "alumni": [
+        {
+          "id": "profile-nurbek",
+          "fullName": "Нурбек Осмонов",
+          "position": "Финансовый директор"
+        }
+      ]
+    },
+    {
+      "id": "company-bakai",
+      "name": "Bakai Bank",
+      "logoUrl": "",
+      "description": "Коммерческий банк «Бакай» — партнёр БФЭТ в сфере HR и трудоустройства выпускников. Регулярно проводит стажировки и участвует в карьерных сессиях техникума.",
+      "website": "https://bakai.kg",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "_count": {
+        "jobs": 1
+      },
+      "alumni": [
+        {
+          "id": "profile-aida",
+          "fullName": "Аида Токтосунова",
+          "position": "HR-директор"
+        }
+      ]
     },
     {
       "id": "company-bpn",
       "name": "BPN",
       "logoUrl": "",
-      "description": "Общественное объединение предпринимателей, партнер БФЭТ по производственной практике студентов.",
+      "description": "Общественное объединение предпринимателей Кыргызстана. Партнёр БФЭТ по производственной практике студентов направления «Операционная деятельность в логистике» и «Менеджмент».",
       "website": "https://bfet.kg",
       "city": "Бишкек",
       "country": "Кыргызстан",
       "_count": {
         "jobs": 1
-      }
+      },
+      "alumni": [
+        {
+          "id": "profile-bakit",
+          "fullName": "Бакит Джаксыбеков",
+          "position": "Логист-аналитик"
+        }
+      ]
+    },
+    {
+      "id": "company-gns",
+      "name": "ГНС КР",
+      "logoUrl": "",
+      "description": "Государственная налоговая служба Кыргызской Республики. Принимает студентов БФЭТ на практику по специальности «Налоги и налогообложение» и открыта для трудоустройства выпускников.",
+      "website": "https://salyk.kg",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "_count": {
+        "jobs": 1
+      },
+      "alumni": [
+        {
+          "id": "profile-aziz",
+          "fullName": "Азиз Каримов",
+          "position": "Налоговый инспектор"
+        }
+      ]
     }
   ],
   "jobs": [
     {
-      "id": "job-frontend-intern",
+      "id": "job-mbank-banker",
       "authorId": "dev-admin",
       "companyId": "company-mbank",
-      "title": "Стажер в банковском отделе",
-      "description": "Практика для студентов и выпускников БФЭТ по направлению «Банковское дело».",
-      "requirements": "Базовые знания финансов, документооборот, ответственность",
-      "duties": "Работа с клиентскими документами, помощь специалистам отдела, изучение банковских процессов",
+      "title": "Стажёр отдела банковского обслуживания",
+      "description": "Mbank приглашает выпускников и студентов БФЭТ пройти стажировку в отделе розничного банковского обслуживания. Вы получите реальный опыт работы с клиентами, освоите банковские операции и познакомитесь с корпоративной культурой одного из ведущих банков страны.",
+      "requirements": "Специальность «Банковское дело» или «Финансы предприятий». Знание 1С приветствуется. Ответственность, внимательность, грамотная речь.",
+      "duties": "Обслуживание клиентов на кассе, оформление банковских документов, консультирование по продуктам банка, помощь в открытии счетов и выдаче карт.",
       "type": "стажировка",
-      "format": "гибрид",
+      "format": "офис",
       "city": "Бишкек",
       "country": "Кыргызстан",
-      "salary": "по договоренности",
-      "deadline": "2026-06-01T18:00:00.000Z",
-      "contacts": "vip.bfet@mail.ru",
+      "salary": "18 000 — 22 000 сом",
+      "deadline": "2026-06-30T18:00:00.000Z",
+      "contacts": "hr@mbank.kg | +996 312 900 900",
+      "status": "PUBLISHED",
+      "company": {
+        "id": "company-mbank",
+        "name": "Mbank"
+      },
+      "applications": [
+        {
+          "id": "app-meerim-mbank",
+          "applicantId": "user-meerim",
+          "applicantEmail": "meerim.asanova@bfet.test",
+          "cvUrl": "",
+          "message": "Я только что окончила БФЭТ с красным дипломом по специальности «Экономика и бухгалтерский учет». Очень хочу начать карьеру в банковской сфере и готова обучаться.",
+          "status": "pending",
+          "createdAt": "2026-05-10T10:00:00.000Z"
+        }
+      ],
+      "createdAt": "2026-04-17T09:00:00.000Z"
+    },
+    {
+      "id": "job-mbank-analyst",
+      "authorId": "dev-admin",
+      "companyId": "company-mbank",
+      "title": "Младший финансовый аналитик",
+      "description": "Mbank ищет амбициозного выпускника для работы в отделе финансового анализа. Отличная возможность для развития карьеры в одном из крупнейших банков страны.",
+      "requirements": "Высшее или среднее специальное образование по экономике/финансам. Excel на уровне уверенного пользователя. Знание основ финансового анализа.",
+      "duties": "Подготовка финансовых отчётов, анализ показателей прибыльности, ведение баз данных, участие в аудиторских проверках.",
+      "type": "полная занятость",
+      "format": "офис",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "salary": "30 000 — 40 000 сом",
+      "deadline": "2026-07-01T18:00:00.000Z",
+      "contacts": "hr@mbank.kg",
       "status": "PUBLISHED",
       "company": {
         "id": "company-mbank",
         "name": "Mbank"
       },
       "applications": [],
-      "createdAt": "2026-04-17T09:00:00.000Z"
+      "createdAt": "2026-05-01T09:00:00.000Z"
     },
     {
-      "id": "job-finance-assistant",
+      "id": "job-rsk-accountant",
+      "authorId": "dev-admin",
+      "companyId": "company-rsk",
+      "title": "Бухгалтер / Экономист",
+      "description": "RSK Bank приглашает выпускников БФЭТ с профильным образованием на позицию бухгалтера. Дружный коллектив, стабильная зарплата, карьерный рост.",
+      "requirements": "Специальность «Экономика и бухгалтерский учет». 1С:Бухгалтерия, знание налогового законодательства КР. Опыт от 6 месяцев приветствуется.",
+      "duties": "Ведение бухгалтерского учёта, подготовка и сдача налоговой отчётности, работа с первичной документацией, расчёт заработной платы.",
+      "type": "полная занятость",
+      "format": "офис",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "salary": "28 000 — 35 000 сом",
+      "deadline": "2026-06-20T18:00:00.000Z",
+      "contacts": "hr@rsk.kg | (0312) 61-05-20",
+      "status": "PUBLISHED",
+      "company": {
+        "id": "company-rsk",
+        "name": "RSK Bank"
+      },
+      "applications": [
+        {
+          "id": "app-zhyldyz-rsk",
+          "applicantId": "user-zhyldyz",
+          "applicantEmail": "zhyldyz.mamytova@bfet.test",
+          "cvUrl": "",
+          "message": "Имею 6 лет опыта в бухгалтерии. Рассматриваю карьерный переход в банковскую сферу. Готова пройти собеседование.",
+          "status": "reviewed",
+          "createdAt": "2026-05-08T11:00:00.000Z"
+        }
+      ],
+      "createdAt": "2026-04-25T09:00:00.000Z"
+    },
+    {
+      "id": "job-bakai-hr",
+      "authorId": "dev-admin",
+      "companyId": "company-bakai",
+      "title": "Специалист по подбору персонала (Рекрутер)",
+      "description": "Bakai Bank ищет специалиста по рекрутингу. Вы будете искать и привлекать лучших кандидатов для банка, выстраивать отношения с учебными заведениями, в том числе с БФЭТ.",
+      "requirements": "Менеджмент, психология или экономическое образование. Коммуникабельность, умение работать в режиме многозадачности.",
+      "duties": "Размещение вакансий, проведение первичных собеседований, ведение базы кандидатов, сотрудничество с колледжами и вузами.",
+      "type": "полная занятость",
+      "format": "гибрид",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "salary": "25 000 — 32 000 сом",
+      "deadline": "2026-06-15T18:00:00.000Z",
+      "contacts": "hr@bakai.kg",
+      "status": "PUBLISHED",
+      "company": {
+        "id": "company-bakai",
+        "name": "Bakai Bank"
+      },
+      "applications": [],
+      "createdAt": "2026-05-05T09:00:00.000Z"
+    },
+    {
+      "id": "job-bpn-logistics",
       "authorId": "dev-admin",
       "companyId": "company-bpn",
-      "title": "Практикант по финансам и учету",
-      "description": "Практика для студентов БФЭТ по экономике, бухгалтерскому учету и финансам предприятий.",
-      "requirements": "Excel, внимательность, базовая финансовая грамотность",
-      "duties": "Подготовка отчетов, помощь аналитикам",
+      "title": "Практикант по логистике и ВЭД",
+      "description": "BPN приглашает студентов и выпускников БФЭТ на практику по направлению логистики и внешнеэкономической деятельности. Опыт реальных поставок, работа с таможенными документами.",
+      "requirements": "Специальность «Операционная деятельность в логистике» или «Менеджмент». Excel, внимательность, базовое знание логистических процессов.",
+      "duties": "Сопровождение грузов, ведение документации, координация с поставщиками, работа в WMS.",
       "type": "практика",
       "format": "офис",
-      "city": "Ош",
+      "city": "Бишкек",
       "country": "Кыргызстан",
-      "salary": "по договоренности",
-      "deadline": "2026-05-20T18:00:00.000Z",
-      "contacts": "vip.bfet@mail.ru",
+      "salary": "по договорённости",
+      "deadline": "2026-05-31T18:00:00.000Z",
+      "contacts": "info@bpn.kg",
       "status": "PUBLISHED",
       "company": {
         "id": "company-bpn",
         "name": "BPN"
       },
+      "applications": [
+        {
+          "id": "app-bakit-bpn",
+          "applicantId": "user-bakit",
+          "applicantEmail": "bakit.dzhaksybekov@bfet.test",
+          "cvUrl": "",
+          "message": "Окончил БФЭТ по специальности «Операционная деятельность в логистике». Работаю в BPN и хотел бы пройти дополнительную практику в отделе ВЭД.",
+          "status": "approved",
+          "createdAt": "2026-05-09T09:00:00.000Z"
+        }
+      ],
+      "createdAt": "2026-04-20T09:00:00.000Z"
+    },
+    {
+      "id": "job-gns-inspector",
+      "authorId": "dev-admin",
+      "companyId": "company-gns",
+      "title": "Помощник налогового инспектора (практика)",
+      "description": "ГНС КР предлагает прохождение практики для студентов 3–4 курса по специальности «Налоги и налогообложение». Практика засчитывается по учебному плану БФЭТ.",
+      "requirements": "Специальность «Налоги и налогообложение» или «Финансы: бюджет и бюджетный учет». Знание налогового законодательства КР на базовом уровне.",
+      "duties": "Помощь инспекторам в камеральных проверках, ведение реестров налогоплательщиков, обработка деклараций.",
+      "type": "практика",
+      "format": "офис",
+      "city": "Бишкек",
+      "country": "Кыргызстан",
+      "salary": "учебная практика",
+      "deadline": "2026-07-15T18:00:00.000Z",
+      "contacts": "salyk@salyk.kg | (0312) 62-05-60",
+      "status": "PUBLISHED",
+      "company": {
+        "id": "company-gns",
+        "name": "ГНС КР"
+      },
       "applications": [],
-      "createdAt": "2026-04-16T09:00:00.000Z"
+      "createdAt": "2026-05-03T09:00:00.000Z"
     }
   ],
   "notifications": [
     {
-      "id": "notification-1777455845338-c47f4bf9387f7",
+      "id": "notification-erkin-pending",
       "userId": "dev-admin",
-      "type": "JOB_PUBLISHED",
-      "title": "Вакансия опубликована",
-      "message": "Вакансия \"Smoke pending job\" опубликована.",
+      "type": "PROFILE_UPDATED",
+      "title": "Новый профиль на проверку",
+      "message": "Эркин Сыдыков отправил профиль выпускника на модерацию.",
       "data": {
-        "jobId": "job-1777455845180"
+        "profileId": "profile-erkin"
       },
       "read": true,
-      "createdAt": "2026-04-29T09:44:05.338Z"
+      "createdAt": "2026-03-10T10:00:00.000Z"
     },
     {
-      "id": "notification-welcome",
+      "id": "notification-meerim-application",
       "userId": "dev-admin",
-      "type": "SYSTEM",
-      "title": "Платформа запущена",
-      "message": "Платформа Ассоциации выпускников БФЭТ готова для наполнения реальными данными.",
+      "type": "JOB_APPLICATION",
+      "title": "Новый отклик на вакансию",
+      "message": "Меерим Асанова откликнулась на вакансию «Стажёр отдела банковского обслуживания» (Mbank).",
+      "data": {
+        "jobId": "job-mbank-banker",
+        "applicationId": "app-meerim-mbank"
+      },
       "read": true,
-      "createdAt": "2026-04-29T03:00:00.000Z"
+      "createdAt": "2026-05-10T10:05:00.000Z"
+    },
+    {
+      "id": "notification-aigul-approved",
+      "userId": "user-aigul",
+      "type": "PROFILE_APPROVED",
+      "title": "Профиль одобрен",
+      "message": "Ваш профиль выпускника опубликован в каталоге ассоциации.",
+      "data": {
+        "profileId": "profile-aigul"
+      },
+      "read": true,
+      "createdAt": "2026-02-02T10:00:00.000Z"
+    },
+    {
+      "id": "notification-reunion-aigul",
+      "userId": "user-aigul",
+      "type": "EVENT_REGISTRATION",
+      "title": "Регистрация на мероприятие",
+      "message": "Вы зарегистрированы на «Встреча выпускников БФЭТ 2026».",
+      "data": {
+        "eventId": "event-reunion"
+      },
+      "read": true,
+      "createdAt": "2026-05-01T10:00:00.000Z"
+    },
+    {
+      "id": "notification-mentorship-aigul",
+      "userId": "user-aigul",
+      "type": "MENTORSHIP_REQUEST",
+      "title": "Запрос на менторство",
+      "message": "Меерим Асанова хочет стать вашим менти.",
+      "data": {
+        "mentorshipId": "mentorship-001"
+      },
+      "read": true,
+      "createdAt": "2026-05-01T10:00:00.000Z"
+    },
+    {
+      "id": "notification-nurbek-approved",
+      "userId": "user-nurbek",
+      "type": "PROFILE_APPROVED",
+      "title": "Профиль одобрен",
+      "message": "Ваш профиль выпускника опубликован в каталоге ассоциации.",
+      "data": {
+        "profileId": "profile-nurbek"
+      },
+      "read": true,
+      "createdAt": "2026-02-06T10:00:00.000Z"
+    },
+    {
+      "id": "notification-meerim-mentorship",
+      "userId": "user-meerim",
+      "type": "MENTORSHIP_REQUEST",
+      "title": "Запрос отправлен",
+      "message": "Ваш запрос на менторство к Айгуль Бековой отправлен.",
+      "data": {
+        "mentorshipId": "mentorship-001"
+      },
+      "read": true,
+      "createdAt": "2026-05-01T10:00:00.000Z"
     }
   ],
-  "mentorships": [],
+  "mentorships": [
+    {
+      "id": "mentorship-001",
+      "mentorId": "user-aigul",
+      "studentId": "user-meerim",
+      "status": "active",
+      "goals": "Помочь разобраться в банковских продуктах, подготовиться к первому собеседованию и составить профессиональное резюме.",
+      "createdAt": "2026-05-01T10:00:00.000Z"
+    },
+    {
+      "id": "mentorship-002",
+      "mentorId": "user-nurbek",
+      "studentId": "user-bakit",
+      "status": "pending",
+      "goals": "Получить рекомендации по карьерному пути в финансовой сфере и подготовке к ACCA.",
+      "createdAt": "2026-05-05T11:00:00.000Z"
+    },
+    {
+      "id": "mentorship-003",
+      "mentorId": "user-aida",
+      "studentId": "user-meerim",
+      "status": "pending",
+      "goals": "Узнать, как правильно проходить собеседования в банк и на что обращают внимание HR-специалисты.",
+      "createdAt": "2026-05-08T09:00:00.000Z"
+    }
+  ],
   "chatRooms": [
     {
       "id": "general",
@@ -312,353 +1602,608 @@
   ],
   "chatMessages": [
     {
-      "id": "1777457628881",
+      "id": "msg-001",
       "roomId": "general",
-      "author": "admin@alumni.local",
-      "authorId": "dev-admin",
-      "text": "еке",
-      "deleted": true,
-      "createdAt": "2026-04-29T10:13:48.881Z",
-      "deletedAt": "2026-04-29T17:59:45.076Z",
-      "deletedBy": "dev-admin"
-    }
-  ],
-  "chatReports": [
+      "author": "Айгуль Бекова",
+      "authorId": "user-aigul",
+      "text": "Добро пожаловать на платформу Ассоциации выпускников БФЭТ! Рада видеть вас здесь!",
+      "createdAt": "2026-04-29T10:00:00.000Z"
+    },
     {
-      "id": "report-1777457645262",
-      "messageId": "1777457628881",
+      "id": "msg-002",
       "roomId": "general",
-      "reporterId": "dev-admin",
-      "reporterEmail": "admin@alumni.local",
-      "reason": "пар",
-      "status": "rejected",
-      "createdAt": "2026-04-29T10:14:05.262Z"
+      "author": "Нурбек Осмонов",
+      "authorId": "user-nurbek",
+      "text": "Отличная платформа! Давно нужна была такая база для выпускников нашего техникума.",
+      "createdAt": "2026-04-29T10:05:00.000Z"
+    },
+    {
+      "id": "msg-003",
+      "roomId": "general",
+      "author": "Жылдыз Мамытова",
+      "authorId": "user-zhyldyz",
+      "text": "Зарегистрировалась, профиль уже заполнила. Всем привет! Выпуск 2020 здесь есть кто-нибудь?",
+      "createdAt": "2026-04-29T10:30:00.000Z"
+    },
+    {
+      "id": "msg-004",
+      "roomId": "general",
+      "author": "Аида Токтосунова",
+      "authorId": "user-aida",
+      "text": "Привет всем! Если кому нужна помощь с резюме или подготовкой к собеседованию — обращайтесь, я HR-директор в Bakai Bank.",
+      "createdAt": "2026-04-29T11:00:00.000Z"
+    },
+    {
+      "id": "msg-005",
+      "roomId": "general",
+      "author": "Тимур Абдрахманов",
+      "authorId": "user-timur",
+      "text": "Привет! Выпуск 2019, маркетолог. Если интересует digital маркетинг — пишите в личку.",
+      "createdAt": "2026-04-29T11:20:00.000Z"
+    },
+    {
+      "id": "msg-006",
+      "roomId": "general",
+      "author": "Гульнара Исмаилова",
+      "authorId": "user-gulnara",
+      "text": "Выпуск 2015! Рада видеть такую активную платформу для наших выпускников.",
+      "createdAt": "2026-04-30T09:00:00.000Z"
+    },
+    {
+      "id": "msg-007",
+      "roomId": "jobs",
+      "author": "Аида Токтосунова",
+      "authorId": "user-aida",
+      "text": "Bakai Bank открыл вакансию рекрутера! Специально для выпускников БФЭТ. Подробности в разделе «Вакансии».",
+      "createdAt": "2026-05-05T09:00:00.000Z"
+    },
+    {
+      "id": "msg-008",
+      "roomId": "jobs",
+      "author": "Айгуль Бекова",
+      "authorId": "user-aigul",
+      "text": "Mbank тоже открыл стажировку! Рекомендую — у нас отличная программа адаптации для молодых специалистов.",
+      "createdAt": "2026-05-05T09:30:00.000Z"
+    },
+    {
+      "id": "msg-009",
+      "roomId": "jobs",
+      "author": "Меерим Асанова",
+      "authorId": "user-meerim",
+      "text": "Уже откликнулась на стажировку в Mbank! Спасибо, Айгуль апа, за поддержку выпускников.",
+      "createdAt": "2026-05-10T10:10:00.000Z"
+    },
+    {
+      "id": "msg-010",
+      "roomId": "mentorship",
+      "author": "Нурбек Осмонов",
+      "authorId": "user-nurbek",
+      "text": "Всем, кто хочет строить карьеру в финансовой сфере — пишите, провожу бесплатные консультации по вторникам и четвергам.",
+      "createdAt": "2026-05-08T10:00:00.000Z"
+    },
+    {
+      "id": "msg-011",
+      "roomId": "mentorship",
+      "author": "Жылдыз Мамытова",
+      "authorId": "user-zhyldyz",
+      "text": "Ищу студентов, которые хотят стать бухгалтерами. Могу рассказать о реалиях профессии и помочь с 1С. Пишите!",
+      "createdAt": "2026-05-09T09:00:00.000Z"
+    },
+    {
+      "id": "msg-012",
+      "roomId": "mentorship",
+      "author": "Аида Токтосунова",
+      "authorId": "user-aida",
+      "text": "Готова помочь с подготовкой к собеседованию и разбором типичных ошибок в резюме. Запись в личные сообщения.",
+      "createdAt": "2026-05-10T09:00:00.000Z"
     }
   ],
+  "chatReports": [],
   "directChats": [],
   "directMessages": [],
+  "passwordResetTokens": {},
   "auditLogs": [
     {
-      "id": "audit-1777485585079-3d45f5b5a2e3",
+      "id": "audit-1778775387064-205a42072e2eb",
       "actorId": "dev-admin",
       "actorEmail": "admin@alumni.local",
       "actorRole": "ADMIN",
       "method": "DELETE",
-      "path": "/api/chat/messages/1777457628881",
+      "path": "/api/admin/backup/bfet-backup-2026-05-14T13-35-54.zip",
       "statusCode": 200,
-      "createdAt": "2026-04-29T17:59:45.079Z"
+      "body": {},
+      "createdAt": "2026-05-14T16:16:27.065Z"
     },
     {
-      "id": "audit-1777485583101-0815cdd976224",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "PATCH",
-      "path": "/api/chat/reports/report-1777457645262/status",
-      "statusCode": 200,
-      "body": {
-        "status": "rejected"
-      },
-      "createdAt": "2026-04-29T17:59:43.101Z"
-    },
-    {
-      "id": "audit-1777485579263-ef813a225aab8",
+      "id": "audit-1778775383181-311303c4f4632",
       "actorId": "dev-admin",
       "actorEmail": "admin@alumni.local",
       "actorRole": "ADMIN",
       "method": "DELETE",
-      "path": "/api/chat/messages/1777457628881",
+      "path": "/api/admin/backup/bfet-backup-2026-05-14T13-36-21.zip",
       "statusCode": 200,
-      "createdAt": "2026-04-29T17:59:39.263Z"
+      "body": {},
+      "createdAt": "2026-05-14T16:16:23.181Z"
     },
     {
-      "id": "audit-1777485577465-0b2f94b0ea385",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "PATCH",
-      "path": "/api/chat/reports/report-1777457645262/status",
-      "statusCode": 200,
-      "body": {
-        "status": "resolved"
-      },
-      "createdAt": "2026-04-29T17:59:37.465Z"
-    },
-    {
-      "id": "audit-1777485575769-f58384061b07f",
+      "id": "audit-1778775380492-12de4774ec201",
       "actorId": "dev-admin",
       "actorEmail": "admin@alumni.local",
       "actorRole": "ADMIN",
       "method": "DELETE",
-      "path": "/api/chat/messages/1777457628881",
+      "path": "/api/admin/backup/bfet-backup-2026-05-14T13-43-53.zip",
       "statusCode": 200,
-      "createdAt": "2026-04-29T17:59:35.769Z"
+      "body": {},
+      "createdAt": "2026-05-14T16:16:20.492Z"
     },
     {
-      "id": "audit-1777457645266-ea256a459b111",
+      "id": "audit-1778775377686-c1b71c9150f82",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/admin/backup/bfet-backup-2026-05-14T13-46-54.zip",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T16:16:17.686Z"
+    },
+    {
+      "id": "audit-1778775374244-691f1f8851a1b",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/admin/backup/bfet-backup-2026-05-14T13-35-33.zip",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T16:16:14.245Z"
+    },
+    {
+      "id": "audit-1778768223892-7330853a57bcb",
       "actorId": "dev-admin",
       "actorEmail": "admin@alumni.local",
       "actorRole": "ADMIN",
       "method": "POST",
-      "path": "/api/chat/messages/1777457628881/report",
+      "path": "/api/admin/backup/create",
       "statusCode": 201,
-      "body": {
-        "reason": "пар"
-      },
-      "createdAt": "2026-04-29T10:14:05.266Z"
+      "body": {},
+      "createdAt": "2026-05-14T14:17:03.892Z"
     },
     {
-      "id": "audit-1777456138164-89faef646da9e",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "PATCH",
-      "path": "/api/notifications/notification-1777455845338-c47f4bf9387f7/read",
-      "statusCode": 200,
-      "createdAt": "2026-04-29T09:48:58.164Z"
-    },
-    {
-      "id": "audit-1777455845550-411269ff6665a",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "DELETE",
-      "path": "/api/jobs/job-1777455845180",
-      "statusCode": 200,
-      "createdAt": "2026-04-29T09:44:05.550Z"
-    },
-    {
-      "id": "audit-1777455845340-7ade4f9a8a9fe",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "POST",
-      "path": "/api/jobs",
-      "statusCode": 201,
-      "body": {
-        "city": "??????",
-        "description": "draft",
-        "type": "??????????",
-        "duties": "",
-        "format": "??????",
-        "requirements": "",
-        "salary": "",
-        "title": "Smoke pending job",
-        "country": "??????????",
-        "contacts": "test"
-      },
-      "createdAt": "2026-04-29T09:44:05.340Z"
-    },
-    {
-      "id": "audit-1777455832985-73e41068bd04e",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "DELETE",
-      "path": "/api/donations/campaigns/campaign-1777455832495",
-      "statusCode": 200,
-      "createdAt": "2026-04-29T09:43:52.985Z"
-    },
-    {
-      "id": "audit-1777455832932-4b077840f0dd",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "DELETE",
-      "path": "/api/documents/doc-1777455832438",
-      "statusCode": 200,
-      "createdAt": "2026-04-29T09:43:52.932Z"
-    },
-    {
-      "id": "audit-1777455832877-0cbdc995e30ab",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "DELETE",
-      "path": "/api/events/event-1777455832373",
-      "statusCode": 200,
-      "createdAt": "2026-04-29T09:43:52.877Z"
-    },
-    {
-      "id": "audit-1777455832497-67c2eae90f45f",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "POST",
-      "path": "/api/donations/campaigns",
-      "statusCode": 201,
-      "body": {
-        "title": {
-          "ru": "Smoke draft campaign",
-          "ky": "Smoke draft campaign",
-          "en": "Smoke draft campaign"
-        },
-        "description": {
-          "ru": "draft",
-          "ky": "draft",
-          "en": "draft"
-        },
-        "publicationStatus": "DRAFT",
-        "goalAmount": 1000
-      },
-      "createdAt": "2026-04-29T09:43:52.497Z"
-    },
-    {
-      "id": "audit-1777455832440-a18ec51f7b112",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "POST",
-      "path": "/api/documents",
-      "statusCode": 201,
-      "body": {
-        "fileType": "PDF",
-        "description": {
-          "ru": "draft",
-          "ky": "draft",
-          "en": "draft"
-        },
-        "publicationStatus": "DRAFT",
-        "fileUrl": "#",
-        "category": "Smoke",
-        "title": {
-          "ru": "Smoke draft document",
-          "ky": "Smoke draft document",
-          "en": "Smoke draft document"
-        }
-      },
-      "createdAt": "2026-04-29T09:43:52.440Z"
-    },
-    {
-      "id": "audit-1777455832376-b2cb8480e1ef3",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "POST",
-      "path": "/api/events",
-      "statusCode": 201,
-      "body": {
-        "description": {
-          "ru": "draft",
-          "ky": "draft",
-          "en": "draft"
-        },
-        "startsAt": "2026-06-01T10:00:00.000Z",
-        "location": "BFET",
-        "publicationStatus": "DRAFT",
-        "title": {
-          "ru": "Smoke draft event",
-          "ky": "Smoke draft event",
-          "en": "Smoke draft event"
-        },
-        "status": "upcoming"
-      },
-      "createdAt": "2026-04-29T09:43:52.377Z"
-    },
-    {
-      "id": "audit-1777455579594-d594e7875035c",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "DELETE",
-      "path": "/api/news/news-1777455579473",
-      "statusCode": 200,
-      "createdAt": "2026-04-29T09:39:39.594Z"
-    },
-    {
-      "id": "audit-1777455579475-8c4b7fa9717fc",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "POST",
-      "path": "/api/news",
-      "statusCode": 201,
-      "body": {
-        "title": {
-          "ru": "Smoke draft news",
-          "ky": "Smoke draft news",
-          "en": "Smoke draft news"
-        },
-        "body": {
-          "ru": "Temporary draft for status check",
-          "ky": "Temporary draft for status check",
-          "en": "Temporary draft for status check"
-        },
-        "status": "DRAFT",
-        "imageUrl": ""
-      },
-      "createdAt": "2026-04-29T09:39:39.475Z"
-    },
-    {
-      "id": "audit-1777455579423-9a7789f25026c",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "DELETE",
-      "path": "/api/news/news-1777455521774",
-      "statusCode": 200,
-      "createdAt": "2026-04-29T09:39:39.423Z"
-    },
-    {
-      "id": "audit-1777455521776-38f9bd9163996",
-      "actorId": "dev-admin",
-      "actorEmail": "admin@alumni.local",
-      "actorRole": "ADMIN",
-      "method": "POST",
-      "path": "/api/news",
-      "statusCode": 201,
-      "body": {
-        "title": {
-          "ru": "Smoke draft news",
-          "ky": "Smoke draft news",
-          "en": "Smoke draft news"
-        },
-        "body": {
-          "ru": "Temporary draft for status check",
-          "ky": "Temporary draft for status check",
-          "en": "Temporary draft for status check"
-        },
-        "status": "DRAFT",
-        "imageUrl": ""
-      },
-      "createdAt": "2026-04-29T09:38:41.776Z"
-    },
-    {
-      "id": "audit-1777455404624-4085733acac8",
+      "id": "audit-1778765610674-65deeae5ef3e6",
       "actorId": "dev-admin",
       "actorEmail": "admin@alumni.local",
       "actorRole": "ADMIN",
       "method": "PUT",
-      "path": "/api/site",
+      "path": "/api/admin/backup/schedule",
       "statusCode": 200,
       "body": {
-        "workingHours": "??????????? - ??????? 08:00 - 17:00, ???? 12:00 - 13:00",
-        "studentCount": "2268+",
-        "foundedYear": 1931,
-        "parentOrganization": "??????-????????????????? ??????????? ?????????? ????????????? ??????????? ??. ?. ????????????",
-        "phones": [
-          "(0312) 39 15 41",
-          "(0312) 39 21 66"
-        ],
-        "mission": "??????????? ???????????? ????????????? ???????????, ???????????????? ?? ?????????? ??????????????????? ?????? ?????? ????????? ????? ?????????? ???????? ? ????????? ?????????.",
-        "name": "?????????? ?????????-????????????? ???????? ??. ?. ????????????",
-        "address": "?????????? ??????????, ?. ??????, ??. ???, 269",
-        "staffCount": "176+",
-        "website": "https://bfet.kg",
-        "specialties": [
-          "????????? ? ????????????? ????",
-          "???????: ?????? ? ????????? ????",
-          "??????? ???????????",
-          "?????????? ????",
-          "????????? ????",
-          "?????? ? ???????????????",
-          "??????????",
-          "?????????",
-          "???????????? ???????????? ? ?????????"
-        ],
-        "email": "vip.bfet@mail.ru"
+        "schedule": "weekly"
       },
-      "createdAt": "2026-04-29T09:36:44.624Z"
+      "createdAt": "2026-05-14T13:33:30.675Z"
+    },
+    {
+      "id": "audit-1778754697983-bbe9c2a3c3c52",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PUT",
+      "path": "/api/alumni/admin/profile-aziz",
+      "statusCode": 200,
+      "body": {
+        "isFeatured": true,
+        "featuredTitle": "Налоговый инспектор"
+      },
+      "createdAt": "2026-05-14T10:31:37.983Z"
+    },
+    {
+      "id": "audit-1778754612214-f3ec52c7e2816",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/notifications/notification-welcome-admin",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T10:30:12.214Z"
+    },
+    {
+      "id": "audit-1778754612028-19e407cc1dc97",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/notifications/notification-1778491118595-6d7b6a30db163",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T10:30:12.028Z"
+    },
+    {
+      "id": "audit-1778754611831-89f95db47d71a",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/notifications/notification-1778494245056-dcc2d7c8b8bfb",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T10:30:11.831Z"
+    },
+    {
+      "id": "audit-1778754611628-7613c11527d49",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/notifications/notification-1778496075655-7d0b7f64cb10c",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T10:30:11.628Z"
+    },
+    {
+      "id": "audit-1778754611378-25d40d8fb5e7",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/notifications/notification-1778496295962-76082aaf7b43",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T10:30:11.378Z"
+    },
+    {
+      "id": "audit-1778754611130-d954589afe9ee",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/notifications/notification-1778496432596-63a639cb5ef9b",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T10:30:11.130Z"
+    },
+    {
+      "id": "audit-1778754610906-3b5ad7a64ce9",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/notifications/notification-1778560951972-4c908418815df",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T10:30:10.906Z"
+    },
+    {
+      "id": "audit-1778754610659-af718a57cd376",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/notifications/notification-1778754556896-3c2cbd1996073",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T10:30:10.659Z"
+    },
+    {
+      "id": "audit-1778754610375-470d5d6345ac7",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/notifications/notification-1778754598472-92d351974a64f",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T10:30:10.375Z"
+    },
+    {
+      "id": "audit-1778754609749-c39a0eda46bde",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "DELETE",
+      "path": "/api/notifications/notification-1778754601828-dd9efb8dfc76e",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T10:30:09.749Z"
+    },
+    {
+      "id": "audit-1778754606255-3535fee64fbfb",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PATCH",
+      "path": "/api/notifications/read-all",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T10:30:06.255Z"
+    },
+    {
+      "id": "audit-1778754601831-9b8cf99f43699",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "POST",
+      "path": "/api/alumni/admin/profile-erkin/approve",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T10:30:01.831Z"
+    },
+    {
+      "id": "audit-1778754598475-89b39cfc7489b",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "POST",
+      "path": "/api/alumni/admin/profile-1778754556767/reject",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T10:29:58.475Z"
+    },
+    {
+      "id": "audit-1778754572087-655af253672b1",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PATCH",
+      "path": "/api/notifications/read-all",
+      "statusCode": 200,
+      "body": {},
+      "createdAt": "2026-05-14T10:29:32.087Z"
+    },
+    {
+      "id": "audit-1778753950886-aa67318ed3d2c",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PUT",
+      "path": "/api/news/news-mentorship-program",
+      "statusCode": 200,
+      "body": {
+        "title": {
+          "ru": "Программа менторства БФЭТ: 10 выпускников стали менторами",
+          "ky": "БФЭТ менторлук программасы: 10 бүтүрүүчү ментор болду",
+          "en": "BFET Mentorship Program: 10 graduates become mentors"
+        },
+        "body": {
+          "ru": "Ассоциация выпускников БФЭТ запустила первую официальную программу менторства, в рамках которой 10 опытных выпускников будут сопровождать студентов и молодых специалистов в профессиональном развитии. Менторы проведут онлайн и офлайн встречи, помогут с составлением резюме, подготовкой к собеседованию и выбором направления карьеры. Запись на менторство доступна в личном кабинете платформы. Места ограничены.",
+          "ky": "БФЭТ бүтүрүүчүлөр ассоциациясы биринчи расмий менторлук программасын ишке киргизди, анын алкагында 10 тажрыйбалуу бүтүрүүчү студенттерге жана жаш адистерге кесиптик өнүгүүдө жардам берет.",
+          "en": "BFET Association has launched its first official mentorship program, in which 10 experienced graduates will guide students and young professionals in their career development."
+        },
+        "imageUrl": "/uploads/images/1778753949823-ChatGPT-Image-13-2026-23_22_38.png",
+        "status": "PUBLISHED"
+      },
+      "createdAt": "2026-05-14T10:19:10.886Z"
+    },
+    {
+      "id": "audit-1778753949871-180a44d89a8a7",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "POST",
+      "path": "/api/uploads/images",
+      "statusCode": 201,
+      "body": {},
+      "createdAt": "2026-05-14T10:19:09.871Z"
+    },
+    {
+      "id": "audit-1778753936029-7504aab767bec",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PUT",
+      "path": "/api/news/news-scholarship-fund",
+      "statusCode": 200,
+      "body": {
+        "title": {
+          "ru": "Фонд поддержки студентов БФЭТ: первые стипендиаты получили выплаты",
+          "ky": "БФЭТ студенттерин колдоо фонду: биринчи стипендиаттар төлөмдөрдү алды",
+          "en": "BFET Student Support Fund: First scholarship recipients receive payments"
+        },
+        "body": {
+          "ru": "Благодаря взносам выпускников Ассоциации БФЭТ, в мае 2026 года 5 талантливых студентов получили первые стипендии из Фонда поддержки. Каждый стипендиат получил ежемесячную выплату в размере 3 000 сомов на 6 месяцев. Фонд продолжает принимать взносы от выпускников — любая сумма имеет значение. Ближайшая цель — увеличить число стипендиатов до 20 человек к 2027 году.",
+          "ky": "БФЭТ Ассоциациясынын бүтүрүүчүлөрүнүн салымдарынын аркасында 2026-жылдын май айында 5 талантуу студент Колдоо фондунан биринчи стипендияларды алды.",
+          "en": "Thanks to contributions from BFET Association members, in May 2026 five talented students received the first scholarships from the Support Fund. Each scholar receives a monthly payment of 3,000 KGS for 6 months."
+        },
+        "imageUrl": "/uploads/images/1778753933831-ChatGPT-Image-13-2026-23_29_07.png",
+        "status": "PUBLISHED"
+      },
+      "createdAt": "2026-05-14T10:18:56.029Z"
+    },
+    {
+      "id": "audit-1778753933884-0143916bceef2",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "POST",
+      "path": "/api/uploads/images",
+      "statusCode": 201,
+      "body": {},
+      "createdAt": "2026-05-14T10:18:53.884Z"
+    },
+    {
+      "id": "audit-1778753896092-2ff4f3e216dca",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PUT",
+      "path": "/api/news/news-career-day",
+      "statusCode": 200,
+      "body": {
+        "title": {
+          "ru": "День карьеры БФЭТ 2026: выпускники встретились со студентами",
+          "ky": "БФЭТ 2026 карьера күнү: бүтүрүүчүлөр студенттер менен жолугушту",
+          "en": "BFET Career Day 2026: Graduates meet students"
+        },
+        "body": {
+          "ru": "В апреле 2026 года в БФЭТ прошёл ежегодный День карьеры, в котором приняли участие более 15 выпускников — представителей ведущих компаний Кыргызстана. Айгуль Бекова (Mbank), Нурбек Осмонов (RSK Bank) и Аида Токтосунова (Bakai Bank) рассказали студентам о требованиях работодателей, пути от выпускника до руководителя и реальных карьерных лестницах в финансовой сфере страны. Студенты задавали вопросы, получили консультации по составлению резюме и посетили мини-ярмарку вакансий.",
+          "ky": "2026-жылдын апрель айында БФЭТте жыл сайын өткөрүлүүчү Карьера күнү өтүп, ага Кыргызстандын алдыңкы компанияларынын өкүлдөрү болгон 15тен ашуун бүтүрүүчү катышты.",
+          "en": "In April 2026, BFET hosted its annual Career Day, attended by over 15 graduates representing leading companies in Kyrgyzstan. Graduates shared their career paths and advice with current students."
+        },
+        "imageUrl": "/uploads/images/1778753893126-WhatsApp-Image-2026-04-30-at-09-18-57.jpeg",
+        "status": "PUBLISHED"
+      },
+      "createdAt": "2026-05-14T10:18:16.092Z"
+    },
+    {
+      "id": "audit-1778753893144-9b504f433ff32",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "POST",
+      "path": "/api/uploads/images",
+      "statusCode": 201,
+      "body": {},
+      "createdAt": "2026-05-14T10:18:13.144Z"
+    },
+    {
+      "id": "audit-1778574567218-5f40d44cb2351",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PATCH",
+      "path": "/api/notifications/read-all",
+      "statusCode": 200,
+      "createdAt": "2026-05-12T08:29:27.218Z"
+    },
+    {
+      "id": "audit-1778496409862-a13963e00208",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PATCH",
+      "path": "/api/notifications/read-all",
+      "statusCode": 200,
+      "createdAt": "2026-05-11T10:46:49.862Z"
+    },
+    {
+      "id": "audit-1778496403567-273065de56a01",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PATCH",
+      "path": "/api/users/user-aigul/password",
+      "statusCode": 200,
+      "body": {
+        "password": "[hidden]"
+      },
+      "createdAt": "2026-05-11T10:46:43.567Z"
+    },
+    {
+      "id": "audit-1778494479829-8d3453af2b275",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PATCH",
+      "path": "/api/notifications/read-all",
+      "statusCode": 200,
+      "createdAt": "2026-05-11T10:14:39.829Z"
+    },
+    {
+      "id": "audit-1778491126374-86633aabcb2f4",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PATCH",
+      "path": "/api/notifications/read-all",
+      "statusCode": 200,
+      "createdAt": "2026-05-11T09:18:46.374Z"
+    },
+    {
+      "id": "audit-1778491118598-befdaed25ad5f",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PATCH",
+      "path": "/api/alumni/admin/profile-aziz/status",
+      "statusCode": 200,
+      "body": {
+        "status": "APPROVED"
+      },
+      "createdAt": "2026-05-11T09:18:38.598Z"
+    },
+    {
+      "id": "audit-1778491054738-baabc5eddd0e5",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PATCH",
+      "path": "/api/users/user-aziz/password",
+      "statusCode": 200,
+      "body": {
+        "password": "[hidden]"
+      },
+      "createdAt": "2026-05-11T09:17:34.738Z"
+    },
+    {
+      "id": "audit-1778490303594-cf06f865b55c5",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PATCH",
+      "path": "/api/users/user-gulnara/password",
+      "statusCode": 200,
+      "body": {
+        "password": "[hidden]"
+      },
+      "createdAt": "2026-05-11T09:05:03.595Z"
+    },
+    {
+      "id": "audit-1778490117000-334dbc9bdad72",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PUT",
+      "path": "/api/companies/company-mbank",
+      "statusCode": 200,
+      "body": {
+        "name": "Mbank",
+        "description": "Один из ведущих коммерческих банков Кыргызстана. Партнёр БФЭТ по подготовке специалистов банковского дела. Предоставляет стажировки и трудоустройство выпускников по направлениям «Банковское дело» и «Финансы».",
+        "website": "https://mbank.kg",
+        "city": "Бишкек",
+        "country": "Кыргызстан",
+        "logoUrl": "/uploads/logos/1778490115355-logo-itu.png"
+      },
+      "createdAt": "2026-05-11T09:01:57.000Z"
+    },
+    {
+      "id": "audit-1778490115365-ce9194350e424",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "POST",
+      "path": "/api/uploads/logos",
+      "statusCode": 201,
+      "body": {},
+      "createdAt": "2026-05-11T09:01:55.365Z"
+    },
+    {
+      "id": "audit-1778490084044-b0317c58c6776",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "PATCH",
+      "path": "/api/notifications/read-all",
+      "statusCode": 200,
+      "createdAt": "2026-05-11T09:01:24.044Z"
+    },
+    {
+      "id": "audit-init-001",
+      "actorId": "dev-admin",
+      "actorEmail": "admin@alumni.local",
+      "actorRole": "ADMIN",
+      "method": "POST",
+      "path": "/api/auth/login",
+      "statusCode": 200,
+      "createdAt": "2026-05-11T08:00:00.000Z"
     }
-  ]
+  ],
+  "backupSchedule": "weekly",
+  "backupHistory": [
+    {
+      "filename": "bfet-backup-2026-05-14T14-17-03.zip",
+      "createdAt": "2026-05-14T14:17:03.887Z",
+      "sizeBytes": 10985931
+    }
+  ],
+  "lastBackupAt": "2026-05-14T14:17:03.887Z"
 }

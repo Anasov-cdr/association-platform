@@ -27,6 +27,14 @@ router.post('/rooms', authMiddleware, requireRole('ADMIN', 'MODERATOR'), asyncHa
   res.status(201).json(room)
 }))
 
+router.delete('/rooms/:roomId', authMiddleware, requireRole('ADMIN', 'MODERATOR'), asyncHandler(async (req, res) => {
+  const idx = (mockDb.chatRooms || []).findIndex((r) => r.id === req.params.roomId)
+  if (idx === -1) throw new AppError('Комната не найдена', 404)
+  mockDb.chatRooms.splice(idx, 1)
+  saveMockDb()
+  res.json({ message: 'Комната удалена' })
+}))
+
 router.get('/rooms/:roomId/messages', asyncHandler(async (req, res) => {
   const messages = (mockDb.chatMessages || [])
     .filter((message) => message.roomId === req.params.roomId && !message.deleted)
@@ -79,6 +87,68 @@ router.delete('/messages/:messageId', authMiddleware, requireRole('ADMIN', 'MODE
   message.deletedBy = req.user.userId
   saveMockDb()
   res.json({ message: 'Сообщение удалено' })
+}))
+
+// ── Direct Messages ────────────────────────────────────────────────────────
+
+router.get('/direct', authMiddleware, asyncHandler(async (req, res) => {
+  const userId = req.user.userId
+  if (!mockDb.directChats) mockDb.directChats = []
+  if (!mockDb.directMessages) mockDb.directMessages = []
+
+  const chats = mockDb.directChats.filter((c) => c.participants.includes(userId))
+  const result = chats.map((chat) => {
+    const otherId = chat.participants.find((p) => p !== userId)
+    const otherUser = (mockDb.users || []).find((u) => u.id === otherId)
+    const msgs = mockDb.directMessages.filter((m) => m.chatId === chat.id)
+    const lastMessage = msgs[msgs.length - 1] || null
+    const unreadCount = msgs.filter((m) => m.senderId !== userId && !m.read).length
+    return {
+      ...clone(chat),
+      other: {
+        id: otherId,
+        name: otherUser?.profile?.fullName || otherUser?.email || 'Пользователь',
+        photoUrl: otherUser?.profile?.photoUrl || null
+      },
+      lastMessage: lastMessage ? clone(lastMessage) : null,
+      unreadCount
+    }
+  })
+
+  res.json(result)
+}))
+
+router.post('/direct/:userId', authMiddleware, asyncHandler(async (req, res) => {
+  const meId = req.user.userId
+  const otherId = req.params.userId
+  if (meId === otherId) throw new AppError('Нельзя начать диалог с самим собой', 400)
+
+  if (!mockDb.directChats) mockDb.directChats = []
+  const existing = mockDb.directChats.find(
+    (c) => c.participants.includes(meId) && c.participants.includes(otherId)
+  )
+  if (existing) return res.json(clone(existing))
+
+  const chat = { id: `dm-${Date.now()}`, participants: [meId, otherId], createdAt: new Date().toISOString() }
+  mockDb.directChats.push(chat)
+  saveMockDb()
+  res.status(201).json(clone(chat))
+}))
+
+router.get('/direct/:chatId/messages', authMiddleware, asyncHandler(async (req, res) => {
+  const userId = req.user.userId
+  if (!mockDb.directChats) mockDb.directChats = []
+  if (!mockDb.directMessages) mockDb.directMessages = []
+
+  const chat = mockDb.directChats.find((c) => c.id === req.params.chatId)
+  if (!chat) throw new AppError('Диалог не найден', 404)
+  if (!chat.participants.includes(userId)) throw new AppError('Доступ запрещён', 403)
+
+  const messages = mockDb.directMessages.filter((m) => m.chatId === req.params.chatId).slice(-100)
+  messages.forEach((m) => { if (m.senderId !== userId) m.read = true })
+  saveMockDb()
+
+  res.json(clone(messages))
 }))
 
 export default router

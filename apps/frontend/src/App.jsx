@@ -16,11 +16,14 @@ import { NewsPage } from './pages/NewsPage'
 import { NewsDetailPage } from './pages/NewsDetailPage'
 import { NotificationsPage } from './pages/NotificationsPage'
 import { RegisterPage } from './pages/RegisterPage'
+import { ForgotPasswordPage } from './pages/ForgotPasswordPage'
+import { ResetPasswordPage } from './pages/ResetPasswordPage'
 import { CompaniesPage } from './pages/CompaniesPage'
 import { CabinetPage } from './pages/CabinetPage'
 import { EventDetailPage } from './pages/EventDetailPage'
 import { DonationCampaignPage } from './pages/DonationCampaignPage'
 import { AlumniProfilePage } from './pages/AlumniProfilePage'
+import { AboutPage } from './pages/AboutPage'
 
 function LanguageBoundary() {
   const { lang = 'ru' } = useParams()
@@ -52,6 +55,9 @@ export function App() {
         <Route path="notifications" element={<NotificationsPage />} />
         <Route path="cabinet" element={<CabinetPage />} />
         <Route path="register" element={<RegisterPage />} />
+        <Route path="forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="reset-password" element={<ResetPasswordPage />} />
+        <Route path="about" element={<AboutPage />} />
         <Route path="admin" element={<AdminPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/ru" replace />} />

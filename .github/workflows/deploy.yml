@@ -1,0 +1,55 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host:     ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key:      ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            set -e
+            cd /opt/alumni-platform
+
+            echo "==> Pulling latest code..."
+            git pull origin master
+
+            echo "==> Writing backend production env..."
+            cat > apps/backend/.env.production << 'ENVEOF'
+            PORT=4000
+            NODE_ENV=production
+            CLIENT_ORIGIN=https://bfetassociation.kg
+            POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+            POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+            POSTGRES_DB=${{ secrets.POSTGRES_DB }}
+            DATABASE_URL=${{ secrets.DATABASE_URL }}
+            JWT_ACCESS_SECRET=${{ secrets.JWT_ACCESS_SECRET }}
+            JWT_REFRESH_SECRET=${{ secrets.JWT_REFRESH_SECRET }}
+            JWT_ACCESS_EXPIRES_IN=15m
+            JWT_REFRESH_EXPIRES_IN=30d
+            SMTP_HOST=${{ secrets.SMTP_HOST }}
+            SMTP_PORT=587
+            SMTP_USER=${{ secrets.SMTP_USER }}
+            SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}
+            SMTP_FROM=${{ secrets.SMTP_FROM }}
+            ENVEOF
+
+            echo "==> Deploying production stack..."
+            chmod +x scripts/deploy-production.sh scripts/generate-seo-files.sh
+            ./scripts/deploy-production.sh bfetassociation.kg ${{ secrets.CERTBOT_EMAIL }}
+
+            echo "==> Cleaning unused images..."
+            docker image prune -f
+
+            echo "==> Deploy complete!"

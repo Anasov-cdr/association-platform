@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { QRCodeSVG } from 'qrcode.react'
 import { Card, PageHero } from '../components/UI'
 import { api } from '../api'
 import { getLocalized } from '../i18n/localize'
+import { useSEO } from '../hooks/useSEO'
 
 export function DonationCampaignPage() {
   const { id, lang = 'ru' } = useParams()
@@ -12,11 +14,12 @@ export function DonationCampaignPage() {
   const [form, setForm] = useState({ amount: 1000, donorName: '', anonymous: false })
   const [notice, setNotice] = useState('')
   const [error, setError] = useState('')
+  useSEO({ title: campaign ? getLocalized(campaign.title, i18n.language) : t('seo.donations.title') })
 
   const loadCampaign = () => {
     api.get(`/donations/campaigns/${id}`)
       .then(({ data }) => setCampaign(data))
-      .catch(() => setError('Кампания не найдена'))
+      .catch(() => setError(t('donations.campaignNotFound')))
   }
 
   useEffect(() => { loadCampaign() }, [id])
@@ -32,7 +35,7 @@ export function DonationCampaignPage() {
       setForm({ amount: 1000, donorName: '', anonymous: false })
       loadCampaign()
     } catch (err) {
-      setError(err.response?.data?.error || 'Не удалось отправить пожертвование')
+      setError(err.response?.data?.error || t('donations.sendError'))
     }
   }
 
@@ -76,21 +79,21 @@ export function DonationCampaignPage() {
             <span>{t('donations.goal')}</span>
           </div>
           <div className="flex justify-between font-bold text-xl">
-            <span className="text-moss">{raised.toLocaleString()} KGS</span>
-            <span>{goal.toLocaleString()} KGS</span>
+            <span className="text-white">{raised.toLocaleString()} KGS</span>
+            <span className="text-white">{goal.toLocaleString()} KGS</span>
           </div>
-          <div className="mt-3 h-4 rounded bg-moss/10">
+          <div className="mt-3 h-3 rounded-full bg-white/20">
             <div
-              className="h-4 rounded bg-moss transition-all duration-500"
+              className="h-3 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all duration-500"
               style={{ width: `${percent}%` }}
             />
           </div>
-          <p className="mt-2 text-sm font-semibold text-ink/72">{percent}% {t('donations.percent')}</p>
+          <p className="mt-2 text-sm font-semibold text-white/80">{percent}% {t('donations.percent')}</p>
         </div>
       </PageHero>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        {/* Форма пожертвования */}
+        {/* Форма взноса */}
         <Card>
           <h2 className="font-display text-3xl font-bold">{t('donations.donate')}</h2>
           <form onSubmit={donate} className="mt-6 space-y-4">
@@ -104,7 +107,7 @@ export function DonationCampaignPage() {
                 type="number"
                 min="1"
                 required
-                className="rounded-md border border-ink/10 bg-white px-4 py-3 outline-none focus:border-moss"
+                className="rounded-md border border-ink/10 bg-white px-4 py-3 text-ink outline-none focus:border-moss"
               />
             </div>
             <div className="flex flex-col gap-1">
@@ -115,10 +118,10 @@ export function DonationCampaignPage() {
                 value={form.donorName}
                 onChange={(e) => setForm((prev) => ({ ...prev, donorName: e.target.value }))}
                 placeholder={t('donations.donorName')}
-                className="rounded-md border border-ink/10 bg-white px-4 py-3 outline-none focus:border-moss"
+                className="rounded-md border border-ink/10 bg-white px-4 py-3 text-ink placeholder:text-ink/45 outline-none focus:border-moss"
               />
             </div>
-            <label className="flex cursor-pointer items-center gap-3 rounded-md bg-[#eefbfc] px-4 py-3 font-semibold hover:bg-[#e2f7fa] transition-colors">
+            <label className="flex cursor-pointer items-center gap-3 rounded-md bg-[#eefbfc] px-4 py-3 font-semibold text-ink hover:bg-[#e2f7fa] transition-colors">
               <input
                 checked={form.anonymous}
                 onChange={(e) => setForm((prev) => ({ ...prev, anonymous: e.target.checked }))}
@@ -136,30 +139,57 @@ export function DonationCampaignPage() {
         {/* Реквизиты для перевода */}
         <Card>
           <h2 className="font-display text-3xl font-bold">{t('donations.bankDetails')}</h2>
-          <div className="mt-5 space-y-4 rounded-md bg-[#eefbfc] p-5 text-sm">
-            <div>
-              <p className="font-bold text-ink/50 uppercase text-xs tracking-widest mb-1">{t('donations.bankName')}</p>
-              <p className="font-semibold">БФЭТ им. А. Токтоналиева</p>
-            </div>
-            <div>
-              <p className="font-bold text-ink/50 uppercase text-xs tracking-widest mb-1">{t('donations.accountNumber')}</p>
-              <p className="font-mono font-semibold select-all">KG — уточните у администратора</p>
-            </div>
-            <div className="border-t border-ink/10 pt-4">
-              <p className="font-bold text-ink/50 uppercase text-xs tracking-widest mb-2">{t('donations.orQr')}</p>
-              <div className="flex h-24 w-24 items-center justify-center rounded-md bg-moss/10 text-xs text-ink/40 font-semibold">
-                QR-код
-              </div>
+          <div className="mt-5 rounded-md bg-[#eefbfc] p-5 text-sm space-y-0 overflow-x-auto">
+            <table className="w-full min-w-[340px] text-sm border-collapse">
+              <tbody>
+                {[
+                  [t('donations.bankFields.clientName'), 'ОО "Ассоциация выпускников финтеха"'],
+                  [t('donations.bankFields.settlementAccount'), '1033220002105828'],
+                  [t('donations.bankFields.bankBik'), '103032'],
+                  [t('donations.bankFields.clientInn'), '02105202410226'],
+                  [t('donations.bankFields.bankInn'), '42607201110131'],
+                  [t('donations.bankFields.recipientBank'), 'ФИЛИАЛ "МБАНК ПЛАЗА" ОАО "МБАНК"'],
+                  [t('donations.bankFields.bankAddress'), 'г. Бишкек, пр. Чуй, дом 127'],
+                ].map(([label, value]) => (
+                  <tr key={label} className="border-b border-ink/8 last:border-0">
+                    <td className="py-2.5 pr-4 font-semibold text-ink/55 whitespace-nowrap align-top">{label}</td>
+                    <td className="py-2.5 font-bold text-ink select-all">{value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* QR-код МБанк */}
+          <div className="mt-5 border-t border-ink/10 pt-5">
+            <p className="text-xs font-bold uppercase tracking-widest text-ink/50 mb-3">{t('donations.orQr')}</p>
+            <div className="flex items-center gap-4">
+              <img
+                src="/mbank-qr.png"
+                alt="QR-код МБанк для перевода"
+                className="h-28 w-28 shrink-0 rounded-lg border border-ink/10 object-contain"
+                onError={(e) => { e.currentTarget.style.display = 'none' }}
+              />
+              <p className="text-xs text-ink/55 leading-5">
+                {t('donations.qrText')}
+              </p>
             </div>
           </div>
+
           <p className="mt-4 text-sm text-ink/72 leading-6">{t('donations.manualConfirm')}</p>
+          <p className="mt-2 text-sm text-ink/60">
+            {t('donations.questions')}{' '}
+            <a href="mailto:vypuskniki.finteha@gmail.com" className="font-semibold text-moss hover:underline">
+              vypuskniki.finteha@gmail.com
+            </a>
+          </p>
         </Card>
       </div>
 
       {/* Список доноров */}
       <Card>
         <h2 className="font-display text-3xl font-bold">{t('donations.donorsList')}</h2>
-        <p className="mt-1 text-sm text-ink/72">{donors.length} {donors.length === 1 ? 'донор' : 'доноров'}</p>
+        <p className="mt-1 text-sm text-ink/72">{t('donations.donorCount', { count: donors.length })}</p>
         {donors.length === 0 ? (
           <p className="mt-5 text-ink/72">{t('donations.noDonors')}</p>
         ) : (

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Card, PageHero } from '../components/UI'
 import { api } from '../api'
 import { useAppStore } from '../store'
+import { uploadFile, toAbsoluteUploadUrl } from '../uploads'
+import { useSEO } from '../hooks/useSEO'
 
 const emptyProfile = {
   fullName: '', graduationYear: new Date().getFullYear(),
@@ -11,7 +14,7 @@ const emptyProfile = {
   skills: [], photoUrl: '',
   socialLinks: { linkedin: '', github: '', telegram: '', website: '' },
   showEmail: false, showPhone: false,
-  isMentor: false, canHelpStudents: false,
+  isMentor: false, canHelpStudents: false, isSponsor: false,
   mentorArea: '', mentorFormat: 'online', mentorAvailability: ''
 }
 
@@ -27,7 +30,7 @@ function Input({ label, ...props }) {
       {label && <label className="text-xs font-bold uppercase tracking-widest text-ink/50">{label}</label>}
       <input
         {...props}
-        className={`w-full rounded-md border border-ink/10 bg-white px-4 py-3 outline-none focus:border-moss ${props.className || ''}`}
+        className={`w-full rounded-md border border-ink/10 bg-white px-4 py-3 text-ink placeholder:text-ink/45 outline-none focus:border-moss ${props.className || ''}`}
       />
     </div>
   )
@@ -39,7 +42,7 @@ function Textarea({ label, ...props }) {
       {label && <label className="text-xs font-bold uppercase tracking-widest text-ink/50">{label}</label>}
       <textarea
         {...props}
-        className={`w-full rounded-md border border-ink/10 bg-white px-4 py-3 outline-none focus:border-moss ${props.className || ''}`}
+        className={`w-full rounded-md border border-ink/10 bg-white px-4 py-3 text-ink placeholder:text-ink/45 outline-none focus:border-moss ${props.className || ''}`}
       />
     </div>
   )
@@ -51,7 +54,7 @@ function Select({ label, children, ...props }) {
       {label && <label className="text-xs font-bold uppercase tracking-widest text-ink/50">{label}</label>}
       <select
         {...props}
-        className="w-full rounded-md border border-ink/10 bg-white px-4 py-3 outline-none focus:border-moss"
+        className="w-full rounded-md border border-ink/10 bg-white px-4 py-3 text-ink outline-none focus:border-moss"
       >
         {children}
       </select>
@@ -61,7 +64,7 @@ function Select({ label, children, ...props }) {
 
 function CheckField({ label, checked, onChange }) {
   return (
-    <label className="flex cursor-pointer items-center gap-3 rounded-md bg-[#eefbfc] px-4 py-3 font-semibold hover:bg-[#e2f7fa] transition-colors">
+    <label className="flex cursor-pointer items-center gap-3 rounded-md bg-[#eefbfc] px-4 py-3 font-semibold text-ink hover:bg-[#e2f7fa] transition-colors">
       <input type="checkbox" checked={Boolean(checked)} onChange={onChange} className="h-4 w-4 accent-moss" />
       {label}
     </label>
@@ -76,41 +79,6 @@ const STATUS_COLORS = {
   DRAFT: 'text-ink/72 bg-[#eefbfc]'
 }
 
-const APP_STATUS_LABELS = {
-  SENT: 'Отправлен', VIEWED: 'Просмотрен', INVITED: 'Приглашен',
-  REJECTED: 'Отклонен', ACCEPTED: 'Принят'
-}
-
-const ROLE_LABELS = {
-  GUEST: 'Гость',
-  ALUMNI: 'Выпускник',
-  MODERATOR: 'Модератор',
-  ADMIN: 'Администратор'
-}
-
-const PROFILE_STATUS_LABELS = {
-  DRAFT: 'Черновик',
-  PENDING: 'На проверке',
-  APPROVED: 'Подтвержден',
-  REJECTED: 'Отклонен',
-  BLOCKED: 'Заблокирован'
-}
-
-const JOB_STATUS_LABELS = {
-  DRAFT: 'Черновик',
-  PENDING: 'На проверке',
-  PUBLISHED: 'Опубликовано',
-  REJECTED: 'Отклонена',
-  CLOSED: 'Закрыта'
-}
-
-const MENTORSHIP_STATUS_LABELS = {
-  active: 'Активно',
-  pending: 'Ожидает ответа',
-  completed: 'Завершено',
-  rejected: 'Отклонено'
-}
-
 const HERO_STATUS_COLORS = {
   APPROVED: 'bg-white text-green-700',
   PENDING: 'bg-white text-yellow-700',
@@ -120,7 +88,9 @@ const HERO_STATUS_COLORS = {
 }
 
 export function CabinetPage() {
+  const { lang = 'ru' } = useParams()
   const { t } = useTranslation()
+  useSEO({ title: t('seo.cabinet.title') })
   const auth = useAppStore((state) => state)
   const setAuth = useAppStore((state) => state.setAuth)
   const logout = useAppStore((state) => state.logout)
@@ -136,6 +106,7 @@ export function CabinetPage() {
   const [notice, setNotice] = useState('')
   const [error, setError] = useState('')
   const [skillsInput, setSkillsInput] = useState('')
+  const [avatarUploading, setAvatarUploading] = useState(false)
 
   const showMsg = (msg, isError = false) => {
     if (isError) { setError(msg); setNotice('') }
@@ -171,9 +142,9 @@ export function CabinetPage() {
     try {
       const res = await api.post('/auth/login', credentials)
       setAuth({ user: res.data.user, accessToken: res.data.accessToken, refreshToken: res.data.refreshToken })
-      showMsg('Вход выполнен')
+      showMsg(t('cabinet.loginSuccess'))
     } catch (err) {
-      showMsg(err.response?.data?.error || 'Не удалось войти', true)
+      showMsg(err.response?.data?.error || t('cabinet.loginError'), true)
     }
   }
 
@@ -192,7 +163,7 @@ export function CabinetPage() {
       showMsg(t('cabinet.profileSaved'))
       await loadCabinet()
     } catch (err) {
-      showMsg(err.response?.data?.error || 'Не удалось сохранить профиль', true)
+      showMsg(err.response?.data?.error || t('cabinet.saveProfileError'), true)
     }
   }
 
@@ -208,7 +179,7 @@ export function CabinetPage() {
       showMsg(t('cabinet.jobCreated'))
       await loadCabinet()
     } catch (err) {
-      showMsg(err.response?.data?.error || 'Не удалось создать вакансию', true)
+      showMsg(err.response?.data?.error || t('cabinet.createJobError'), true)
     }
   }
 
@@ -230,7 +201,7 @@ export function CabinetPage() {
       setPasswordForm({ currentPassword: '', newPassword: '' })
       showMsg(t('cabinet.passwordUpdated'))
     } catch (err) {
-      showMsg(err.response?.data?.error || 'Не удалось обновить пароль', true)
+      showMsg(err.response?.data?.error || t('cabinet.passwordUpdateError'), true)
     }
   }
 
@@ -251,15 +222,15 @@ export function CabinetPage() {
               value={credentials.email}
               onChange={(e) => setCredentials((p) => ({ ...p, email: e.target.value }))}
               type="email"
-              label="Электронная почта"
+              label={t('profile.email')}
               required
             />
             <Input
               value={credentials.password}
               onChange={(e) => setCredentials((p) => ({ ...p, password: e.target.value }))}
               type="password"
-              label="Пароль"
-              placeholder="Пароль"
+              label={t('cabinet.password')}
+              placeholder={t('cabinet.password')}
               required
             />
             <button className="rounded bg-moss px-6 py-3 font-bold text-white md:col-span-2 hover:bg-moss/90 transition-colors">
@@ -267,6 +238,11 @@ export function CabinetPage() {
             </button>
           </form>
           {error && <p className="mt-4 text-red-700">{error}</p>}
+          <p className="mt-4 text-sm text-ink/50">
+            <Link to={`/${lang}/forgot-password`} className="text-moss font-semibold hover:underline">
+              {t('cabinet.forgotPassword')}
+            </Link>
+          </p>
         </Card>
       </div>
     )
@@ -281,9 +257,9 @@ export function CabinetPage() {
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <h1 className="font-display text-4xl font-bold">{t('cabinet.title')}</h1>
-            <p className="mt-2 text-white/82">{auth.email} · {ROLE_LABELS[auth.role] || auth.role}</p>
+            <p className="mt-2 text-white/82">{auth.email} · {t(`cabinet.roles.${auth.role}`) || auth.role}</p>
             <span className={`mt-2 inline-block rounded px-3 py-1 text-xs font-bold shadow-sm ${HERO_STATUS_COLORS[profile.status || 'DRAFT'] || HERO_STATUS_COLORS.DRAFT}`}>
-              {PROFILE_STATUS_LABELS[profile.status || 'DRAFT'] || profile.status || 'Черновик'}
+              {t(`statuses.${profile.status || 'DRAFT'}`)}
             </span>
           </div>
           <button onClick={logout} className="rounded border border-white/45 bg-white/12 px-5 py-3 text-sm font-semibold text-white hover:bg-white/22 transition-colors">
@@ -314,7 +290,47 @@ export function CabinetPage() {
             <Input label={t('cabinet.fields.company')} value={profile.company || ''} onChange={(e) => setProfile((p) => ({ ...p, company: e.target.value }))} />
             <Input label={t('cabinet.fields.position')} value={profile.position || ''} onChange={(e) => setProfile((p) => ({ ...p, position: e.target.value }))} />
             <Input label={t('cabinet.fields.phone')} value={profile.phone || ''} onChange={(e) => setProfile((p) => ({ ...p, phone: e.target.value }))} className="md:col-span-1" />
-            <Input label="URL фотографии" value={profile.photoUrl || ''} onChange={(e) => setProfile((p) => ({ ...p, photoUrl: e.target.value }))} placeholder="https://..." />
+
+            {/* Фото профиля */}
+            <div className="flex flex-col gap-1 md:col-span-1">
+              <label className="text-xs font-bold uppercase tracking-widest text-ink/50">{t('cabinet.photoUrl')}</label>
+              <div className="flex items-center gap-3 rounded-md border border-ink/10 bg-white px-4 py-3">
+                {profile.photoUrl ? (
+                  <img src={toAbsoluteUploadUrl(profile.photoUrl)} alt="avatar" className="h-12 w-12 shrink-0 rounded-full object-cover" />
+                ) : (
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-moss/10 text-xl font-bold text-moss">
+                    {profile.fullName?.[0] || '?'}
+                  </div>
+                )}
+                <div className="flex flex-col gap-2 min-w-0 flex-1">
+                  <label className="cursor-pointer inline-flex items-center gap-2 rounded bg-moss/10 px-3 py-1.5 text-xs font-bold text-moss hover:bg-moss/20 transition-colors w-fit">
+                    {avatarUploading ? t('common.loading') : '📁 Загрузить фото'}
+                    <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
+                      const file = e.target.files?.[0]
+                      if (!file) return
+                      setAvatarUploading(true)
+                      try {
+                        const res = await uploadFile(file, 'images')
+                        setProfile((p) => ({ ...p, photoUrl: res.url }))
+                      } finally {
+                        setAvatarUploading(false)
+                        e.target.value = ''
+                      }
+                    }} />
+                  </label>
+                  <input
+                    value={profile.photoUrl || ''}
+                    onChange={(e) => setProfile((p) => ({ ...p, photoUrl: e.target.value }))}
+                    placeholder="https://..."
+                    className="w-full rounded border border-ink/10 bg-white px-2 py-1 text-xs text-ink placeholder:text-ink/40 outline-none focus:border-moss"
+                  />
+                </div>
+                {profile.photoUrl && (
+                  <button type="button" onClick={() => setProfile((p) => ({ ...p, photoUrl: '' }))}
+                    className="shrink-0 text-xs font-bold text-red-400 hover:text-red-600">✕</button>
+                )}
+              </div>
+            </div>
           </div>
 
           {/* Биография и достижения */}
@@ -328,7 +344,7 @@ export function CabinetPage() {
             label={t('cabinet.fields.skills')}
             value={skillsInput}
             onChange={(e) => setSkillsInput(e.target.value)}
-            placeholder="Python, Excel, Управление проектами..."
+            placeholder={t('cabinet.skillsPlaceholder')}
           />
           {skillsInput && (
             <div className="flex flex-wrap gap-2 -mt-2">
@@ -351,27 +367,28 @@ export function CabinetPage() {
 
           {/* Настройки приватности */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-ink/50 mb-3">Настройки приватности</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-ink/50 mb-3">{t('cabinet.privacySettings')}</p>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               <CheckField label={t('cabinet.fields.showEmail')} checked={profile.showEmail} onChange={(e) => setProfile((p) => ({ ...p, showEmail: e.target.checked }))} />
               <CheckField label={t('cabinet.fields.showPhone')} checked={profile.showPhone} onChange={(e) => setProfile((p) => ({ ...p, showPhone: e.target.checked }))} />
               <CheckField label={t('cabinet.fields.isMentor')} checked={profile.isMentor} onChange={(e) => setProfile((p) => ({ ...p, isMentor: e.target.checked }))} />
               <CheckField label={t('cabinet.fields.canHelpStudents')} checked={profile.canHelpStudents} onChange={(e) => setProfile((p) => ({ ...p, canHelpStudents: e.target.checked }))} />
+              <CheckField label={t('cabinet.fields.isSponsor')} checked={profile.isSponsor} onChange={(e) => setProfile((p) => ({ ...p, isSponsor: e.target.checked }))} />
             </div>
           </div>
 
           {/* Дополнительные поля ментора */}
           {profile.isMentor && (
             <div className="rounded-md border border-moss/20 bg-moss/5 p-5">
-              <p className="font-bold text-moss mb-4">Настройки ментора</p>
+              <p className="font-bold text-moss mb-4">{t('cabinet.mentorSettings')}</p>
               <div className="grid gap-4 md:grid-cols-2">
-                <Input label={t('cabinet.fields.mentorArea')} value={profile.mentorArea || ''} onChange={(e) => setProfile((p) => ({ ...p, mentorArea: e.target.value }))} placeholder="IT, Финансы, Бухгалтерия..." />
+                <Input label={t('cabinet.fields.mentorArea')} value={profile.mentorArea || ''} onChange={(e) => setProfile((p) => ({ ...p, mentorArea: e.target.value }))} placeholder={t('cabinet.mentorAreaPlaceholder')} />
                 <Select label={t('cabinet.fields.mentorFormat')} value={profile.mentorFormat || 'online'} onChange={(e) => setProfile((p) => ({ ...p, mentorFormat: e.target.value }))}>
                   <option value="online">{t('mentorship.online')}</option>
                   <option value="offline">{t('mentorship.offline')}</option>
                   <option value="both">{t('mentorship.both')}</option>
                 </Select>
-                <Input label={t('cabinet.fields.mentorAvailability')} value={profile.mentorAvailability || ''} onChange={(e) => setProfile((p) => ({ ...p, mentorAvailability: e.target.value }))} placeholder="Пн-Пт 18:00-20:00" className="md:col-span-2" />
+                <Input label={t('cabinet.fields.mentorAvailability')} value={profile.mentorAvailability || ''} onChange={(e) => setProfile((p) => ({ ...p, mentorAvailability: e.target.value }))} placeholder={t('cabinet.mentorAvailabilityPlaceholder')} className="md:col-span-2" />
               </div>
             </div>
           )}
@@ -401,29 +418,29 @@ export function CabinetPage() {
       <Card>
         <h2 className="font-display text-3xl font-bold">{t('cabinet.myJobs')}</h2>
         <details className="mt-4">
-          <summary className="cursor-pointer font-semibold text-moss hover:underline">+ Добавить вакансию</summary>
+          <summary className="cursor-pointer font-semibold text-moss hover:underline">+ {t('cabinet.addJob')}</summary>
           <form onSubmit={createJob} className="mt-5 grid gap-4 md:grid-cols-2">
-            <Input label="Название" value={jobForm.title} onChange={(e) => setJobForm((p) => ({ ...p, title: e.target.value }))} required />
-            <Select label="Тип" value={jobForm.type} onChange={(e) => setJobForm((p) => ({ ...p, type: e.target.value }))}>
-              <option value="стажировка">Стажировка</option>
-              <option value="работа">Работа</option>
-              <option value="практика">Практика</option>
-              <option value="волонтер">Волонтёрство</option>
+            <Input label={t('jobs.titleField')} value={jobForm.title} onChange={(e) => setJobForm((p) => ({ ...p, title: e.target.value }))} required />
+            <Select label={t('jobs.allTypes')} value={jobForm.type} onChange={(e) => setJobForm((p) => ({ ...p, type: e.target.value }))}>
+              <option value="стажировка">{t('jobs.types.стажировка')}</option>
+              <option value="работа">{t('jobs.types.работа')}</option>
+              <option value="практика">{t('jobs.types.практика')}</option>
+              <option value="волонтер">{t('jobs.types.волонтер')}</option>
             </Select>
-            <Select label="Формат" value={jobForm.format} onChange={(e) => setJobForm((p) => ({ ...p, format: e.target.value }))}>
-              <option value="офис">Офис</option>
-              <option value="удаленно">Удалённо</option>
-              <option value="гибрид">Гибрид</option>
+            <Select label={t('jobs.allFormats')} value={jobForm.format} onChange={(e) => setJobForm((p) => ({ ...p, format: e.target.value }))}>
+              <option value="офис">{t('jobs.formats.офис')}</option>
+              <option value="удаленно">{t('jobs.formats.удаленно')}</option>
+              <option value="гибрид">{t('jobs.formats.гибрид')}</option>
             </Select>
-            <Input label="Город" value={jobForm.city} onChange={(e) => setJobForm((p) => ({ ...p, city: e.target.value }))} />
-            <Input label="Зарплата" value={jobForm.salary} onChange={(e) => setJobForm((p) => ({ ...p, salary: e.target.value }))} placeholder="50 000 KGS" />
-            <Input label="Дедлайн" type="datetime-local" value={jobForm.deadline} onChange={(e) => setJobForm((p) => ({ ...p, deadline: e.target.value }))} />
-            <Textarea label="Описание" value={jobForm.description} onChange={(e) => setJobForm((p) => ({ ...p, description: e.target.value }))} required className="md:col-span-2" rows={3} />
-            <Textarea label="Требования" value={jobForm.requirements} onChange={(e) => setJobForm((p) => ({ ...p, requirements: e.target.value }))} rows={2} />
-            <Textarea label="Обязанности" value={jobForm.duties} onChange={(e) => setJobForm((p) => ({ ...p, duties: e.target.value }))} rows={2} />
-            <Input label="Контакты" value={jobForm.contacts} onChange={(e) => setJobForm((p) => ({ ...p, contacts: e.target.value }))} className="md:col-span-2" />
+            <Input label={t('cabinet.fields.city')} value={jobForm.city} onChange={(e) => setJobForm((p) => ({ ...p, city: e.target.value }))} />
+            <Input label={t('jobs.salary')} value={jobForm.salary} onChange={(e) => setJobForm((p) => ({ ...p, salary: e.target.value }))} placeholder="50 000 KGS" />
+            <Input label={t('jobs.deadline')} type="datetime-local" value={jobForm.deadline} onChange={(e) => setJobForm((p) => ({ ...p, deadline: e.target.value }))} />
+            <Textarea label={t('jobs.description')} value={jobForm.description} onChange={(e) => setJobForm((p) => ({ ...p, description: e.target.value }))} required className="md:col-span-2" rows={3} />
+            <Textarea label={t('jobs.requirements')} value={jobForm.requirements} onChange={(e) => setJobForm((p) => ({ ...p, requirements: e.target.value }))} rows={2} />
+            <Textarea label={t('jobs.duties')} value={jobForm.duties} onChange={(e) => setJobForm((p) => ({ ...p, duties: e.target.value }))} rows={2} />
+            <Input label={t('jobs.contacts')} value={jobForm.contacts} onChange={(e) => setJobForm((p) => ({ ...p, contacts: e.target.value }))} className="md:col-span-2" />
             <button className="rounded bg-moss px-6 py-3 font-bold text-white md:col-span-2 hover:bg-moss/90 transition-colors">
-              Создать вакансию
+              {t('cabinet.createJob')}
             </button>
           </form>
         </details>
@@ -433,7 +450,7 @@ export function CabinetPage() {
               <div className="flex flex-wrap justify-between gap-3">
                 <b>{job.title}</b>
                 <span className={`rounded px-3 py-1 text-xs font-bold ${STATUS_COLORS[job.status] || 'bg-[#eefbfc] text-ink/72'}`}>
-                  {JOB_STATUS_LABELS[job.status] || job.status}
+                  {t(`jobs.jobStatuses.${job.status}`) || job.status}
                 </span>
               </div>
               <p className="mt-1 text-sm text-ink/72">{t('jobs.applications')}: {job.applications?.length || 0}</p>
@@ -453,7 +470,7 @@ export function CabinetPage() {
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <b className="text-sm">{item.job?.title || item.jobId}</b>
                   <span className={`rounded px-3 py-1 text-xs font-bold ${STATUS_COLORS[item.status] || 'bg-[#eefbfc] text-ink/72'}`}>
-                    {APP_STATUS_LABELS[item.status] || item.status}
+                    {t(`jobs.appStatuses.${item.status}`) || item.status}
                   </span>
                 </div>
                 {item.message && <p className="mt-2 text-sm text-ink/72">{item.message}</p>}
@@ -474,7 +491,7 @@ export function CabinetPage() {
                     {item.mentor?.profile?.fullName || item.mentor?.fullName || item.mentorId}
                   </b>
                   <span className={`rounded px-3 py-1 text-xs font-bold ${STATUS_COLORS[item.status?.toUpperCase()] || 'bg-[#eefbfc] text-ink/72'}`}>
-                    {MENTORSHIP_STATUS_LABELS[item.status] || item.status}
+                    {t(`cabinet.mentorshipStatuses.${item.status}`) || item.status}
                   </span>
                 </div>
                 {item.goals && <p className="mt-2 text-sm text-ink/72">{item.goals}</p>}

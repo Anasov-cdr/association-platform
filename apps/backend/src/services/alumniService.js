@@ -2,6 +2,7 @@
 import { AppError } from '../middleware/errorHandler.js'
 import { clone, isPrismaUnavailable, mockDb, saveMockDb } from '../mockData.js'
 import { createAdminNotification, createNotification } from './notificationService.js'
+import { sendRegistrationApprovedEmail, sendRegistrationRejectedEmail } from './emailService.js'
 import bcrypt from 'bcryptjs'
 
 const filterMockProfiles = (filters = {}) => {
@@ -19,6 +20,12 @@ const filterMockProfiles = (filters = {}) => {
   if (filters.isMentor !== undefined || filters.mentor !== undefined) {
     const value = String(filters.isMentor ?? filters.mentor) === 'true'
     profiles = profiles.filter((profile) => profile.isMentor === value)
+  }
+  if (filters.featured === 'true' || filters.featured === true) {
+    profiles = profiles.filter((profile) => profile.isFeatured === true)
+  }
+  if (filters.employer === 'true' || filters.employer === true) {
+    profiles = profiles.filter((profile) => profile.canHelpStudents === true)
   }
 
   return clone(profiles)
@@ -41,6 +48,12 @@ export const getAlumniProfiles = async (filters = {}) => {
 
   if (filters.isMentor !== undefined || filters.mentor !== undefined) {
     where.isMentor = String(filters.isMentor ?? filters.mentor) === 'true'
+  }
+  if (filters.featured === 'true' || filters.featured === true) {
+    where.isFeatured = true
+  }
+  if (filters.employer === 'true' || filters.employer === true) {
+    where.canHelpStudents = true
   }
 
   try {
@@ -110,6 +123,7 @@ export const updateAlumniProfile = async (userId, data) => {
         showPhone: data.showPhone !== undefined ? data.showPhone : profile.showPhone,
         isMentor: data.isMentor !== undefined ? data.isMentor : profile.isMentor,
         canHelpStudents: data.canHelpStudents !== undefined ? data.canHelpStudents : profile.canHelpStudents,
+        isSponsor: data.isSponsor !== undefined ? data.isSponsor : profile.isSponsor,
         mentorArea: data.mentorArea,
         mentorFormat: data.mentorFormat,
         mentorAvailability: data.mentorAvailability
@@ -121,14 +135,8 @@ export const updateAlumniProfile = async (userId, data) => {
     if (!isPrismaUnavailable(error)) throw error
     const index = mockDb.alumni.findIndex((item) => item.userId === userId)
     if (index === -1) throw new AppError('Профиль не найден', 404)
-    mockDb.alumni[index] = { ...mockDb.alumni[index], ...data, status: 'PENDING' }
+    mockDb.alumni[index] = { ...mockDb.alumni[index], ...data }
     saveMockDb()
-    await createAdminNotification({
-      type: 'PROFILE_UPDATED',
-      title: 'Профиль отправлен на модерацию',
-      message: `${mockDb.alumni[index].fullName} обновил профиль и ожидает проверки.`,
-      data: { profileId: mockDb.alumni[index].id }
-    })
     return clone(mockDb.alumni[index])
   }
 }
@@ -154,7 +162,10 @@ export const updateAlumniProfileById = async (profileId, data) => {
         showEmail: data.showEmail,
         showPhone: data.showPhone,
         isMentor: data.isMentor,
-        canHelpStudents: data.canHelpStudents
+        canHelpStudents: data.canHelpStudents,
+        isSponsor: data.isSponsor,
+        isFeatured: data.isFeatured,
+        featuredTitle: data.featuredTitle
       }
     })
   } catch (error) {
@@ -205,6 +216,8 @@ export const approveAlumniProfile = async (profileId) => {
       message: 'Ваш профиль выпускника опубликован в каталоге.',
       data: { profileId: profile.id }
     })
+    const userEmail = profile.user?.email || profile.email
+    if (userEmail) sendRegistrationApprovedEmail(userEmail, profile.fullName).catch(() => {})
     return clone(profile)
   }
 }
@@ -230,6 +243,8 @@ export const rejectAlumniProfile = async (profileId) => {
       message: 'Администратор отклонил профиль. Проверьте данные и отправьте повторно.',
       data: { profileId: profile.id }
     })
+    const userEmail = profile.user?.email || profile.email
+    if (userEmail) sendRegistrationRejectedEmail(userEmail, profile.fullName).catch(() => {})
     return clone(profile)
   }
 }
@@ -322,7 +337,7 @@ export const createAlumniApplication = async (data) => {
     return user.profile
   } catch (error) {
     if (!isPrismaUnavailable(error)) throw error
-    if (mockDb.alumni.some((profile) => profile.user.email === email)) {
+    if (mockDb.users.some((u) => u.email === email)) {
       throw new AppError('Пользователь с таким email уже существует', 409)
     }
     const profile = {

@@ -190,4 +190,25 @@ router.patch(
   })
 )
 
+router.delete(
+  '/:id',
+  authMiddleware,
+  requireRole('ADMIN'),
+  asyncHandler(async (req, res) => {
+    if (req.params.id === req.user.userId) throw new AppError('Нельзя удалить текущего пользователя', 400)
+    try {
+      await prisma.user.delete({ where: { id: req.params.id } })
+    } catch (error) {
+      if (!isPrismaUnavailable(error)) throw error
+      const idx = mockDb.users.findIndex((u) => u.id === req.params.id)
+      if (idx === -1) throw new AppError('Пользователь не найден', 404)
+      mockDb.users.splice(idx, 1)
+      const alumniIdx = mockDb.alumni.findIndex((a) => a.userId === req.params.id)
+      if (alumniIdx !== -1) mockDb.alumni.splice(alumniIdx, 1)
+      saveMockDb()
+    }
+    res.json({ message: 'Пользователь удалён' })
+  })
+)
+
 export default router

@@ -21,7 +21,7 @@ const router = express.Router()
 // Validation schema
 const alumniUpdateSchema = z.object({
   fullName: z.string().optional(),
-  photoUrl: z.string().url().optional().or(z.literal('')),
+  photoUrl: z.string().optional(),
   graduationYear: z.number().int().optional(),
   specialty: z.string().optional(),
   groupName: z.string().optional(),
@@ -40,7 +40,10 @@ const alumniUpdateSchema = z.object({
   canHelpStudents: z.boolean().optional(),
   mentorArea: z.string().optional(),
   mentorFormat: z.string().optional(),
-  mentorAvailability: z.string().optional()
+  mentorAvailability: z.string().optional(),
+  isSponsor: z.boolean().optional(),
+  isFeatured: z.boolean().optional(),
+  featuredTitle: z.string().optional()
 })
 
 const alumniRegisterSchema = z.object({
@@ -66,6 +69,15 @@ const alumniRegisterSchema = z.object({
 const statusSchema = z.object({
   status: z.enum(['DRAFT', 'PENDING', 'APPROVED', 'REJECTED', 'BLOCKED'])
 })
+
+// Get featured alumni for homepage showcase
+router.get(
+  '/featured',
+  asyncHandler(async (req, res) => {
+    const profiles = await getAlumniProfiles({ featured: 'true', status: 'APPROVED' })
+    res.json(profiles)
+  })
+)
 
 // Get all approved alumni
 router.get(

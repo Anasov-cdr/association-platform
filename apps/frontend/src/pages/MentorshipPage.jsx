@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { Card, Badge, PageHero } from '../components/UI'
 import { api } from '../api'
 import { useAppStore } from '../store'
+import { toAbsoluteUploadUrl } from '../uploads'
+import { useSEO } from '../hooks/useSEO'
 
 function MentorRequestModal({ mentor, onClose, onSent }) {
   const { t } = useTranslation()
@@ -66,6 +68,7 @@ function MentorRequestModal({ mentor, onClose, onSent }) {
 
 export function MentorshipPage() {
   const { t } = useTranslation()
+  useSEO({ title: t('seo.mentorship.title'), description: t('seo.mentorship.desc') })
   const { lang = 'ru' } = useParams()
   const [mentors, setMentors] = useState([])
   const [selectedMentor, setSelectedMentor] = useState(null)
@@ -108,7 +111,7 @@ export function MentorshipPage() {
             {/* Шапка карточки */}
             <div className="flex items-start gap-4">
               {item.photoUrl ? (
-                <img src={item.photoUrl} alt={item.fullName} className="h-14 w-14 shrink-0 rounded-md object-cover bg-[#eefbfc]" />
+                <img src={toAbsoluteUploadUrl(item.photoUrl)} alt={item.fullName} className="h-14 w-14 shrink-0 rounded-full object-cover" />
               ) : (
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-md bg-moss text-xl font-bold text-white">
                   {item.fullName[0]}

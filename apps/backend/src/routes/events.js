@@ -5,6 +5,7 @@ import { authMiddleware, optionalAuth, requireRole } from '../middleware/auth.js
 import { asyncHandler, AppError } from '../middleware/errorHandler.js'
 import { clone, isPrismaUnavailable, mockDb, saveMockDb } from '../mockData.js'
 import { broadcastToApprovedAlumni, createAdminNotification, createNotification } from '../services/notificationService.js'
+import { sendEventRegistrationEmail } from '../services/emailService.js'
 
 const router = express.Router()
 
@@ -143,6 +144,11 @@ router.post(
         message: `${req.user.email} зарегистрировался на "${event.title?.ru || event.title}".`,
         data: { eventId: event.id, registrationId: registration.id }
       })
+      const userInDb = mockDb.users.find((u) => u.id === req.user.userId)
+      const userName = userInDb?.profile?.fullName || req.user.email
+      if (req.user.email) {
+        sendEventRegistrationEmail(req.user.email, userName, event.title?.ru || event.title, event.startsAt).catch(() => {})
+      }
     }
 
     res.status(201).json({ message: 'Вы зарегистрированы на событие', registration })

@@ -117,8 +117,8 @@ router.patch(
         await createNotification({
           userId: donation.userId,
           type: 'DONATION_STATUS',
-          title: 'Статус пожертвования изменен',
-          message: `Статус пожертвования: ${status}.`,
+          title: 'Статус взноса изменён',
+          message: `Статус вашего взноса: ${status}.`,
           data: { donationId: donation.id, campaignId: campaign.id, status }
         })
       }
@@ -215,8 +215,8 @@ router.post(
       saveMockDb()
       await createAdminNotification({
         type: 'DONATION_PENDING',
-        title: 'Новое пожертвование',
-        message: `${donation.donorName || 'Анонимный донор'} отправил пожертвование ${donation.amount}.`,
+        title: 'Новый взнос',
+        message: `${donation.donorName || 'Анонимный донор'} оказал поддержку на сумму ${donation.amount} KGS.`,
         data: { donationId: donation.id, campaignId }
       })
     }

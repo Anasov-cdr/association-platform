@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Badge, Card, PageHero } from '../components/UI'
 import { api } from '../api'
+import { useAppStore } from '../store'
+import { toAbsoluteUploadUrl } from '../uploads'
+import { useSEO } from '../hooks/useSEO'
 
 const SOCIAL_LABELS = {
   linkedin: 'LinkedIn', github: 'GitHub', telegram: 'Telegram',
-  vk: 'ВКонтакте', instagram: 'Instagram', website: 'Личный сайт'
+  vk: 'profile.social.vk', instagram: 'Instagram', website: 'profile.social.website'
 }
 
 const SOCIAL_ABBR = {
@@ -16,14 +19,32 @@ const SOCIAL_ABBR = {
 export function AlumniProfilePage() {
   const { id, lang = 'ru' } = useParams()
   const { t } = useTranslation()
+  const navigate = useNavigate()
+  const auth = useAppStore((s) => s)
   const [profile, setProfile] = useState(null)
+  useSEO({ title: profile ? profile.fullName : t('alumni.title') })
   const [error, setError] = useState('')
+  const [dmLoading, setDmLoading] = useState(false)
 
   useEffect(() => {
     api.get(`/alumni/${id}`)
       .then(({ data }) => setProfile(data))
-      .catch(() => setError('Профиль не найден'))
-  }, [id])
+      .catch(() => setError(t('profile.notFound')))
+  }, [id, t])
+
+  const startDm = async () => {
+    const targetUserId = profile?.user?.id || profile?.userId
+    if (!targetUserId) return
+    setDmLoading(true)
+    try {
+      const { data: chat } = await api.post(`/chat/direct/${targetUserId}`)
+      navigate(`/${lang}/chat`, { state: { openDmChatId: chat.id } })
+    } catch {
+      alert(t('profile.openDialogError'))
+    } finally {
+      setDmLoading(false)
+    }
+  }
 
   if (error) return <Card><p className="font-semibold text-red-700">{error}</p></Card>
   if (!profile) return <Card><p className="text-ink/72">{t('common.loading')}</p></Card>
@@ -40,18 +61,34 @@ export function AlumniProfilePage() {
         ← {t('directory.title')}
       </Link>
 
+      {/* Баннер "Гордость БФЭТ" */}
+      {profile.isFeatured && (
+        <div className="rounded-xl bg-gradient-to-r from-amber-500 to-amber-400 px-6 py-5 flex flex-wrap items-center gap-4 shadow-lg">
+          <span className="text-3xl">⭐</span>
+          <div>
+            <p className="text-xs font-black uppercase tracking-widest text-amber-900/70">{t('profile.featured')}</p>
+            <p className="font-display text-2xl font-bold text-amber-900 leading-tight">
+              {profile.featuredTitle || profile.position || t('profile.outstanding')}
+            </p>
+          </div>
+          {profile.company && (
+            <p className="ml-auto text-sm font-semibold text-amber-900/80">{profile.company}</p>
+          )}
+        </div>
+      )}
+
       {/* Заголовок профиля */}
-      <PageHero>
+      <PageHero className={profile.isFeatured ? 'ring-2 ring-amber-400/40' : ''}>
         <div className="flex flex-wrap items-start gap-6">
           {profile.photoUrl ? (
             <img
-              src={profile.photoUrl}
+              src={toAbsoluteUploadUrl(profile.photoUrl)}
               alt={profile.fullName}
-              className="h-24 w-24 shrink-0 rounded-md object-cover bg-[#eefbfc]"
+              className={`h-24 w-24 shrink-0 object-cover ${profile.isFeatured ? 'rounded-full ring-2 ring-amber-400' : 'rounded-full ring-2 ring-white/40'}`}
             />
           ) : (
-            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-md bg-moss text-4xl font-bold text-white">
-              {profile.fullName?.[0] || 'В'}
+            <div className={`flex h-24 w-24 shrink-0 items-center justify-center text-4xl font-bold text-white ${profile.isFeatured ? 'rounded-full bg-gradient-to-br from-amber-500 to-amber-600' : 'rounded-md bg-moss'}`}>
+              {profile.fullName?.[0] || '?'}
             </div>
           )}
           <div className="min-w-0 flex-1">
@@ -62,12 +99,30 @@ export function AlumniProfilePage() {
             <p className="mt-2 text-white/78">
               {[profile.groupName, [profile.city, profile.country].filter(Boolean).join(', ')].filter(Boolean).join(' · ')}
             </p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {profile.isMentor && <Badge>{t('profile.mentor')}</Badge>}
-              {profile.canHelpStudents && <Badge tone="gold">{t('profile.helpStudents')}</Badge>}
-              {profile.isSponsor && <Badge tone="gold">{t('profile.sponsor')}</Badge>}
-              {!profile.isMentor && !profile.canHelpStudents && !profile.isSponsor && (
-                <Badge tone="clay">{t('profile.graduate')}</Badge>
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              {profile.isFeatured && (
+                <span className="rounded-full bg-amber-400 px-3 py-1 text-xs font-black text-amber-900">⭐ {t('profile.featured')}</span>
+              )}
+              {profile.isMentor && (
+                <span className="rounded-full border border-white/40 bg-white/20 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">{t('profile.mentor')}</span>
+              )}
+              {profile.canHelpStudents && (
+                <span className="rounded-full border border-white/40 bg-white/20 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">{t('profile.helpStudents')}</span>
+              )}
+              {profile.isSponsor && (
+                <span className="rounded-full border border-white/40 bg-white/20 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">{t('profile.sponsor')}</span>
+              )}
+              {!profile.isFeatured && !profile.isMentor && !profile.canHelpStudents && !profile.isSponsor && (
+                <span className="rounded-full border border-white/40 bg-white/20 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">{t('profile.graduate')}</span>
+              )}
+              {auth.accessToken && profile.user?.id && profile.user.id !== auth.user?.id && (
+                <button
+                  onClick={startDm}
+                  disabled={dmLoading}
+                  className="ml-2 inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-1.5 text-sm font-bold text-white hover:bg-white/30 transition-colors disabled:opacity-50"
+                >
+                  💬 {dmLoading ? t('profile.opening') : t('profile.write')}
+                </button>
               )}
             </div>
           </div>
@@ -189,7 +244,7 @@ export function AlumniProfilePage() {
                       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-moss/10 text-xs font-bold text-moss uppercase">
                         {SOCIAL_ABBR[key] || key.slice(0, 2)}
                       </span>
-                      <span>{SOCIAL_LABELS[key] || key}</span>
+                      <span>{SOCIAL_LABELS[key]?.startsWith?.('profile.') ? t(SOCIAL_LABELS[key]) : (SOCIAL_LABELS[key] || key)}</span>
                     </a>
                   ) : null
                 )}

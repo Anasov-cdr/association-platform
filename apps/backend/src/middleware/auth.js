@@ -17,12 +17,13 @@ export const authMiddleware = (req, res, next) => {
     }
     req.user = decoded
     res.on('finish', () => {
+      const { password, newPassword, currentPassword, token, refreshToken, ...safeBody } = req.body || {}
       writeAuditLog({
         user: req.user,
         method: req.method,
         url: req.originalUrl,
         statusCode: res.statusCode,
-        body: req.body
+        body: safeBody
       })
     })
     next()
