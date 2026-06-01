@@ -5,10 +5,11 @@ import { io } from 'socket.io-client'
 import { languages } from '../i18n'
 import { useAppStore } from '../store'
 import { api } from '../api'
+import { getSocketUrl } from '../config'
 import { ErrorBoundary } from './ErrorBoundary'
 import { SupportWidget } from './SupportWidget'
 
-const SOCKET_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:4000'
+const SOCKET_URL = getSocketUrl()
 
 const roleLabels = {
   GUEST: 'Гость',

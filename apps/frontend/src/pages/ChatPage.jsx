@@ -4,14 +4,12 @@ import { useTranslation } from 'react-i18next'
 import { io } from 'socket.io-client'
 import { Card } from '../components/UI'
 import { api } from '../api'
+import { getSocketUrl } from '../config'
 import { useAppStore } from '../store'
 import { toAbsoluteUploadUrl } from '../uploads'
 import { useSEO } from '../hooks/useSEO'
 
-
-const SOCKET_URL = import.meta.env.VITE_API_URL
-  ? import.meta.env.VITE_API_URL.replace('/api', '')
-  : 'http://localhost:4000'
+const SOCKET_URL = getSocketUrl()
 
 function useSocket() {
   const { t } = useTranslation()
