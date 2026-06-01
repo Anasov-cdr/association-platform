@@ -7,6 +7,7 @@
     "dev": "nodemon --watch src --ext js,json --ignore data/mock-db.json src/server.js",
     "build": "node --check src/server.js",
     "start": "node src/server.js",
+    "admin:create": "node scripts/create-admin.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:deploy": "prisma migrate deploy"
