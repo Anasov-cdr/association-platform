@@ -6,4 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') })
 
-await import('./server.js')
+import('./server.js').catch((error) => {
+  console.error('[startup] Failed to start backend:', error)
+  process.exit(1)
+})
