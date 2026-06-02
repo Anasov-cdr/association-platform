@@ -6,7 +6,10 @@ import { sendRegistrationApprovedEmail, sendRegistrationRejectedEmail } from './
 import bcrypt from 'bcryptjs'
 
 const filterMockProfiles = (filters = {}) => {
-  let profiles = mockDb.alumni.filter((profile) => profile.status === (filters.status || 'APPROVED'))
+  let profiles = mockDb.alumni.filter((profile) => {
+    const user = mockDb.users.find((item) => item.id === profile.userId || item.email === profile.user?.email)
+    return profile.status === (filters.status || 'APPROVED') && (user?.role || profile.user?.role || 'ALUMNI') === 'ALUMNI'
+  })
 
   if (filters.graduationYear) {
     profiles = profiles.filter((profile) => profile.graduationYear === parseInt(filters.graduationYear))
@@ -32,7 +35,10 @@ const filterMockProfiles = (filters = {}) => {
 }
 
 export const getAlumniProfiles = async (filters = {}) => {
-  const where = { status: filters.status || 'APPROVED' }
+  const where = {
+    status: filters.status || 'APPROVED',
+    user: { role: 'ALUMNI' }
+  }
 
   if (filters.graduationYear) {
     where.graduationYear = parseInt(filters.graduationYear)
@@ -59,7 +65,7 @@ export const getAlumniProfiles = async (filters = {}) => {
   try {
     const profiles = await prisma.alumniProfile.findMany({
       where,
-      include: { user: { select: { email: true, id: true } } },
+      include: { user: { select: { email: true, id: true, role: true } } },
       orderBy: { createdAt: 'desc' }
     })
 
@@ -76,14 +82,14 @@ export const getAlumniProfile = async (profileId) => {
   try {
     profile = await prisma.alumniProfile.findUnique({
       where: { id: profileId },
-      include: { user: { select: { email: true, id: true } } }
+      include: { user: { select: { email: true, id: true, role: true } } }
     })
   } catch (error) {
     if (!isPrismaUnavailable(error)) throw error
     profile = mockDb.alumni.find((item) => item.id === profileId)
   }
 
-  if (!profile) {
+  if (!profile || profile.user?.role !== 'ALUMNI') {
     throw new AppError('Профиль не найден', 404)
   }
 
@@ -267,12 +273,16 @@ export const getPendingProfiles = async () => {
 export const getAllProfilesForAdmin = async () => {
   try {
     return await prisma.alumniProfile.findMany({
-      include: { user: { select: { email: true, id: true } } },
+      where: { user: { role: 'ALUMNI' } },
+      include: { user: { select: { email: true, id: true, role: true } } },
       orderBy: { createdAt: 'desc' }
     })
   } catch (error) {
     if (!isPrismaUnavailable(error)) throw error
-    return clone(mockDb.alumni)
+    return clone(mockDb.alumni.filter((profile) => {
+      const user = mockDb.users.find((item) => item.id === profile.userId || item.email === profile.user?.email)
+      return (user?.role || profile.user?.role || 'ALUMNI') === 'ALUMNI'
+    }))
   }
 }
 
@@ -372,4 +382,3 @@ export const createAlumniApplication = async (data) => {
     return clone(profile)
   }
 }
-

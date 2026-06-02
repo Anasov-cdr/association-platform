@@ -82,7 +82,7 @@ const resources = {
         officialSite: 'Официальный сайт колледжа',
         copyright: 'Ассоциация выпускников БФЭТ им. А. Токтоналиева',
         adminManaged: 'Контент управляется через админ-панель платформы',
-        developer: 'Разработано Абдуразак уулу Уларбек'
+        developer: 'Разработано Абдуразак уулу Уларбек, Акпаралы уулу Бек-Алмас'
       },
       heroTitle: 'Ассоциация выпускников Бишкекского финансово-экономического техникума им. А. Токтоналиева',
       heroHighlight: 'выпускников',
@@ -699,7 +699,7 @@ const resources = {
         officialSite: 'Колледждин расмий сайты',
         copyright: 'А. Токтоналиев атындагы БФЭТ бүтүрүүчүлөр ассоциациясы',
         adminManaged: 'Контент платформанын админ-панели аркылуу башкарылат',
-        developer: 'Иштеп чыккан Абдуразак уулу Уларбек'
+        developer: 'Иштеп чыккан Абдуразак уулу Уларбек, Акпаралы уулу Бек-Алмас'
       },
       heroTitle: 'А. Токтоналиев атындагы БФЭТ бутуруучулор ассоциациясы',
       heroHighlight: 'бутуруучулор',
@@ -1203,7 +1203,7 @@ const resources = {
         officialSite: 'Official college website',
         copyright: 'A. Toktonaliev BFET Association',
         adminManaged: 'Content is managed through the platform admin panel',
-        developer: 'Developed by Abdurazak uulu Ularbek'
+        developer: 'Developed by Abdurazak uulu Ularbek, Akparaly uulu Bek-Almas'
       },
       heroTitle: 'A. Toktonaliev BFET Association',
       heroHighlight: 'Association',
