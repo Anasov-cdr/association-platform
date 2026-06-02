@@ -82,8 +82,8 @@ export function Layout() {
     fetchCounts()
     const interval = setInterval(fetchCounts, 30000)
 
-    // Delay connection so React dev-mode effect cleanup does not close a half-open websocket.
-    const s = io(SOCKET_URL, { autoConnect: false, transports: ['polling', 'websocket'] })
+    // Plesk/nginx on this hosting does not reliably proxy WebSocket upgrades.
+    const s = io(SOCKET_URL, { autoConnect: false, transports: ['polling'], upgrade: false })
     socketRef.current = s
     s.on('connect', () => s.emit('auth:register', { token: accessToken }))
     s.on('notification:new', () => incrementUnread())

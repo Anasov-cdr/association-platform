@@ -17,7 +17,7 @@ function useSocket() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    const s = io(SOCKET_URL, { autoConnect: true, transports: ['websocket', 'polling'] })
+    const s = io(SOCKET_URL, { autoConnect: true, transports: ['polling'], upgrade: false })
     s.on('connect', () => setError(''))
     s.on('connect_error', () => setError(t('chatPage.backendUnavailable')))
     setSocket(s)
