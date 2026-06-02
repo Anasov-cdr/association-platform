@@ -24,6 +24,29 @@ const emptyJob = {
   city: 'Бишкек', country: 'Кыргызстан', salary: '', deadline: '', contacts: ''
 }
 
+const normalizeOptionalText = (value) => value ?? ''
+
+const normalizeProfilePayload = (profile, skills) => ({
+  ...profile,
+  fullName: normalizeOptionalText(profile.fullName),
+  photoUrl: normalizeOptionalText(profile.photoUrl),
+  graduationYear: Number(profile.graduationYear) || new Date().getFullYear(),
+  specialty: normalizeOptionalText(profile.specialty),
+  groupName: normalizeOptionalText(profile.groupName),
+  city: normalizeOptionalText(profile.city),
+  country: normalizeOptionalText(profile.country),
+  company: normalizeOptionalText(profile.company),
+  position: normalizeOptionalText(profile.position),
+  phone: normalizeOptionalText(profile.phone),
+  bio: normalizeOptionalText(profile.bio),
+  achievements: normalizeOptionalText(profile.achievements),
+  mentorArea: normalizeOptionalText(profile.mentorArea),
+  mentorFormat: normalizeOptionalText(profile.mentorFormat),
+  mentorAvailability: normalizeOptionalText(profile.mentorAvailability),
+  skills,
+  socialLinks: profile.socialLinks && typeof profile.socialLinks === 'object' ? profile.socialLinks : emptyProfile.socialLinks
+})
+
 function Input({ label, ...props }) {
   return (
     <div className="flex flex-col gap-1">
@@ -160,12 +183,7 @@ export function CabinetPage() {
     setError('')
     try {
       const skills = skillsInput.split(',').map((s) => s.trim()).filter(Boolean)
-      const payload = {
-        ...profile,
-        graduationYear: Number(profile.graduationYear),
-        skills,
-        socialLinks: profile.socialLinks
-      }
+      const payload = normalizeProfilePayload(profile, skills)
       await api.put('/alumni/profile/me', payload)
       showMsg(t('cabinet.profileSaved'))
       await loadCabinet()

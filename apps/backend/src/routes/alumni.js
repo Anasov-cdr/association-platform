@@ -18,32 +18,47 @@ import { asyncHandler } from '../middleware/errorHandler.js'
 
 const router = express.Router()
 
+const optionalString = z.preprocess(
+  (value) => value === null ? '' : value,
+  z.string().optional()
+)
+
+const optionalStringArray = z.preprocess(
+  (value) => value === null ? [] : value,
+  z.array(z.string()).optional()
+)
+
+const optionalStringRecord = z.preprocess(
+  (value) => value === null ? {} : value,
+  z.record(z.string()).optional()
+)
+
 // Validation schema
 const alumniUpdateSchema = z.object({
-  fullName: z.string().optional(),
-  photoUrl: z.string().optional(),
+  fullName: optionalString,
+  photoUrl: optionalString,
   graduationYear: z.number().int().optional(),
-  specialty: z.string().optional(),
-  groupName: z.string().optional(),
-  city: z.string().optional(),
-  country: z.string().optional(),
-  company: z.string().optional(),
-  position: z.string().optional(),
-  bio: z.string().optional(),
-  achievements: z.string().optional(),
-  skills: z.array(z.string()).optional(),
-  socialLinks: z.record(z.string()).optional(),
-  phone: z.string().optional(),
+  specialty: optionalString,
+  groupName: optionalString,
+  city: optionalString,
+  country: optionalString,
+  company: optionalString,
+  position: optionalString,
+  bio: optionalString,
+  achievements: optionalString,
+  skills: optionalStringArray,
+  socialLinks: optionalStringRecord,
+  phone: optionalString,
   showEmail: z.boolean().optional(),
   showPhone: z.boolean().optional(),
   isMentor: z.boolean().optional(),
   canHelpStudents: z.boolean().optional(),
-  mentorArea: z.string().optional(),
-  mentorFormat: z.string().optional(),
-  mentorAvailability: z.string().optional(),
+  mentorArea: optionalString,
+  mentorFormat: optionalString,
+  mentorAvailability: optionalString,
   isSponsor: z.boolean().optional(),
   isFeatured: z.boolean().optional(),
-  featuredTitle: z.string().optional()
+  featuredTitle: optionalString
 })
 
 const alumniRegisterSchema = z.object({

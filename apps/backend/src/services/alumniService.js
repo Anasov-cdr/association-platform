@@ -180,6 +180,7 @@ export const updateAlumniProfileById = async (profileId, data) => {
         company: data.company,
         position: data.position,
         bio: data.bio,
+        achievements: data.achievements,
         skills: data.skills,
         socialLinks: data.socialLinks,
         phone: data.phone,
@@ -189,6 +190,9 @@ export const updateAlumniProfileById = async (profileId, data) => {
         canHelpStudents: data.canHelpStudents,
         isSponsor: data.isSponsor,
         isFeatured: data.isFeatured,
+        mentorArea: data.mentorArea,
+        mentorFormat: data.mentorFormat,
+        mentorAvailability: data.mentorAvailability,
         featuredTitle: data.featuredTitle
       }
     })
