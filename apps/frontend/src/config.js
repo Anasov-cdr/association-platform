@@ -16,3 +16,15 @@ export const getSocketUrl = () => {
     return API_BASE_URL.replace(/\/api\/?$/, '')
   }
 }
+
+export const getApiOrigin = () => {
+  try {
+    const url = new URL(API_BASE_URL)
+    url.pathname = ''
+    url.search = ''
+    url.hash = ''
+    return url.toString().replace(/\/$/, '')
+  } catch {
+    return API_BASE_URL.replace(/\/api\/?$/, '')
+  }
+}
