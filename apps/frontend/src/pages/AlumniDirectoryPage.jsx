@@ -5,6 +5,7 @@ import { Badge, Card, PageHero } from '../components/UI'
 import { api } from '../api'
 import { toAbsoluteUploadUrl } from '../uploads'
 import { useSEO } from '../hooks/useSEO'
+import { filterPublicAlumniProfiles } from '../alumniVisibility'
 
 function FilterInput({ label, value, onChange, type = 'text', placeholder }) {
   return (
@@ -46,7 +47,7 @@ export function AlumniDirectoryPage() {
     if (employerOnly) params.employer = true
 
     api.get('/alumni', { params })
-      .then(({ data }) => setAlumni(data))
+      .then(({ data }) => setAlumni(filterPublicAlumniProfiles(data)))
       .catch(() => setAlumni([]))
       .finally(() => setLoading(false))
   }, [query, year, specialty, city, mentorOnly, employerOnly])

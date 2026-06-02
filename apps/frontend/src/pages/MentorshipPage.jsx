@@ -6,6 +6,7 @@ import { api } from '../api'
 import { useAppStore } from '../store'
 import { toAbsoluteUploadUrl } from '../uploads'
 import { useSEO } from '../hooks/useSEO'
+import { filterPublicAlumniProfiles } from '../alumniVisibility'
 
 function MentorRequestModal({ mentor, onClose, onSent }) {
   const { t } = useTranslation()
@@ -77,7 +78,7 @@ export function MentorshipPage() {
 
   useEffect(() => {
     api.get('/alumni', { params: { mentor: true, status: 'APPROVED' } })
-      .then(({ data }) => setMentors(data))
+      .then(({ data }) => setMentors(filterPublicAlumniProfiles(data)))
       .catch(() => setMentors([]))
   }, [])
 

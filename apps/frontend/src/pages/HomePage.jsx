@@ -6,6 +6,7 @@ import { api } from '../api'
 import { getLocalized } from '../i18n/localize'
 import { toAbsoluteUploadUrl } from '../uploads'
 import { useSEO } from '../hooks/useSEO'
+import { filterPublicAlumniProfiles } from '../alumniVisibility'
 
 const fallbackCollege = {
   name: 'Бишкекский финансово-экономический техникум им. А. Токтоналиева',
@@ -263,7 +264,7 @@ export function HomePage() {
         campaigns: campRes.status === 'fulfilled' ? campRes.value.data.slice(0, 3) : [],
         events: evRes.status === 'fulfilled' ? evRes.value.data.slice(0, 3) : []
       })
-      setFeaturedAlumni(featRes.status === 'fulfilled' ? featRes.value.data.slice(0, 8) : [])
+      setFeaturedAlumni(featRes.status === 'fulfilled' ? filterPublicAlumniProfiles(featRes.value.data).slice(0, 8) : [])
     })
   }, [])
 

@@ -8,6 +8,7 @@ import { getSocketUrl } from '../config'
 import { useAppStore } from '../store'
 import { toAbsoluteUploadUrl } from '../uploads'
 import { useSEO } from '../hooks/useSEO'
+import { filterPublicAlumniProfiles } from '../alumniVisibility'
 
 const SOCKET_URL = getSocketUrl()
 
@@ -158,7 +159,7 @@ function NewChatModal({ onClose, onSelect }) {
 
   useEffect(() => {
     api.get('/alumni', { params: { status: 'APPROVED' } })
-      .then(({ data }) => setAlumni(data))
+      .then(({ data }) => setAlumni(filterPublicAlumniProfiles(data)))
       .catch(() => {})
   }, [])
 
