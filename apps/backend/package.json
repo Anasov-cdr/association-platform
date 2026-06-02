@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --watch src --ext js,json --ignore data/mock-db.json src/server.js",
-    "build": "node --check src/index.js && node --check src/server.js",
-    "start": "node src/index.js",
+    "build": "node --check index.js && node --check src/index.js && node --check src/server.js",
+    "start": "node index.js",
     "admin:create": "node scripts/create-admin.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
