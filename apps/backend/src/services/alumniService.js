@@ -5,10 +5,31 @@ import { createAdminNotification, createNotification } from './notificationServi
 import { sendRegistrationApprovedEmail, sendRegistrationRejectedEmail } from './emailService.js'
 import bcrypt from 'bcryptjs'
 
+const STAFF_ROLES = new Set(['ADMIN', 'MODERATOR'])
+const SERVICE_ADMIN_EMAILS = new Set(['admin@alumni.local'])
+
+const getMockProfileUser = (profile) =>
+  mockDb.users.find((item) => item.id === profile.userId || item.email === profile.user?.email)
+
+const isStaffProfile = (profile) => {
+  const user = profile.user || getMockProfileUser(profile) || {}
+  const role = user.role || profile.user?.role || 'ALUMNI'
+  const email = (user.email || profile.user?.email || profile.email || '').trim().toLowerCase()
+  const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase()
+  const fullName = (profile.fullName || '').toLowerCase()
+  const specialty = (profile.specialty || '').toLowerCase()
+
+  return (
+    STAFF_ROLES.has(role) ||
+    (adminEmail && email === adminEmail) ||
+    SERVICE_ADMIN_EMAILS.has(email) ||
+    (fullName.includes('администратор') && specialty.includes('администр'))
+  )
+}
+
 const filterMockProfiles = (filters = {}) => {
   let profiles = mockDb.alumni.filter((profile) => {
-    const user = mockDb.users.find((item) => item.id === profile.userId || item.email === profile.user?.email)
-    return profile.status === (filters.status || 'APPROVED') && (user?.role || profile.user?.role || 'ALUMNI') === 'ALUMNI'
+    return profile.status === (filters.status || 'APPROVED') && !isStaffProfile(profile)
   })
 
   if (filters.graduationYear) {
@@ -35,10 +56,7 @@ const filterMockProfiles = (filters = {}) => {
 }
 
 export const getAlumniProfiles = async (filters = {}) => {
-  const where = {
-    status: filters.status || 'APPROVED',
-    user: { role: 'ALUMNI' }
-  }
+  const where = { status: filters.status || 'APPROVED' }
 
   if (filters.graduationYear) {
     where.graduationYear = parseInt(filters.graduationYear)
@@ -69,7 +87,7 @@ export const getAlumniProfiles = async (filters = {}) => {
       orderBy: { createdAt: 'desc' }
     })
 
-    return profiles
+    return profiles.filter((profile) => !isStaffProfile(profile))
   } catch (error) {
     if (!isPrismaUnavailable(error)) throw error
     return filterMockProfiles(filters)
@@ -89,7 +107,7 @@ export const getAlumniProfile = async (profileId) => {
     profile = mockDb.alumni.find((item) => item.id === profileId)
   }
 
-  if (!profile || profile.user?.role !== 'ALUMNI') {
+  if (!profile || isStaffProfile(profile)) {
     throw new AppError('Профиль не найден', 404)
   }
 
@@ -273,16 +291,12 @@ export const getPendingProfiles = async () => {
 export const getAllProfilesForAdmin = async () => {
   try {
     return await prisma.alumniProfile.findMany({
-      where: { user: { role: 'ALUMNI' } },
       include: { user: { select: { email: true, id: true, role: true } } },
       orderBy: { createdAt: 'desc' }
-    })
+    }).then((profiles) => profiles.filter((profile) => !isStaffProfile(profile)))
   } catch (error) {
     if (!isPrismaUnavailable(error)) throw error
-    return clone(mockDb.alumni.filter((profile) => {
-      const user = mockDb.users.find((item) => item.id === profile.userId || item.email === profile.user?.email)
-      return (user?.role || profile.user?.role || 'ALUMNI') === 'ALUMNI'
-    }))
+    return clone(mockDb.alumni.filter((profile) => !isStaffProfile(profile)))
   }
 }
 
