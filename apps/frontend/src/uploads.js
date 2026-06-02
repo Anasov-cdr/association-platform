@@ -1,4 +1,5 @@
 import { api } from './api'
+import { getApiOrigin } from './config'
 
 export const uploadFile = async (file, folder = 'misc') => {
   const formData = new FormData()
@@ -12,6 +13,5 @@ export const uploadFile = async (file, folder = 'misc') => {
 export const toAbsoluteUploadUrl = (url) => {
   if (!url || url === '#') return url
   if (/^https?:\/\//.test(url)) return url
-  const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
-  return `${apiBase.replace('/api', '')}${url}`
+  return `${getApiOrigin()}${url}`
 }

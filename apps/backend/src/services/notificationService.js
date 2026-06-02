@@ -1,5 +1,6 @@
 import { prisma } from '../lib/prisma.js'
 import { isPrismaUnavailable, mockDb, saveMockDb } from '../mockData.js'
+import { pushToUser } from '../lib/socketPush.js'
 
 const ADMIN_USER_ID = 'dev-admin'
 
@@ -17,8 +18,9 @@ const makeNotification = ({ userId, type = 'SYSTEM', title, message, data = {} }
 export const createNotification = async (payload) => {
   if (!payload?.userId || !payload?.title || !payload?.message) return null
 
+  let notif
   try {
-    return await prisma.notification.create({
+    notif = await prisma.notification.create({
       data: {
         userId: payload.userId,
         type: payload.type || 'SYSTEM',
@@ -29,10 +31,13 @@ export const createNotification = async (payload) => {
     })
   } catch (error) {
     if (!isPrismaUnavailable(error)) throw error
-    mockDb.notifications.unshift(makeNotification(payload))
+    notif = makeNotification(payload)
+    mockDb.notifications.unshift(notif)
     saveMockDb()
-    return mockDb.notifications[0]
   }
+
+  pushToUser(payload.userId, 'notification:new', notif)
+  return notif
 }
 
 export const createAdminNotification = (payload) =>

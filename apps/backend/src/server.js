@@ -1,12 +1,11 @@
 import cors from 'cors'
-import 'dotenv/config'
 import express from 'express'
 import { createServer } from 'node:http'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { Server } from 'socket.io'
 import { errorHandler } from './middleware/errorHandler.js'
-import { securityHeaders, validateSecurityConfig } from './middleware/security.js'
+import { securityHeaders, createRateLimiter, validateSecurityConfig } from './middleware/security.js'
 import { prisma } from './lib/prisma.js'
 import authRoutes from './routes/auth.js'
 import alumniRoutes from './routes/alumni.js'
@@ -24,28 +23,60 @@ import chatRoutes from './routes/chat.js'
 import siteRoutes from './routes/site.js'
 import usersRoutes from './routes/users.js'
 import { mockDb, saveMockDb } from './mockData.js'
+import { initSocketPush, registerUserSocket, unregisterUserSocket, verifySocketToken } from './lib/socketPush.js'
+import backupRoutes from './routes/backup.js'
+import { initBackupScheduler } from './services/backupService.js'
 
 const app = express()
 const server = createServer(app)
 const port = process.env.PORT || 4000
 const clientOrigin = process.env.CLIENT_ORIGIN || 'http://localhost:5173'
+const allowedOrigins = clientOrigin
+  .split(',')
+  .map((item) => item.trim())
+  .filter(Boolean)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 validateSecurityConfig()
 
+const globalLimiter = createRateLimiter({ windowMs: 60_000, max: 200, keyPrefix: 'global' })
+const corsOptions = {
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true)
+      return
+    }
+    callback(new Error(`Origin not allowed by CORS: ${origin}`))
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}
+
 // Middleware
 app.use(securityHeaders)
-app.use(cors({ origin: clientOrigin.split(',').map((item) => item.trim()) }))
-app.use(express.json())
+app.use(cors(corsOptions))
+app.options(/.*/, cors(corsOptions))
+app.use(express.json({ limit: '1mb' }))
+app.use('/api', globalLimiter)
 app.use('/uploads', express.static(path.resolve(__dirname, '../uploads')))
 
 // Socket.io
 const io = new Server(server, {
-  cors: { origin: clientOrigin },
+  cors: { origin: allowedOrigins, credentials: true },
   transports: ['websocket', 'polling']
 })
 
+initSocketPush(io)
+
 io.on('connection', (socket) => {
   console.log(`[Socket.io] User connected: ${socket.id}`)
+
+  socket.on('auth:register', ({ token } = {}) => {
+    const payload = verifySocketToken(token)
+    if (!payload) return
+    socket.userId = payload.userId
+    registerUserSocket(payload.userId, socket.id)
+  })
 
   socket.on('chat:join', ({ roomId = 'general' } = {}) => {
     socket.join(roomId)
@@ -56,13 +87,18 @@ io.on('connection', (socket) => {
   })
 
   socket.on('chat:message', (message) => {
+    if (!socket.userId) return
+    if (!message?.text?.trim() || message.text.length > 5000) return
     const roomId = message.roomId || 'general'
+    const authorUser = (mockDb.users || []).find((u) => u.id === socket.userId)
+    if (!authorUser) return
     const newMessage = {
       id: Date.now().toString(),
       roomId,
-      author: message.author || 'Гость',
-      authorId: message.authorId || null,
-      text: message.text,
+      author: authorUser.profile?.fullName || authorUser.email || 'Пользователь',
+      authorId: socket.userId,
+      authorEmail: authorUser.email || null,
+      text: message.text.trim(),
       deleted: false,
       createdAt: new Date().toISOString()
     }
@@ -71,7 +107,41 @@ io.on('connection', (socket) => {
     io.to(roomId).emit('chat:message', newMessage)
   })
 
+  socket.on('dm:join', ({ chatId } = {}) => {
+    if (!chatId) return
+    socket.join(`dm:${chatId}`)
+    if (!mockDb.directMessages) mockDb.directMessages = []
+    const history = mockDb.directMessages.filter((m) => m.chatId === chatId).slice(-100)
+    socket.emit('dm:history', history)
+  })
+
+  socket.on('dm:message', ({ chatId, text } = {}) => {
+    if (!socket.userId) return
+    if (!chatId || !text?.trim() || text.length > 5000) return
+    if (!mockDb.directChats) mockDb.directChats = []
+    if (!mockDb.directMessages) mockDb.directMessages = []
+
+    const chat = mockDb.directChats.find((c) => c.id === chatId)
+    if (!chat) return
+    if (!chat.participants.includes(socket.userId)) return
+
+    const sender = (mockDb.users || []).find((u) => u.id === socket.userId)
+    const newMessage = {
+      id: `dm-msg-${Date.now()}`,
+      chatId,
+      senderId: socket.userId,
+      senderName: sender?.profile?.fullName || sender?.email || 'Пользователь',
+      text: text.trim(),
+      read: false,
+      createdAt: new Date().toISOString()
+    }
+    mockDb.directMessages.push(newMessage)
+    saveMockDb()
+    io.to(`dm:${chatId}`).emit('dm:message', newMessage)
+  })
+
   socket.on('disconnect', () => {
+    if (socket.userId) unregisterUserSocket(socket.userId, socket.id)
     console.log(`[Socket.io] User disconnected: ${socket.id}`)
   })
 })
@@ -97,6 +167,7 @@ app.use('/api/uploads', uploadsRoutes)
 app.use('/api/chat', chatRoutes)
 app.use('/api/site', siteRoutes)
 app.use('/api/users', usersRoutes)
+app.use('/api/admin/backup', backupRoutes)
 
 // 404 handler
 app.use((req, res) => {
@@ -120,10 +191,11 @@ signals.forEach((signal) => {
 })
 
 // Start server
+initBackupScheduler()
 server.listen(port, () => {
   console.log(`
 ╔═══════════════════════════════════════╗
-║        BFET Alumni Platform API      ║
+║        BFET Association API          ║
 ║  Listening on http://localhost:${port} ║
 ╚═══════════════════════════════════════╝
   `)

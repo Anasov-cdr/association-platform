@@ -3,8 +3,12 @@ const buckets = new Map()
 export const securityHeaders = (req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff')
   res.setHeader('X-Frame-Options', 'DENY')
-  res.setHeader('Referrer-Policy', 'no-referrer')
+  res.setHeader('X-XSS-Protection', '0')
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin')
   res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()')
+  if (process.env.NODE_ENV === 'production') {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
+  }
   next()
 }
 
@@ -35,7 +39,10 @@ export const createRateLimiter = ({ windowMs = 60_000, max = 20, keyPrefix = 'gl
 
 export const validateSecurityConfig = () => {
   const requiredSecrets = ['JWT_ACCESS_SECRET', 'JWT_REFRESH_SECRET']
-  const weak = requiredSecrets.filter((key) => !process.env[key] || process.env[key].length < 32 || process.env[key].includes('change-me'))
+  const weak = requiredSecrets.filter((key) => {
+    const value = process.env[key] || ''
+    return value.length < 32 || /change-me|replace_with|placeholder/i.test(value)
+  })
   if (weak.length === 0) return
 
   const message = `[security] Weak or missing secrets: ${weak.join(', ')}`

@@ -1,0 +1,15 @@
+node_modules
+**/node_modules
+dist
+**/dist
+.git
+.github
+.claude
+*.log
+.env
+.env.*
+uploads
+backups
+coverage
+tmp
+temp

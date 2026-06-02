@@ -2,10 +2,35 @@
 import { AppError } from '../middleware/errorHandler.js'
 import { clone, isPrismaUnavailable, mockDb, saveMockDb } from '../mockData.js'
 import { createAdminNotification, createNotification } from './notificationService.js'
+import { sendRegistrationApprovedEmail, sendRegistrationRejectedEmail } from './emailService.js'
 import bcrypt from 'bcryptjs'
 
+const STAFF_ROLES = new Set(['ADMIN', 'MODERATOR'])
+const SERVICE_ADMIN_EMAILS = new Set(['admin@bfetassociation.kg'])
+
+const getMockProfileUser = (profile) =>
+  mockDb.users.find((item) => item.id === profile.userId || item.email === profile.user?.email)
+
+const isStaffProfile = (profile) => {
+  const user = profile.user || getMockProfileUser(profile) || {}
+  const role = user.role || profile.user?.role || 'ALUMNI'
+  const email = (user.email || profile.user?.email || profile.email || '').trim().toLowerCase()
+  const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase()
+  const fullName = (profile.fullName || '').toLowerCase()
+  const specialty = (profile.specialty || '').toLowerCase()
+
+  return (
+    STAFF_ROLES.has(role) ||
+    (adminEmail && email === adminEmail) ||
+    SERVICE_ADMIN_EMAILS.has(email) ||
+    (fullName.includes('администратор') && specialty.includes('администр'))
+  )
+}
+
 const filterMockProfiles = (filters = {}) => {
-  let profiles = mockDb.alumni.filter((profile) => profile.status === (filters.status || 'APPROVED'))
+  let profiles = mockDb.alumni.filter((profile) => {
+    return profile.status === (filters.status || 'APPROVED') && !isStaffProfile(profile)
+  })
 
   if (filters.graduationYear) {
     profiles = profiles.filter((profile) => profile.graduationYear === parseInt(filters.graduationYear))
@@ -19,6 +44,12 @@ const filterMockProfiles = (filters = {}) => {
   if (filters.isMentor !== undefined || filters.mentor !== undefined) {
     const value = String(filters.isMentor ?? filters.mentor) === 'true'
     profiles = profiles.filter((profile) => profile.isMentor === value)
+  }
+  if (filters.featured === 'true' || filters.featured === true) {
+    profiles = profiles.filter((profile) => profile.isFeatured === true)
+  }
+  if (filters.employer === 'true' || filters.employer === true) {
+    profiles = profiles.filter((profile) => profile.canHelpStudents === true)
   }
 
   return clone(profiles)
@@ -42,15 +73,21 @@ export const getAlumniProfiles = async (filters = {}) => {
   if (filters.isMentor !== undefined || filters.mentor !== undefined) {
     where.isMentor = String(filters.isMentor ?? filters.mentor) === 'true'
   }
+  if (filters.featured === 'true' || filters.featured === true) {
+    where.isFeatured = true
+  }
+  if (filters.employer === 'true' || filters.employer === true) {
+    where.canHelpStudents = true
+  }
 
   try {
     const profiles = await prisma.alumniProfile.findMany({
       where,
-      include: { user: { select: { email: true, id: true } } },
+      include: { user: { select: { email: true, id: true, role: true } } },
       orderBy: { createdAt: 'desc' }
     })
 
-    return profiles
+    return profiles.filter((profile) => !isStaffProfile(profile))
   } catch (error) {
     if (!isPrismaUnavailable(error)) throw error
     return filterMockProfiles(filters)
@@ -63,14 +100,14 @@ export const getAlumniProfile = async (profileId) => {
   try {
     profile = await prisma.alumniProfile.findUnique({
       where: { id: profileId },
-      include: { user: { select: { email: true, id: true } } }
+      include: { user: { select: { email: true, id: true, role: true } } }
     })
   } catch (error) {
     if (!isPrismaUnavailable(error)) throw error
     profile = mockDb.alumni.find((item) => item.id === profileId)
   }
 
-  if (!profile) {
+  if (!profile || isStaffProfile(profile)) {
     throw new AppError('Профиль не найден', 404)
   }
 
@@ -110,6 +147,7 @@ export const updateAlumniProfile = async (userId, data) => {
         showPhone: data.showPhone !== undefined ? data.showPhone : profile.showPhone,
         isMentor: data.isMentor !== undefined ? data.isMentor : profile.isMentor,
         canHelpStudents: data.canHelpStudents !== undefined ? data.canHelpStudents : profile.canHelpStudents,
+        isSponsor: data.isSponsor !== undefined ? data.isSponsor : profile.isSponsor,
         mentorArea: data.mentorArea,
         mentorFormat: data.mentorFormat,
         mentorAvailability: data.mentorAvailability
@@ -121,14 +159,8 @@ export const updateAlumniProfile = async (userId, data) => {
     if (!isPrismaUnavailable(error)) throw error
     const index = mockDb.alumni.findIndex((item) => item.userId === userId)
     if (index === -1) throw new AppError('Профиль не найден', 404)
-    mockDb.alumni[index] = { ...mockDb.alumni[index], ...data, status: 'PENDING' }
+    mockDb.alumni[index] = { ...mockDb.alumni[index], ...data }
     saveMockDb()
-    await createAdminNotification({
-      type: 'PROFILE_UPDATED',
-      title: 'Профиль отправлен на модерацию',
-      message: `${mockDb.alumni[index].fullName} обновил профиль и ожидает проверки.`,
-      data: { profileId: mockDb.alumni[index].id }
-    })
     return clone(mockDb.alumni[index])
   }
 }
@@ -148,13 +180,20 @@ export const updateAlumniProfileById = async (profileId, data) => {
         company: data.company,
         position: data.position,
         bio: data.bio,
+        achievements: data.achievements,
         skills: data.skills,
         socialLinks: data.socialLinks,
         phone: data.phone,
         showEmail: data.showEmail,
         showPhone: data.showPhone,
         isMentor: data.isMentor,
-        canHelpStudents: data.canHelpStudents
+        canHelpStudents: data.canHelpStudents,
+        isSponsor: data.isSponsor,
+        isFeatured: data.isFeatured,
+        mentorArea: data.mentorArea,
+        mentorFormat: data.mentorFormat,
+        mentorAvailability: data.mentorAvailability,
+        featuredTitle: data.featuredTitle
       }
     })
   } catch (error) {
@@ -205,6 +244,8 @@ export const approveAlumniProfile = async (profileId) => {
       message: 'Ваш профиль выпускника опубликован в каталоге.',
       data: { profileId: profile.id }
     })
+    const userEmail = profile.user?.email || profile.email
+    if (userEmail) sendRegistrationApprovedEmail(userEmail, profile.fullName).catch(() => {})
     return clone(profile)
   }
 }
@@ -230,6 +271,8 @@ export const rejectAlumniProfile = async (profileId) => {
       message: 'Администратор отклонил профиль. Проверьте данные и отправьте повторно.',
       data: { profileId: profile.id }
     })
+    const userEmail = profile.user?.email || profile.email
+    if (userEmail) sendRegistrationRejectedEmail(userEmail, profile.fullName).catch(() => {})
     return clone(profile)
   }
 }
@@ -252,12 +295,12 @@ export const getPendingProfiles = async () => {
 export const getAllProfilesForAdmin = async () => {
   try {
     return await prisma.alumniProfile.findMany({
-      include: { user: { select: { email: true, id: true } } },
+      include: { user: { select: { email: true, id: true, role: true } } },
       orderBy: { createdAt: 'desc' }
-    })
+    }).then((profiles) => profiles.filter((profile) => !isStaffProfile(profile)))
   } catch (error) {
     if (!isPrismaUnavailable(error)) throw error
-    return clone(mockDb.alumni)
+    return clone(mockDb.alumni.filter((profile) => !isStaffProfile(profile)))
   }
 }
 
@@ -322,7 +365,7 @@ export const createAlumniApplication = async (data) => {
     return user.profile
   } catch (error) {
     if (!isPrismaUnavailable(error)) throw error
-    if (mockDb.alumni.some((profile) => profile.user.email === email)) {
+    if (mockDb.users.some((u) => u.email === email)) {
       throw new AppError('Пользователь с таким email уже существует', 409)
     }
     const profile = {
@@ -357,4 +400,3 @@ export const createAlumniApplication = async (data) => {
     return clone(profile)
   }
 }
-

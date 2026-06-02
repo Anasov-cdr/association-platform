@@ -18,3 +18,6 @@ logs/
 *.sqlite
 *.db
 mock-db.backup-before-bfet-seed.json
+backups/
+apps/backend/backups/
+.claude/

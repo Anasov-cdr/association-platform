@@ -80,6 +80,9 @@ model AlumniProfile {
   showPhone           Boolean       @default(false)
   isMentor            Boolean       @default(false)
   canHelpStudents     Boolean       @default(false)
+  isSponsor           Boolean       @default(false)
+  isFeatured          Boolean       @default(false)
+  featuredTitle       String?
   mentorArea          String?
   mentorFormat        String?
   mentorAvailability  String?

@@ -18,7 +18,10 @@ const siteSchema = z.object({
   email: z.string().optional(),
   workingHours: z.string().optional(),
   mission: z.string().optional(),
-  specialties: z.array(z.string()).optional()
+  specialties: z.array(z.string()).optional(),
+  instagram: z.string().optional(),
+  youtube: z.string().optional(),
+  facebook: z.string().optional()
 })
 
 router.get(

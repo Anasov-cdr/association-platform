@@ -38,7 +38,16 @@ export const useAppStore = create(
 
       setUser: (user) => set({ user }),
 
-      // Notification state
+      // Unread counters (notifications + DMs)
+      unreadCount: 0,
+      unreadDms: 0,
+      setUnreadCount: (count) => set({ unreadCount: count }),
+      setUnreadDms: (count) => set({ unreadDms: count }),
+      incrementUnread: () => set((s) => ({ unreadCount: s.unreadCount + 1 })),
+      decrementUnread: () => set((s) => ({ unreadCount: Math.max(0, s.unreadCount - 1) })),
+      clearUnread: () => set({ unreadCount: 0 }),
+
+      // Toast notifications (in-app)
       notifications: [],
       addNotification: (notification) =>
         set((state) => ({
@@ -57,7 +66,11 @@ export const useAppStore = create(
         refreshToken: state.refreshToken,
         role: state.role,
         email: state.email
-      })
+      }),
+      onRehydrateStorage: () => (state) => {
+        if (state?.accessToken) localStorage.setItem('accessToken', state.accessToken)
+        if (state?.refreshToken) localStorage.setItem('refreshToken', state.refreshToken)
+      }
     }
   )
 )

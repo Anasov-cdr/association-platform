@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Card, PageHero } from '../components/UI'
 import { api } from '../api'
+import { toAbsoluteUploadUrl } from '../uploads'
+import { useSEO } from '../hooks/useSEO'
 
 function CompanyModal({ company, onClose, lang }) {
   const { t } = useTranslation()
@@ -21,7 +23,7 @@ function CompanyModal({ company, onClose, lang }) {
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-center gap-4">
               {company.logoUrl ? (
-                <img src={company.logoUrl} alt={company.name} className="h-16 w-16 rounded-md object-cover" />
+                <img src={toAbsoluteUploadUrl(company.logoUrl)} alt={company.name} className="h-16 w-16 rounded-md object-contain" />
               ) : (
                 <div className="flex h-16 w-16 items-center justify-center rounded-md bg-moss/5 text-2xl font-bold text-ink/40">
                   {company.name.charAt(0)}
@@ -97,9 +99,11 @@ function CompanyModal({ company, onClose, lang }) {
 
 export function CompaniesPage() {
   const { t } = useTranslation()
+  useSEO({ title: t('seo.companies.title'), description: t('seo.companies.desc') })
   const { lang = 'ru' } = useParams()
   const [companies, setCompanies] = useState([])
   const [selected, setSelected] = useState(null)
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     api.get('/companies')
@@ -107,19 +111,31 @@ export function CompaniesPage() {
       .catch(() => setCompanies([]))
   }, [])
 
+  const filtered = search.trim()
+    ? companies.filter((c) => c.name.toLowerCase().includes(search.trim().toLowerCase()))
+    : companies
+
   return (
     <div className="space-y-6">
       <PageHero>
         <h1 className="font-display text-4xl font-bold">{t('companies.title')}</h1>
         <p className="mt-3 max-w-3xl text-white/86">{t('companies.subtitle')}</p>
+        <div className="mt-5">
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder={t('companies.search')}
+            className="w-full rounded-md border border-ink/10 bg-white px-4 py-3 text-ink placeholder:text-ink/45 outline-none focus:border-moss"
+          />
+        </div>
       </PageHero>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {companies.map((company) => (
+        {filtered.map((company) => (
           <Card key={company.id} className="flex flex-col">
             <div className="flex items-center gap-4">
               {company.logoUrl ? (
-                <img src={company.logoUrl} alt={company.name} className="h-16 w-16 rounded-md object-cover bg-white" />
+                <img src={toAbsoluteUploadUrl(company.logoUrl)} alt={company.name} className="h-16 w-16 rounded-md object-contain" />
               ) : (
                 <div className="flex h-16 w-16 items-center justify-center rounded-md bg-moss/5 text-2xl font-bold text-ink/40">
                   {company.name.charAt(0)}
@@ -154,8 +170,8 @@ export function CompaniesPage() {
         ))}
       </div>
 
-      {companies.length === 0 && (
-        <Card><p className="text-ink/72">{t('common.noData')}</p></Card>
+      {filtered.length === 0 && (
+        <Card><p className="text-ink/72">{search ? t('companies.noResults') : t('common.noData')}</p></Card>
       )}
 
       {selected && (

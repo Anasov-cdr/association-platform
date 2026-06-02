@@ -3,6 +3,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 export const isPrismaUnavailable = (error) => {
+  if (error instanceof TypeError) return true
   const text = `${error?.name || ''} ${error?.code || ''} ${error?.message || ''}`
   return /Prisma|P100|P101|Can't reach database|denied access|database server|ECONNREFUSED/i.test(text)
 }
@@ -36,7 +37,7 @@ const defaultMockDb = {
     studentCount: '2268+',
     address: 'Кыргызская Республика, г. Бишкек, пр. Чуй, 269',
     phones: ['(0312) 39 15 41', '(0312) 39 21 66'],
-    email: 'vip.bfet@mail.ru',
+    email: 'vypuskniki.finteha@gmail.com',
     workingHours: 'Понедельник — Пятница 08:00 — 17:00, обед 12:00 — 13:00',
     mission: 'Обеспечение современного качественного образования, ориентированного на подготовку конкурентоспособных кадров нового поколения через сохранение традиций и внедрение инноваций.',
     specialties: [
@@ -65,7 +66,7 @@ const defaultMockDb = {
     {
       id: 'news-alumni-platform',
       slug: 'bfet-alumni-platform',
-      title: localized('Ассоциация выпускников БФЭТ запускает цифровую базу', 'БФЭТ бутуруучулор ассоциациясы санарип базаны ишке киргизет', 'BFET Alumni Association launches a digital directory'),
+      title: localized('Ассоциация выпускников БФЭТ запускает цифровую базу', 'БФЭТ бутуруучулор ассоциациясы санарип базаны ишке киргизет', 'BFET Association launches a digital directory'),
       body: localized('Платформа объединяет выпускников БФЭТ, помогает развивать карьерные связи, менторство, мероприятия и поддержку студентов.'),
       authorName: 'Администрация ассоциации',
       publishedAt: '2026-04-29T09:00:00.000Z',
@@ -75,7 +76,7 @@ const defaultMockDb = {
   events: [
     {
       id: 'event-reunion',
-      title: localized('Встреча выпускников БФЭТ 2026', 'БФЭТ бутуруучулор жолугушуусу 2026', 'BFET Alumni Reunion 2026'),
+      title: localized('Встреча выпускников БФЭТ 2026', 'БФЭТ бутуруучулор жолугушуусу 2026', 'BFET Reunion 2026'),
       description: localized('Тематическая встреча выпускников, студентов, преподавателей и партнеров техникума.'),
       startsAt: '2026-05-30T12:00:00.000Z',
       location: 'БФЭТ, г. Бишкек, пр. Чуй, 269',
@@ -216,7 +217,8 @@ const defaultMockDb = {
   chatMessages: [],
   chatReports: [],
   directChats: [],
-  directMessages: []
+  directMessages: [],
+  passwordResetTokens: {}
 }
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))

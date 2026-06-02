@@ -32,12 +32,13 @@ const applicationStatusSchema = z.object({
 router.get(
   '/',
   asyncHandler(async (req, res) => {
-    const { city, type, format } = req.query
+    const { city, type, format, query } = req.query
     const where = { status: 'PUBLISHED' }
 
     if (city) where.city = { contains: city, mode: 'insensitive' }
     if (type) where.type = type
     if (format) where.format = format
+    if (query) where.title = { contains: query, mode: 'insensitive' }
 
     let jobs
     try {
@@ -52,6 +53,7 @@ router.get(
       if (city) jobs = jobs.filter((job) => job.city?.toLowerCase().includes(String(city).toLowerCase()))
       if (type) jobs = jobs.filter((job) => job.type === type)
       if (format) jobs = jobs.filter((job) => job.format === format)
+      if (query) jobs = jobs.filter((job) => job.title?.toLowerCase().includes(String(query).toLowerCase()))
       jobs = clone(jobs)
     }
     res.json(jobs)
