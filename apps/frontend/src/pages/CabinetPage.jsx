@@ -107,6 +107,7 @@ export function CabinetPage() {
   const [error, setError] = useState('')
   const [skillsInput, setSkillsInput] = useState('')
   const [avatarUploading, setAvatarUploading] = useState(false)
+  const isStaff = ['ADMIN', 'MODERATOR'].includes(auth.role)
 
   const showMsg = (msg, isError = false) => {
     if (isError) { setError(msg); setNotice('') }
@@ -115,6 +116,12 @@ export function CabinetPage() {
 
   const loadCabinet = async () => {
     if (!auth.accessToken) return
+    if (['ADMIN', 'MODERATOR'].includes(auth.role)) {
+      const notificationsRes = await api.get('/notifications').catch(() => null)
+      if (notificationsRes) setNotifications(notificationsRes.data)
+      return
+    }
+
     const [profileRes, jobsRes, applicationsRes, mentorshipsRes, notificationsRes] = await Promise.allSettled([
       api.get('/alumni/profile/me'),
       api.get('/jobs/my'),
@@ -258,8 +265,8 @@ export function CabinetPage() {
           <div>
             <h1 className="font-display text-4xl font-bold">{t('cabinet.title')}</h1>
             <p className="mt-2 text-white/82">{auth.email} · {t(`cabinet.roles.${auth.role}`) || auth.role}</p>
-            <span className={`mt-2 inline-block rounded px-3 py-1 text-xs font-bold shadow-sm ${HERO_STATUS_COLORS[profile.status || 'DRAFT'] || HERO_STATUS_COLORS.DRAFT}`}>
-              {t(`statuses.${profile.status || 'DRAFT'}`)}
+            <span className={`mt-2 inline-block rounded px-3 py-1 text-xs font-bold shadow-sm ${isStaff ? 'bg-white text-moss' : (HERO_STATUS_COLORS[profile.status || 'DRAFT'] || HERO_STATUS_COLORS.DRAFT)}`}>
+              {isStaff ? (t(`cabinet.roles.${auth.role}`) || auth.role) : t(`statuses.${profile.status || 'DRAFT'}`)}
             </span>
           </div>
           <button onClick={logout} className="rounded border border-white/45 bg-white/12 px-5 py-3 text-sm font-semibold text-white hover:bg-white/22 transition-colors">
@@ -275,7 +282,18 @@ export function CabinetPage() {
         </Card>
       )}
 
+      {isStaff && (
+        <Card>
+          <h2 className="font-display text-3xl font-bold">{t('admin.title')}</h2>
+          <p className="mt-2 text-ink/72">{t('admin.contentDesc')}</p>
+          <Link to={`/${lang}/admin`} className="mt-5 inline-flex rounded bg-moss px-6 py-3 font-bold text-white hover:bg-moss/90 transition-colors">
+            {t('nav.admin')}
+          </Link>
+        </Card>
+      )}
+
       {/* Профиль */}
+      {!isStaff && (
       <Card>
         <h2 className="font-display text-3xl font-bold">{t('cabinet.profileTitle')}</h2>
         <form onSubmit={saveProfile} className="mt-6 space-y-6">
@@ -398,6 +416,7 @@ export function CabinetPage() {
           </button>
         </form>
       </Card>
+      )}
 
       {/* Смена пароля */}
       <Card>
@@ -415,6 +434,7 @@ export function CabinetPage() {
       </Card>
 
       {/* Мои вакансии */}
+      {!isStaff && (
       <Card>
         <h2 className="font-display text-3xl font-bold">{t('cabinet.myJobs')}</h2>
         <details className="mt-4">
@@ -459,7 +479,9 @@ export function CabinetPage() {
           {jobs.length === 0 && <p className="text-ink/72">{t('jobs.noJobs')}</p>}
         </div>
       </Card>
+      )}
 
+      {!isStaff && (
       <section className="grid gap-6 lg:grid-cols-2">
         {/* Мои отклики */}
         <Card>
@@ -501,6 +523,7 @@ export function CabinetPage() {
           </div>
         </Card>
       </section>
+      )}
 
       {/* Уведомления */}
       <Card>
