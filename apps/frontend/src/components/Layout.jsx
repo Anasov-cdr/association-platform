@@ -1,15 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { io } from 'socket.io-client'
 import { languages } from '../i18n'
 import { useAppStore } from '../store'
 import { api } from '../api'
-import { getSocketUrl } from '../config'
 import { ErrorBoundary } from './ErrorBoundary'
 import { SupportWidget } from './SupportWidget'
-
-const SOCKET_URL = getSocketUrl()
 
 const roleLabels = {
   GUEST: 'Гость',
@@ -45,7 +41,6 @@ export function Layout() {
   const unreadDms = useAppStore((state) => state.unreadDms)
   const setUnreadCount = useAppStore((state) => state.setUnreadCount)
   const setUnreadDms = useAppStore((state) => state.setUnreadDms)
-  const incrementUnread = useAppStore((state) => state.incrementUnread)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
   const [isAccountOpen, setIsAccountOpen] = useState(false)
@@ -56,14 +51,10 @@ export function Layout() {
       i18n.changeLanguage(lang)
     }
   }, [lang, i18n])
-  const socketRef = useRef(null)
-
   useEffect(() => {
     if (!accessToken) {
       setUnreadCount(0)
       setUnreadDms(0)
-      socketRef.current?.disconnect()
-      socketRef.current = null
       return
     }
 
@@ -82,18 +73,8 @@ export function Layout() {
     fetchCounts()
     const interval = setInterval(fetchCounts, 30000)
 
-    // Plesk/nginx on this hosting does not reliably proxy WebSocket upgrades.
-    const s = io(SOCKET_URL, { autoConnect: false, transports: ['polling'], upgrade: false })
-    socketRef.current = s
-    s.on('connect', () => s.emit('auth:register', { token: accessToken }))
-    s.on('notification:new', () => incrementUnread())
-    const connectTimer = setTimeout(() => s.connect(), 100)
-
     return () => {
       clearInterval(interval)
-      clearTimeout(connectTimer)
-      s.disconnect()
-      socketRef.current = null
     }
   }, [accessToken])
 
