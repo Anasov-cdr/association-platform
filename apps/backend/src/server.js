@@ -31,21 +31,38 @@ const app = express()
 const server = createServer(app)
 const port = process.env.PORT || 4000
 const clientOrigin = process.env.CLIENT_ORIGIN || 'http://localhost:5173'
+const allowedOrigins = clientOrigin
+  .split(',')
+  .map((item) => item.trim())
+  .filter(Boolean)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 validateSecurityConfig()
 
 const globalLimiter = createRateLimiter({ windowMs: 60_000, max: 200, keyPrefix: 'global' })
+const corsOptions = {
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true)
+      return
+    }
+    callback(new Error(`Origin not allowed by CORS: ${origin}`))
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}
 
 // Middleware
 app.use(securityHeaders)
-app.use(cors({ origin: clientOrigin.split(',').map((item) => item.trim()) }))
+app.use(cors(corsOptions))
+app.options(/.*/, cors(corsOptions))
 app.use(express.json({ limit: '1mb' }))
 app.use('/api', globalLimiter)
 app.use('/uploads', express.static(path.resolve(__dirname, '../uploads')))
 
 // Socket.io
 const io = new Server(server, {
-  cors: { origin: clientOrigin },
+  cors: { origin: allowedOrigins, credentials: true },
   transports: ['websocket', 'polling']
 })
 
