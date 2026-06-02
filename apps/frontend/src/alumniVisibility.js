@@ -1,5 +1,5 @@
 const STAFF_ROLES = new Set(['ADMIN', 'MODERATOR'])
-const SERVICE_ADMIN_EMAILS = new Set(['admin@alumni.local', 'admin@bfetassociation.kg'])
+const SERVICE_ADMIN_EMAILS = new Set(['admin@bfetassociation.kg'])
 
 export const isPublicAlumniProfile = (profile) => {
   const role = profile?.user?.role || profile?.role || 'ALUMNI'

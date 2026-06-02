@@ -6,7 +6,7 @@ import { sendRegistrationApprovedEmail, sendRegistrationRejectedEmail } from './
 import bcrypt from 'bcryptjs'
 
 const STAFF_ROLES = new Set(['ADMIN', 'MODERATOR'])
-const SERVICE_ADMIN_EMAILS = new Set(['admin@alumni.local'])
+const SERVICE_ADMIN_EMAILS = new Set(['admin@bfetassociation.kg'])
 
 const getMockProfileUser = (profile) =>
   mockDb.users.find((item) => item.id === profile.userId || item.email === profile.user?.email)
